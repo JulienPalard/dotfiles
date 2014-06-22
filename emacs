@@ -142,21 +142,28 @@
 
 ;; flymake-cursor (require 'cl)
 ;; wget http://www.emacswiki.org/emacs/download/flymake-cursor.el
-;; aptitude install pyflakes to check python code
+;; aptitude install pyflakes pep8 to check python code
 (require 'flymake-cursor nil 'noerror)
 (global-set-key [f4] 'flymake-goto-next-error)
 
 (when (load "flymake" t)
-  (defun flymake-pyflakes-init ()
+  (defun flymake-python-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
                        'flymake-create-temp-inplace))
-           (local-file (file-relative-name
-                        temp-file
+           (local-file (file-relative-name temp-file
                         (file-name-directory buffer-file-name))))
-      (list "python-check" (list local-file))))
+      (list "flymake-python" (list local-file))))
+
+   (defun flymake-php-init ()
+     (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                        'flymake-create-temp-inplace))
+            (local-file (file-relative-name temp-file
+                         (file-name-directory buffer-file-name))))
+       (list "flymake-php" (list local-file))))
 
   (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.py\\'" flymake-pyflakes-init)))
+               '("\\.py\\'" flymake-python-init))
+)
 
 (add-hook 'find-file-hook 'flymake-find-file-hook)
 (setq flymake-start-syntax-check-on-find-file nil)
