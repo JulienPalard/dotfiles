@@ -1,0 +1,30 @@
+XTerm.*.metaSendsEscape: True
+XTerm.*.altSendsEscape: True
+
+urxvt*loginShell:true
+urxvt*transparent:true
+urxvt*shading:10
+urxvt*scrollBar:false
+urxvt*background:Black
+urxvt*foreground:White
+urxvt*saveLines:65536
+urxvt*font:*-*-fixed-medium-r-normal--*-110-*-*-*-*-iso8859-1
+urxvt*boldFont:*-*-fixed-bold-r-normal--*-*-110-*-*-*-*-iso8859-1
+urxvt*cursorBlink:true
+urxvt*modifier:mod5
+urxvt*perl-ext:
+urxvt*perl-ext-common:
+
+x-terminal-emulator*loginShell:true
+x-terminal-emulator*transparent:true
+x-terminal-emulator*shading:10
+x-terminal-emulator*scrollBar:false
+x-terminal-emulator*background:Black
+x-terminal-emulator*foreground:White
+x-terminal-emulator*saveLines:65536
+x-terminal-emulator*font:*-*-fixed-medium-r-normal--*-110-*-*-*-*-iso8859-1
+x-terminal-emulator*boldFont:*-*-fixed-bold-r-normal--*-*-110-*-*-*-*-iso8859-1
+x-terminal-emulator*cursorBlink:true
+x-terminal-emulator*modifier:mod5
+x-terminal-emulator*perl-ext:
+x-terminal-emulator*perl-ext-common:

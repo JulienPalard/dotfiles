@@ -1,0 +1,9 @@
+altscreen on
+term screen-256color
+defflow off
+escape ^Hh
+
+# activity "Activity on window %t (%n)"
+# defmonitor on
+# hardstatus lastline
+# hardstatus string "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
