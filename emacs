@@ -231,5 +231,3 @@
             nil)))
     nil))
 (add-to-list 'find-file-hook 'konix/find-file-hook)
-
-(eval-after-load 'rcirc '(require 'rcirc-http-notify))
