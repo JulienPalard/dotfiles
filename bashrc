@@ -10,15 +10,15 @@ ssh-agent-restore()
         export SSH_AGENT_PID="${SSH_AUTH_SOCK##/*/*.}"
     elif [ z"$QTY" = z"0" -a -z "$QUIET" ]
     then
-	printf "No ssh-agent found.\n" 1>&2
+        printf "No ssh-agent found.\n" 1>&2
     elif [ -z "$QUIET" ]
     then
-	select AUTH_SOCK in /tmp/ssh-*/*
-	do
+        select AUTH_SOCK in /tmp/ssh-*/*
+        do
             export SSH_AUTH_SOCK="$AUTH_SOCK"
             export SSH_AGENT_PID="${SSH_AUTH_SOCK##/*/*.}"
             return
-	done
+        done
     fi
 }
 
@@ -151,9 +151,9 @@ jsonpp()
     input="$([ $# -gt 0 ] && printf "%s\n" "$*" || cat -)"
     if ! [ z"$(which pygmentize)" = z"" ]
     then
-	printf "%s" "$input" | python -mjson.tool | pygmentize -l js || printf "%s\n" "$input"
+        printf "%s" "$input" | python -mjson.tool | pygmentize -l js || printf "%s\n" "$input"
     else
-	printf "%s" "$input" | python -minput.tool || printf "%s\n" "$input"
+        printf "%s" "$input" | python -minput.tool || printf "%s\n" "$input"
     fi
 }
 
