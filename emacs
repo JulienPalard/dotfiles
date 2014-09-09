@@ -144,7 +144,7 @@
 ;; wget http://www.emacswiki.org/emacs/download/flymake-cursor.el
 ;; aptitude install pyflakes pep8 to check python code
 (require 'flymake-cursor nil 'noerror)
-(global-set-key [f4] 'flymake-goto-next-error)
+(global-set-key "\C-cn" 'flymake-goto-next-error)
 
 (when (load "flymake" t)
   (defun flymake-python-init ()
