@@ -153,7 +153,7 @@ jsonpp()
     then
         printf "%s" "$input" | python -mjson.tool | pygmentize -l js || printf "%s\n" "$input"
     else
-        printf "%s" "$input" | python -minput.tool || printf "%s\n" "$input"
+        printf "%s" "$input" | python -mjson.tool || printf "%s\n" "$input"
     fi
 }
 
