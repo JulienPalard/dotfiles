@@ -108,8 +108,8 @@ fi
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
 [ "$TERM" != 'linux' -a z"$TERM" != z'eterm-color' ] && TITLE="\[\033]0;\u@\H:\w\a\]" || TITLE=''
-
-export PS1="$TITLE\[$USERNAME_COLOR\]\u\[$WHITE\]@\[$HOSTNAME_COLOR\]\H\[$WHITE\]"'\$ '
+export PS1="$TITLE\[$USERNAME_COLOR\]\u\[$WHITE\]@\[$HOSTNAME_COLOR\]\H\[$WHITE\]"''
+export PROMPT_COMMAND='__git_ps1 "'"$PS1"'" "\\\$ "'
 
 alias grep="grep --color"
 alias ls='ls $LS_OPTIONS'
@@ -232,3 +232,5 @@ function marks
 {
     ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
 }
+
+source ~/.git-prompt.sh
