@@ -117,7 +117,7 @@ else
     export PS1="$PS1"'\$ '
 fi
 
-alias grep="grep --color"
+alias grep="grep --exclude-dir=.git --color"
 alias ls='ls $LS_OPTIONS'
 alias ll='ls $LS_OPTIONS -l'
 alias l='ls $LS_OPTIONS -lA'
