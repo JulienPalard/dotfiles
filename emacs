@@ -62,8 +62,6 @@
 (add-to-list 'load-path "~/.emacs.d/geben-0.26/tree-widget")
 (autoload 'geben "geben" "PHP Debugger on Emacs" t)
 
-(pc-bindings-mode)
-                                        ;(display-time-mode t) Floods my GNU screen's monitoring
 (require 'footnote)
 (add-hook 'message-mode-hook 'footnote-mode)
 (iswitchb-mode t)
