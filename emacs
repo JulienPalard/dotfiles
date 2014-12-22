@@ -17,7 +17,7 @@
   (if (file-exists-p file)
       (load-file file)))
 
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 
 ;; Disable all version control backends (Start faster if don't use them) :
 (setq vc-handled-backends ())
@@ -54,9 +54,7 @@
 (global-set-key "\M-p" 'backward-paragraph)
 (global-set-key "\C-xrv" 'list-registers)
                                         ; from http://www.emacswiki.org/emacs/BackspaceKey
-;;(global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "M-h") 'backward-kill-word)
-;;(global-set-key (kbd "C-?") 'help-command)
 
 (add-to-list 'load-path "~/.emacs.d/geben-0.26")
 (add-to-list 'load-path "~/.emacs.d/geben-0.26/tree-widget")
@@ -64,7 +62,6 @@
 
 (require 'footnote)
 (add-hook 'message-mode-hook 'footnote-mode)
-(iswitchb-mode t)
 (show-paren-mode t)
 (add-hook 'write-file-hooks 'delete-trailing-whitespace)
 
@@ -144,27 +141,30 @@
 (require 'flymake-cursor nil 'noerror)
 (global-set-key "\C-cn" 'flymake-goto-next-error)
 
-(when (load "flymake" t)
-  (defun flymake-python-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-           (local-file (file-relative-name temp-file
-                        (file-name-directory buffer-file-name))))
-      (list "flymake-python" (list local-file))))
+(defun flymake-python-init ()
+  (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                     'flymake-create-temp-inplace))
+         (local-file (file-relative-name temp-file
+                                         (file-name-directory buffer-file-name))))
+    (list "flymake-python" (list local-file))))
 
-   (defun flymake-php-init ()
-     (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                        'flymake-create-temp-inplace))
-            (local-file (file-relative-name temp-file
-                         (file-name-directory buffer-file-name))))
-       (list "flymake-php" (list local-file))))
+(defun flymake-php-init ()
+  (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                     'flymake-create-temp-inplace))
+         (local-file (file-relative-name temp-file
+                                         (file-name-directory buffer-file-name))))
+    (list "flymake-php" (list local-file))))
 
-  (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.py\\'" flymake-python-init))
-)
+(defcustom flymake-allowed-file-name-masks
+  '(
+    ("\\.py\\'" flymake-python-init flymake-simple-cleanup flymake-get-real-file-name)
+    ("\\.php[345]?\\'" flymake-php-init)
+    )
+  "*Files syntax checking is allowed for."
+  :group 'flymake
+  :type '(repeat (string symbol symbol symbol)))
 
 (add-hook 'find-file-hook 'flymake-find-file-hook)
-(setq flymake-start-syntax-check-on-find-file nil)
 
 (defun iwb ()
   "indent whole buffer"
@@ -230,12 +230,13 @@
     nil))
 (add-to-list 'find-file-hook 'konix/find-file-hook)
 
-(defadvice show-paren-function (after my-echo-paren-matching-line activate)
-  "If a matching paren is off-screen, echo the matching line."
-  (when (char-equal (char-syntax (char-before (point))) ?\))
-    (let ((matching-text (blink-matching-open)))
-      (when matching-text
-        (message matching-text)))))
+;; Check why it fails on emacs 24
+;; (defadvice show-paren-function (after my-echo-paren-matching-line activate)
+;;   "If a matching paren is off-screen, echo the matching line."
+;;   (when (char-equal (char-syntax (char-before (point))) ?\))
+;;     (let ((matching-text (blink-matching-open)))
+;;       (when matching-text
+;;         (message matching-text)))))
 
 ;; As C-M-% is almost impossible to type in a terminal emulator:
 (global-set-key "\C-x\M-%" 'query-replace-regexp)
