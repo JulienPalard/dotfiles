@@ -236,3 +236,14 @@
     (let ((matching-text (blink-matching-open)))
       (when matching-text
         (message matching-text)))))
+
+;; As C-M-% is almost impossible to type in a terminal emulator:
+(global-set-key "\C-x\M-%" 'query-replace-regexp)
+
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (add-to-list 'package-archives
+    '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
+
+  )
