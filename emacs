@@ -7,17 +7,16 @@
 ;; Started on  Sun Nov 16 12:00:18 2008 Julien Palard
 ;;
 
+;;; Code:
 (setq user-full-name "Julien Palard")
 (setq user-mail-address "julien@palard.fr")
 
-(require 'cl)
+(eval-when-compile (require 'cl))
 
 (defun load-file-if-exists (file)
   "Load a file only if it exists."
   (if (file-exists-p file)
       (load-file file)))
-
-(add-to-list 'load-path "~/.emacs.d/lisp/")
 
 ;; Disable all version control backends (Start faster if don't use them) :
 (setq vc-handled-backends ())
@@ -53,7 +52,6 @@
 (global-set-key "\M-n" 'forward-paragraph)
 (global-set-key "\M-p" 'backward-paragraph)
 (global-set-key "\C-xrv" 'list-registers)
-                                        ; from http://www.emacswiki.org/emacs/BackspaceKey
 (global-set-key (kbd "M-h") 'backward-kill-word)
 
 (add-to-list 'load-path "~/.emacs.d/geben-0.26")
@@ -82,8 +80,6 @@
 (global-set-key (read-kbd-macro "C-M-]") 'enlarge-window-horizontally)
 
 (fset 'yes-or-no-p 'y-or-n-p)
-
-(icomplete-mode 99)
 
 (global-set-key "\M-/" 'hippie-expand)
 (setq hippie-expand-try-functions-list
@@ -130,41 +126,10 @@
 (add-hook 'php-mode-hook 'eeple-indent-style)
 (add-hook 'c-mode-hook 'eeple-indent-style)
 
-(menu-bar-mode nil)
+(menu-bar-mode -1)
 (setq font-lock-maximum-size nil)
 
 (load-file-if-exists "~/.emacs.d/rcirc-julien.el")
-
-;; flymake-cursor (require 'cl)
-;; wget http://www.emacswiki.org/emacs/download/flymake-cursor.el
-;; aptitude install pyflakes pep8 to check python code
-(require 'flymake-cursor nil 'noerror)
-(global-set-key "\C-cn" 'flymake-goto-next-error)
-
-(defun flymake-python-init ()
-  (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                     'flymake-create-temp-inplace))
-         (local-file (file-relative-name temp-file
-                                         (file-name-directory buffer-file-name))))
-    (list "flymake-python" (list local-file))))
-
-(defun flymake-php-init ()
-  (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                     'flymake-create-temp-inplace))
-         (local-file (file-relative-name temp-file
-                                         (file-name-directory buffer-file-name))))
-    (list "flymake-php" (list local-file))))
-
-(defcustom flymake-allowed-file-name-masks
-  '(
-    ("\\.py\\'" flymake-python-init flymake-simple-cleanup flymake-get-real-file-name)
-    ("\\.php[345]?\\'" flymake-php-init)
-    )
-  "*Files syntax checking is allowed for."
-  :group 'flymake
-  :type '(repeat (string symbol symbol symbol)))
-
-(add-hook 'find-file-hook 'flymake-find-file-hook)
 
 (defun iwb ()
   "indent whole buffer"
@@ -172,40 +137,18 @@
   (delete-trailing-whitespace)
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
+
 (global-set-key [f12] 'iwb)
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(flymake-errline ((nil (:inverse-video t))))
- '(font-lock-comment-delimiter-face ((default (:inherit font-lock-comment-face)) (((class color) (min-colors 8) (background light)) nil)))
- '(font-lock-comment-face ((nil (:weight bold)))))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-(defun terminal-init-screen ()
-  "Terminal initialization function for screen-256color."
-  (load "term/xterm")
-  (xterm-register-default-colors)
-  (tty-set-up-initial-frame-faces))
-
-
 (global-set-key [left] 'windmove-left)
 (global-set-key [right] 'windmove-right)
 (global-set-key [up] 'windmove-up)
 (global-set-key [down] 'windmove-down)
 
-;; Highlight 80th column
-(require 'whitespace)
-(setq whitespace-style '(face empty tabs lines-tail trailing))
-(global-whitespace-mode t)
+;; This one causes by IRC to bug with double quotes:
+;; ;; Highlight 80th column
+;; (require 'whitespace)
+;; (setq whitespace-style '(face empty tabs lines-tail trailing))
+;; (global-whitespace-mode t)
 
 (defun konix/find-file-hook ()
   (if (and
@@ -230,14 +173,6 @@
     nil))
 (add-to-list 'find-file-hook 'konix/find-file-hook)
 
-;; Check why it fails on emacs 24
-;; (defadvice show-paren-function (after my-echo-paren-matching-line activate)
-;;   "If a matching paren is off-screen, echo the matching line."
-;;   (when (char-equal (char-syntax (char-before (point))) ?\))
-;;     (let ((matching-text (blink-matching-open)))
-;;       (when matching-text
-;;         (message matching-text)))))
-
 ;; As C-M-% is almost impossible to type in a terminal emulator:
 (global-set-key "\C-x\M-%" 'query-replace-regexp)
 
@@ -248,3 +183,99 @@
     '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
 
   )
+
+;; hex color
+(defvar hexcolour-keywords
+  '(("#[abcdef[:digit:]]\\{3,6\\}"
+     (0 (let ((colour (match-string-no-properties 0)))
+          (if (or (= (length colour) 4)
+                  (= (length colour) 7))
+              (put-text-property
+               (match-beginning 0)
+               (match-end 0)
+               'face (list :background (match-string-no-properties 0)
+                           :foreground (if (>= (apply '+ (x-color-values
+                                                          (match-string-no-properties 0)))
+                                               (* (apply '+ (x-color-values "white")) .6))
+                                           "black" ;; light bg, dark text
+                                         "white" ;; dark bg, light text
+                                         )))))
+        append))))
+
+(defun hexcolour-add-to-font-lock ()
+  (interactive)
+  (font-lock-add-keywords nil hexcolour-keywords t))
+
+(add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
+(add-hook 'sass-mode-hook 'hexcolour-add-to-font-lock)
+
+(icomplete-mode 99)
+
+;; pip install flake8
+;; pip install pylint
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(require 'flycheck)
+(flycheck-add-next-checker 'python-flake8 'python-pylint)
+(setq flycheck-phpcs-standard "Shape")
+
+(add-hook 'python-mode-hook 'jedi:setup)
+
+;; $ cd ~/.emacs.d/
+;; $ mkdir themes
+;; $ cd themes/
+;; $ git clone https://github.com/sellout/emacs-color-theme-solarized.git
+(add-to-list 'custom-theme-load-path
+             "~/.emacs.d/themes/emacs-color-theme-solarized/")
+(load-theme 'solarized t)
+
+(defun xah-syntax-color-hex ()
+  "Syntax color hex color spec such as 「#ff1100」 in current buffer."
+  (interactive)
+  (font-lock-add-keywords
+   nil
+   '(("#[abcdef[:digit:]]\\{6\\}"
+      (0 (put-text-property
+          (match-beginning 0)
+          (match-end 0)
+          'face (list :background (match-string-no-properties 0)))))))
+  (font-lock-fontify-buffer)
+  )
+
+(require 'company)
+(require 'company-etags)
+(setq company-etags-use-main-table-list "off")
+(add-to-list 'company-etags-modes 'php-mode)
+(add-to-list 'company-backends 'company-etags)
+(add-to-list 'company-backends 'company-jedi)
+(add-hook 'after-init-hook 'global-company-mode)
+
+(add-hook 'php-mode-hook
+          (lambda ()
+            (add-to-list 'company-backends 'company-my-php-backend)))
+
+
+(defun company-my-php-backend (command &optional arg &rest ignored)
+  (case command
+    (prefix (and (eq major-mode 'php-mode)
+                 (company-grab-symbol)))
+    (sorted t)
+    (candidates (all-completions
+                 arg
+                 (if (and (boundp 'my-php-symbol-hash)
+                          my-php-symbol-hash)
+                     my-php-symbol-hash
+
+                   (with-temp-buffer
+                     (call-process-shell-command "php -r '$all=get_defined_functions();foreach ($all[\"internal\"] as $fun) { echo $fun . \";\";};'"
+                                                 nil t)
+                     (goto-char (point-min))
+                     (let ((hash (make-hash-table)))
+                       (while (re-search-forward "\\([^;]+\\);" (point-max) t)
+                         (puthash (match-string 1) t hash))
+                       (setq my-php-symbol-hash hash))))))))
+
+
+(require 'weechat)
+
+(provide `.emacs)
+;;; .emacs ends here
