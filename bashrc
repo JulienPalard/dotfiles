@@ -54,7 +54,7 @@ export LESS_TERMCAP_ue=$'\E[0m'        # fin
 export DEBEMAIL DEBFULLNAME
 export PATH="$PATH:~/mbin"
 export EDITOR=emacs
-export PYTHONIOENCODING=utf_8
+export LC_ALL='en_US.utf8'
 export LS_OPTIONS='--color=auto'
 
 export HISTCONTROL=ignoredups
@@ -112,11 +112,10 @@ export PS1="$TITLE\[$USERNAME_COLOR\]\u\[$WHITE\]@\[$HOSTNAME_COLOR\]\H\[$WHITE\
 # .git-prompt.sh is here: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 if [ -f ~/.git-prompt.sh ]
 then
-    export PROMPT_COMMAND='__git_ps1 "'"$PS1"'" "\\\$ "'
+    PROMPT_COMMAND='__git_ps1 "'"$PS1"'" "\\\$ ";'"$PROMPT_COMMAND"
 else
     export PS1="$PS1"'\$ '
 fi
-
 alias grep="grep --exclude-dir=.git --color"
 alias ls='ls $LS_OPTIONS'
 alias ll='ls $LS_OPTIONS -l'
