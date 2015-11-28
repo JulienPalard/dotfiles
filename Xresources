@@ -1,34 +1,95 @@
-XTerm.*.metaSendsEscape: True
-XTerm.*.altSendsEscape: True
-
-urxvt*loginShell:true
-urxvt*transparent:true
-urxvt*shading:10
-urxvt*scrollBar:false
-urxvt*background:Black
-urxvt*foreground:White
-urxvt*saveLines:65536
-urxvt*font:*-*-fixed-medium-r-normal--*-110-*-*-*-*-iso8859-1
-urxvt*boldFont:*-*-fixed-bold-r-normal--*-*-110-*-*-*-*-iso8859-1
-urxvt*cursorBlink:true
-urxvt*modifier:mod5
-urxvt*perl-ext:
-urxvt*perl-ext-common:
-urxvt*iso14755: false
-urxvt*iso14755_52: false
-
 x-terminal-emulator*loginShell:true
 x-terminal-emulator*transparent:true
-x-terminal-emulator*shading:10
+x-terminal-emulator*shading:5
 x-terminal-emulator*scrollBar:false
 x-terminal-emulator*background:Black
 x-terminal-emulator*foreground:White
 x-terminal-emulator*saveLines:65536
-x-terminal-emulator*font:*-*-fixed-medium-r-normal--*-110-*-*-*-*-iso8859-1
-x-terminal-emulator*boldFont:*-*-fixed-bold-r-normal--*-*-110-*-*-*-*-iso8859-1
+
+x-terminal-emulator*font:xft:LiberationMono
+x-terminal-emulator*boldFont:xft:LiberationMono
+
 x-terminal-emulator*cursorBlink:true
-x-terminal-emulator*modifier:mod5
 x-terminal-emulator*perl-ext:
 x-terminal-emulator*perl-ext-common:
+x-terminal-emulator*modifier:alt
 x-terminal-emulator*iso14755: false
 x-terminal-emulator*iso14755_52: false
+
+
+! x-terminal-emulator*font:*-*-fixed-medium-r-normal--*-160-*-*-*-*-iso8859-1
+! x-terminal-emulator*font:-*-unifont-*-*-*-*-16-*-*-*-*-*-*-*
+! x-terminal-emulator*boldFont:*-*-fixed-bold-r-normal--*-*-160-*-*-*-*-iso8859-1
+!x-terminal-emulator*boldFont:-*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
+!Courier:pixelsize=16:style=demibold
+
+!x-terminal-emulator*font:xft:DejaVuSansMono
+!x-terminal-emulator*boldFont:xft:Courier-Bold:pixelsize=16:style=demibold
+!x-terminal-emulator*boldFont:xft:DejaVuSansMono
+
+#define S_base03        #000c10
+! Should be #define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+
+*background:            S_base3
+*foreground:            S_base00
+*fadeColor:             S_base3
+*cursorColor:           S_base01
+*pointerColorBackground:S_base1
+*pointerColorForeground:S_base01
+
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
+
+!! black dark/light
+*color0:                S_base02
+*color8:                S_base03
+
+!! red dark/light
+*color1:                S_red
+*color9:                S_orange
+
+!! green dark/light
+*color2:                S_green
+*color10:               S_base01
+
+!! yellow dark/light
+*color3:                S_yellow
+*color11:               S_base00
+
+!! blue dark/light
+*color4:                S_blue
+*color12:               S_base0
+
+!! magenta dark/light
+*color5:                S_magenta
+*color13:               S_violet
+
+!! cyan dark/light
+*color6:                S_cyan
+*color14:               S_base1
+
+!! white dark/light
+*color7:                S_base2
+*color15:               S_base3
+
+URxvt.intensityStyles: false
+
+! Cat your .Xresources to check colors:
+!             bl re gr ye bl ma cy gr
+! norm 0-7    [38;5;0m███[38;5;1m███[38;5;2m███[38;5;3m███[38;5;4m███[38;5;5m███[38;5;6m███[38;5;7m███[0m
+! bold 0-7    [1;38;5;0m███[1;38;5;1m███[1;38;5;2m███[1;38;5;3m███[1;38;5;4m███[1;38;5;5m███[1;38;5;6m███[1;38;5;7m███[0m
+! norm 8-15   [38;5;8m███[38;5;9m███[38;5;10m███[38;5;11m███[38;5;12m███[38;5;13m███[38;5;14m███[38;5;15m███[0m
+! bold 8-15   [1;38;5;8m███[1;38;5;9m███[1;38;5;10m███[1;38;5;11m███[1;38;5;12m███[1;38;5;13m███[1;38;5;14m███[1;38;5;15m███[0m
