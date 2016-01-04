@@ -55,7 +55,7 @@ export LESS_TERMCAP_se=$'\E[0m'        # fin
 export LESS_TERMCAP_us=$'\E[01;32m'    # début de souligné
 export LESS_TERMCAP_ue=$'\E[0m'        # fin
 export DEBEMAIL DEBFULLNAME
-export PATH="$PATH:~/mbin"
+export PATH="$PATH:~/mbin:~/.local/bin"
 export EDITOR=emacs
 export LC_ALL='en_US.utf8'
 export LS_OPTIONS='--color=auto'
