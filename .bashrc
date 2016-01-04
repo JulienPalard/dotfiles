@@ -29,7 +29,6 @@ ssh-agent-restore --quiet
 
 # If not running interactively, don't do anything more
 [ -z "$PS1" ] && return
-[ "$(cut -d. -f1 /proc/loadavg)" -gt 2 ] && return
 
 DEBEMAIL=julien
 DEBEMAIL=$DEBEMAIL@
