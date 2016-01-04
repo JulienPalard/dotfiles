@@ -42,6 +42,10 @@ shopt -s autocd   2>/dev/null # Only in bash 4
 shopt -s globstar 2>/dev/null # Only in bash 4
 shopt -s nocaseglob
 
+if [ -n "$DISPLAY" ]; then
+    xset b off
+fi
+
 # http://nion.modprobe.de/blog/archives/572-less-colors-for-man-pages.html
 export LESS_TERMCAP_mb=$'\E[01;31m'    # debut de blink
 export LESS_TERMCAP_md=$'\E[01;31m'    # debut de gras
