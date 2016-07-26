@@ -8,6 +8,9 @@ x-terminal-emulator*saveLines:65536
 
 x-terminal-emulator*font:xft:LiberationMono
 x-terminal-emulator*boldFont:xft:LiberationMono
+! The following is nice too on a little laptop:
+! x-terminal-emulator*font:xft:Bitstream Vera Sans Mono:pixelsize=16
+! x-terminal-emulator*boldFont:xft:Bitstream Vera Sans Mono:pixelsize=16
 
 x-terminal-emulator*cursorBlink:true
 x-terminal-emulator*perl-ext:
