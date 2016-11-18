@@ -22,8 +22,8 @@
   (setq package-list '(ac-php company company-jedi flycheck jedi jedi-core php-mode geben))
   (add-to-list 'package-archives
     '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
-  (add-to-list 'package-archives
-    '("marmalade" . "http://marmalade-repo.org/packages/") t)
+  ;; (add-to-list 'package-archives
+  ;;   '("marmalade" . "http://marmalade-repo.org/packages/") t)
   (unless package-archive-contents
     (package-refresh-contents))
   (dolist (package package-list)
