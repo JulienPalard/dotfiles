@@ -28,18 +28,10 @@
 
 [alias]
         st = status
-        ci = commit -a
-        br = branch
-        co = checkout
-        df = diff
-        lg = log --date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-        w = whatchanged
-        pom = push origin master
-        # show list of contributors in descending order by number of commits
-        rank = shortlog -sn --no-merges
+        lg = log --date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 [push]
-	default = tracking
+	default = simple
 
 [apply]
     whitespace = strip
