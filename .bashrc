@@ -2,24 +2,25 @@
 ssh-agent-restore()
 {
     QUIET="$1"
-    QTY="$(ls -1 /tmp/ssh-*/* 2>/dev/null | wc -l)"
+    AGENTS="$(ls -1tr /tmp/ssh-*/* 2>/dev/null)"
+    QTY="$(printf "%s" "$AGENTS" | wc -l)"
 
-    if [ z"$QTY" = z"1" ]
-    then
-        export SSH_AUTH_SOCK="$(printf "%s" /tmp/ssh-*/*)"
-        export SSH_AGENT_PID="${SSH_AUTH_SOCK##/*/*.}"
-    elif [ z"$QTY" = z"0" -a -z "$QUIET" ]
+    if [ z"$QTY" = z"0" -a -z "$QUIET" ]
     then
         printf "No ssh-agent found.\n" 1>&2
-    elif [ -z "$QUIET" ]
+        return 1
+    fi
+    if [ -z "$QUIET" ]
     then
-        select AUTH_SOCK in /tmp/ssh-*/*
+        select AUTH_SOCK in $AGENTS
         do
             export SSH_AUTH_SOCK="$AUTH_SOCK"
-            export SSH_AGENT_PID="${SSH_AUTH_SOCK##/*/*.}"
-            return
+            break
         done
+    else
+        export SSH_AUTH_SOCK="$(printf "%s" "$AGENTS" | tail -n 1)"
     fi
+    export SSH_AGENT_PID="${SSH_AUTH_SOCK##/*/*.}"
 }
 
 # Do this even in non-interactive shells, this permit :
