@@ -178,14 +178,6 @@
 
 (add-hook 'python-mode-hook 'jedi:setup)
 
-;; $ cd ~/.emacs.d/
-;; $ mkdir themes
-;; $ cd themes/
-;; $ git clone https://github.com/sellout/emacs-color-theme-solarized.git
-(add-to-list 'custom-theme-load-path
-             "~/.emacs.d/themes/emacs-color-theme-solarized/")
-(load-theme 'solarized t)
-
 (defun xah-syntax-color-hex ()
   "Syntax color hex color spec such as 「#ff1100」 in current buffer."
   (interactive)
