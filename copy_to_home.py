@@ -36,4 +36,5 @@ if __name__ == '__main__':
     maybe_copy_dir(
         './',
         expanduser('~/'),
-        set(listdir()) - set(('README.md', '.git', 'copy_to_home.py')))
+        set(listdir()) - set(('README.md', '.git', 'copy_to_home.py',
+                              'install.sh')))
