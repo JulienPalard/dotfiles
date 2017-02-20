@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 
+"""Interactively and recursively copy files, prompting user when file
+differs, showing him diffs.
+"""
+
 from filecmp import cmpfiles
 from difflib import unified_diff
 from os.path import expanduser, join, isdir, exists
-from shutil import copy2 as copy
 from os import listdir
+from shutil import copy2 as copy
 from itertools import chain
 
 
@@ -16,7 +20,7 @@ def maybe_copy_file(src, dest):
     with open(src) as a, open(dest) as b:
         diff = unified_diff(list(a), list(b))
         print(''.join(list(diff)))
-        if input("Copy [y,n]? ").lower()[0] == 'y':
+        if input("Copy {} [y,n]? ".format(src)).lower()[0] == 'y':
             copy(src, dest)
 
 
