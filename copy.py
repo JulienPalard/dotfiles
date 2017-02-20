@@ -33,7 +33,7 @@ def maybe_copy_dir(src, dest, common):
             maybe_copy_dir(join(src, missmatch), join(dest, missmatch),
                            listdir(join(src, missmatch)))
         else:
-            maybe_copy_file(missmatch, join(dest, missmatch))
+            maybe_copy_file(join(src, missmatch), join(dest, missmatch))
 
 
 def parse_args():
