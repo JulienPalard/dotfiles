@@ -1,3 +1,7 @@
+# install
+
+    sh <(curl -s https://raw.githubusercontent.com/JulienPalard/dotfiles/master/install.sh)
+
 # Packages I use on a laptop with Debian
 
  - i3-wm
