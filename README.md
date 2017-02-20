@@ -5,7 +5,7 @@
  - i3lock
  - firmware-nonfree
  - firmware-iwlwifi
- - rxvt-unicode-256color
+ - rxvt-unicode
  - wicd
  - wicd-curses
  - feh
