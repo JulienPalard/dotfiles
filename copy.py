@@ -48,7 +48,7 @@ def parse_args():
 
 def main(src, dest, exclude):
     maybe_copy_dir(expanduser(src), expanduser(dest),
-                   set(listdir()) - set(exclude))
+                   set(listdir(src)) - set(exclude))
 
 
 if __name__ == '__main__':
