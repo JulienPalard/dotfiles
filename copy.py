@@ -36,9 +36,20 @@ def maybe_copy_dir(src, dest, common):
             maybe_copy_file(missmatch, join(expanduser('~/'), missmatch))
 
 
+def parse_args():
+    import argparse
+    parser = argparse.ArgumentParser(description='Interactively copy files.')
+    parser.add_argument('src')
+    parser.add_argument('dest')
+    parser.add_argument('--exclude', help='Exclude those files', nargs='*',
+                        default=[])
+    return parser.parse_args()
+
+
+def main(src, dest, exclude):
+    maybe_copy_dir(expanduser(src), expanduser(dest),
+                   set(listdir()) - set(exclude))
+
+
 if __name__ == '__main__':
-    maybe_copy_dir(
-        './',
-        expanduser('~/'),
-        set(listdir()) - set(('README.md', '.git', 'copy_to_home.py',
-                              'install.sh')))
+    main(**vars(parse_args()))
