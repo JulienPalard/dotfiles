@@ -2,5 +2,5 @@
 
 rm -fr /tmp/.dotfiles/
 git clone -q git@github.com:JulienPalard/dotfiles.git /tmp/.dotfiles/ &&
-    /tmp/.dotfiles/copy.py /tmp/.dotfiles/ ~/ --exclude README.md .git copy.py install.sh &&
+    /tmp/.dotfiles/copy.py /tmp/.dotfiles/ ~/ --exclude README.md .git copy.py install.sh __pycache__ &&
     rm -fr /tmp/.dotfiles/
