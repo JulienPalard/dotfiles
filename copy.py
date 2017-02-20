@@ -29,7 +29,7 @@ def maybe_copy_dir(src, dest, common):
     for match in sorted(matches):
         print(join(dest, match), '√')
     for missmatch in sorted(chain(missmatches, errors)):
-        if isdir(missmatch):
+        if isdir(join(src, missmatch)):
             maybe_copy_dir(join(src, missmatch), join(dest, missmatch),
                            listdir(join(src, missmatch)))
         else:
