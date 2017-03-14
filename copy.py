@@ -18,7 +18,7 @@ def maybe_copy_file(src, dest):
             copy(src, dest)
         return
     with open(src) as a, open(dest) as b:
-        diff = unified_diff(list(a), list(b))
+        diff = unified_diff(list(b), list(a))
         print(''.join(list(diff)))
         if input("Copy {} [y,n]? ".format(src)).lower()[0] == 'y':
             copy(src, dest)
