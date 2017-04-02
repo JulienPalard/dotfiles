@@ -116,7 +116,7 @@ export PS1="$TITLE\[$USERNAME_COLOR\]\u\[$WHITE\]@\[$HOSTNAME_COLOR\]\H\[$WHITE\
 # .git-prompt.sh is here: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 if [ -f ~/.git-prompt.sh ]
 then
-    PROMPT_COMMAND='__git_ps1 "'"$PS1"'" "\\\$ ";'"$PROMPT_COMMAND"
+    export PS1="$PS1"'$(__git_ps1 " (%s)")\$ '
 else
     export PS1="$PS1"'\$ '
 fi
