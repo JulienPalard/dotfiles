@@ -238,13 +238,41 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(frame-background-mode (quote dark)))
+ '(frame-background-mode (quote dark))
+ '(package-selected-packages
+   (quote
+    (pretty-mode jedi geben flycheck company-jedi ac-php))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(require 'pretty-mode)
+(global-pretty-mode t)
+
+(pretty-deactivate-groups
+ '(:equality :ordering :ordering-double :ordering-triple
+             :arrows :arrows-twoheaded :punctuation
+             :logic :sets))
+
+(pretty-activate-groups
+ '(:sub-and-superscripts :greek :arithmetic-nary))
+
+
+(global-prettify-symbols-mode 1)
+
+(add-hook
+ 'python-mode-hook
+ (lambda ()
+   (mapc (lambda (pair) (push pair prettify-symbols-alist))
+         '(;; Syntax
+           ("in" .       #x2208)
+           ("not in" .   #x2209)
+           ("int" .      #x2124)
+           ("float" .    #x211d)))))
+
 
 (provide `.emacs)
 ;;; .emacs ends here
