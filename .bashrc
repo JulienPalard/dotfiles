@@ -246,3 +246,11 @@ if [ -f ~/.git-prompt.sh ]
 then
     source ~/.git-prompt.sh
 fi
+
+function workon
+{
+    local VENVS="$HOME/.venvs"
+    [ -d "$VENVS/$1" ] || mkdir -p "$VENVS/$1"
+    [ -f "$VENVS/$1/bin/activate" ] || python3 -m venv "$VENVS/$1"
+    . "$VENVS/$1/bin/activate"
+}
