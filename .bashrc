@@ -169,13 +169,13 @@ jsonpp()
 urldecode()
 {
     input="$([ $# -gt 0 ] && printf "%s\n" "$*" || cat -)"
-    python -c "import urllib2, sys; print urllib2.unquote(sys.argv[1])" "$input"
+    python3 -c "import urllib.parse, sys; print(urllib.parse.unquote(sys.argv[1]))" "$input"
 }
 
 urlencode()
 {
     input="$([ $# -gt 0 ] && printf "%s\n" "$*" || cat -)"
-    python -c "import urllib2, sys; print urllib2.quote(sys.argv[1])" "$input"
+    python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$input"
 }
 
 # Removes *~ and #*# files in curent folder, for a depth limited to 3 folders.
