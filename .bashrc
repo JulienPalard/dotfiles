@@ -254,3 +254,10 @@ function workon
     [ -f "$VENVS/$1/bin/activate" ] || python3 -m venv "$VENVS/$1"
     . "$VENVS/$1/bin/activate"
 }
+
+function _workon
+{
+    COMPREPLY=( $( compgen -W '$( command ls "$HOME/.venvs" )' -- "${COMP_WORDS[COMP_CWORD]}") )
+}
+
+complete -F _workon workon
