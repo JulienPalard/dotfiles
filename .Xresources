@@ -20,6 +20,17 @@ x-terminal-emulator*iso14755: false
 x-terminal-emulator*iso14755_52: false
 
 
+x-terminal-emulator-videoproj*loginShell:true
+x-terminal-emulator-videoproj*transparent:true
+x-terminal-emulator-videoproj*shading:5
+x-terminal-emulator-videoproj*scrollBar:false
+x-terminal-emulator-videoproj*background:Black
+x-terminal-emulator-videoproj*foreground:White
+x-terminal-emulator-videoproj*saveLines:65536
+x-terminal-emulator-videoproj*font:xft:Bitstream Vera Sans Mono:pixelsize=32
+x-terminal-emulator-videoproj*boldFont:xft:Bitstream Vera Sans Mono:pixelsize=32
+
+
 ! x-terminal-emulator*font:*-*-fixed-medium-r-normal--*-160-*-*-*-*-iso8859-1
 ! x-terminal-emulator*font:-*-unifont-*-*-*-*-16-*-*-*-*-*-*-*
 ! x-terminal-emulator*boldFont:*-*-fixed-bold-r-normal--*-*-160-*-*-*-*-iso8859-1
