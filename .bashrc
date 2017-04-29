@@ -59,7 +59,6 @@ export DEBEMAIL DEBFULLNAME
 export PATH="$PATH:$HOME/mbin:$HOME/.local/bin"
 export EDITOR=emacs
 export LC_ALL='en_US.utf8'
-export LS_OPTIONS='--color=auto'
 
 export HISTCONTROL=ignoredups
 export HISTFILESIZE=5000
@@ -121,18 +120,9 @@ else
     export PS1="$PS1"'\$ '
 fi
 alias grep="grep --exclude-dir=.git --color"
-alias ls='ls $LS_OPTIONS'
-alias ll='ls $LS_OPTIONS -l'
-alias l='ls $LS_OPTIONS -lA'
-alias ...=".. 2"
-alias ....=".. 3"
-alias .....=".. 4"
+alias ls='ls --color=auto'
 alias scr='screen -D -R -U -h 424242'
-alias lintian='lintian --pedantic -v -iI --display-experimental --show-overrides'
 alias fingerprint='find /etc/ssh -name "*.pub" -exec ssh-keygen -l -f {} \;'
-# My old emacs alias (Opening file with file:lineno) is replaced by a function
-# in my .emacs.
-alias e='emacs'
 
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
@@ -146,23 +136,19 @@ if [ -f ~/.my_bashrc ]; then
     . ~/.my_bashrc
 fi
 
-..()
-{
-    for ((j=${1:-1},i=0;i<j;i++))
-    do
-        builtin cd ..
-    done
-}
+if [ -f ~/.git-prompt.sh ]
+then
+    source ~/.git-prompt.sh
+fi
 
-# Json pretty printer
 jsonpp()
 {
     input="$([ $# -gt 0 ] && printf "%s\n" "$*" || cat -)"
     if ! [ z"$(which pygmentize)" = z"" ]
     then
-        printf "%s" "$input" | python -mjson.tool | pygmentize -l js || printf "%s\n" "$input"
+        printf "%s" "$input" | python3 -mjson.tool | pygmentize -l js || printf "%s\n" "$input"
     else
-        printf "%s" "$input" | python -mjson.tool || printf "%s\n" "$input"
+        printf "%s" "$input" | python3 -mjson.tool || printf "%s\n" "$input"
     fi
 }
 
@@ -187,65 +173,6 @@ clean()
         \) \
         -print0 | xargs -0 rm -f
 }
-
-# Download and apply Julien's bashrc
-upgrade()
-{
-    rm -f ~/.bashrc.1
-    echo "Downloading mandark's bashrc..."
-    wget --timeout=1 --quiet http://mdk.fr/dotfiles/bashrc?42 -O ~/.bashrc.1
-    if grep -q grep ~/.bashrc.1
-    then
-        DIFF="$(diff ~/.bashrc ~/.bashrc.1)"
-        if [ -z "$DIFF" ]
-        then
-            echo "Nothing to upgrade"
-        else
-            echo "Here is the applied patch :"
-            printf "%s\n" "$DIFF"
-            mv -f ~/.bashrc.1 ~/.bashrc
-            echo "type . ~/.bashrc to load your new bashrc file !"
-        fi
-    else
-        rm -f ~/.bashrc.1
-    fi
-}
-
-# Like pydoc, opens a manual page of a PHP function.
-phpdoc()
-{
-    lynx "/usr/share/doc/php-doc/html/function.$(printf "%s" "$*" | sed 's/[^a-zA-Z0-9]/-/g').html"
-}
-
-
-
-# From : http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
-export MARKPATH="$HOME/.marks"
-function jump
-{
-    cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
-}
-
-function mark
-{
-    mkdir -p "$MARKPATH"
-    ln -s "$(pwd)" "$MARKPATH/$1"
-}
-
-function unmark
-{
-    rm -i "$MARKPATH/$1"
-}
-
-function marks
-{
-    ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
-}
-
-if [ -f ~/.git-prompt.sh ]
-then
-    source ~/.git-prompt.sh
-fi
 
 function workon
 {
