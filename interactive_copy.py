@@ -6,8 +6,8 @@ differs, showing him diffs.
 
 from filecmp import cmpfiles
 from difflib import unified_diff
-from os.path import expanduser, join, isdir, exists
-from os import listdir
+from os.path import expanduser, join, isdir, exists, dirname
+from os import listdir, makedirs
 from shutil import copy2 as copy
 from itertools import chain
 
@@ -15,6 +15,7 @@ from itertools import chain
 def maybe_copy_file(src, dest):
     if not exists(dest):
         if input("Copy {} [y,n]? ".format(src)).lower()[0] == 'y':
+            makedirs(dirname(dest), exist_ok=True)
             copy(src, dest)
         return
     with open(src) as a, open(dest) as b:
