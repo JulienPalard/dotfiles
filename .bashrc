@@ -250,9 +250,15 @@ fi
 function workon
 {
     local VENVS="$HOME/.venvs"
-    [ -d "$VENVS/$1" ] || mkdir -p "$VENVS/$1"
-    [ -f "$VENVS/$1/bin/activate" ] || python3 -m venv "$VENVS/$1"
-    . "$VENVS/$1/bin/activate"
+    if [ -z "$1" -o z"$1" = z"." ]
+    then
+        local VENV_NAME="$(basename "$PWD")"
+    else
+        local VENV_NAME="$1"
+    fi
+    [ -d "$VENVS/$VENV_NAME" ] || mkdir -p "$VENVS/$VENV_NAME"
+    [ -f "$VENVS/$VENV_NAME/bin/activate" ] || python3 -m venv "$VENVS/$VENV_NAME"
+    . "$VENVS/$VENV_NAME/bin/activate"
 }
 
 function _workon
