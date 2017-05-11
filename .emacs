@@ -171,6 +171,8 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 (require 'flycheck)
+(define-key flycheck-mode-map (kbd "<f8>") 'flycheck-previous-error)
+(define-key flycheck-mode-map (kbd "<f9>") 'flycheck-next-error)
 (flycheck-add-next-checker 'python-flake8 'python-pylint)
 (setq flycheck-phpcs-standard "/home/julien/www/shape/config/static/phpcs_shape_ruleset.xml")
 (setq flycheck-phpmd-rulesets "/home/julien/www/shape/config/static/phpmd_shape_ruleset.xml")
