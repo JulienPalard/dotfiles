@@ -1,8 +1,9 @@
 # Try to restore environment variable of an ssh-agent
 ssh-agent-restore()
 {
-    QUIET="$1"
-    AGENTS="$(ls -1tr /tmp/ssh-*/* 2>/dev/null)"
+    local QUIET="$1"
+    local AGENTS="$(ls -1tr /tmp/ssh-*/* 2>/dev/null)"
+    local AUTH_SOCKS_AND_NAME=( )
 
     if [ z"$?" != z"0" -a -z "$QUIET" ]
     then
@@ -11,9 +12,13 @@ ssh-agent-restore()
     fi
     if [ -z "$QUIET" ]
     then
-        select AUTH_SOCK in $AGENTS
+        for auth_sock in $AGENTS
         do
-            export SSH_AUTH_SOCK="$AUTH_SOCK"
+            AUTH_SOCKS_AND_NAME=( "${AUTH_SOCKS_AND_NAME[@]}" "$(printf "%s " "$auth_sock"; SSH_AUTH_SOCK="$auth_sock" ssh-add -l | cut -d' ' -f3- | tr '\n', ' ')" )
+        done
+        select AUTH_SOCKS in "${AUTH_SOCKS_AND_NAME[@]}"
+        do
+            export SSH_AUTH_SOCK="$(printf "%s" "$AUTH_SOCKS" | awk '{print $1}')"
             break
         done
     else
