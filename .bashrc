@@ -3,9 +3,8 @@ ssh-agent-restore()
 {
     QUIET="$1"
     AGENTS="$(ls -1tr /tmp/ssh-*/* 2>/dev/null)"
-    QTY="$(printf "%s" "$AGENTS" | wc -l)"
 
-    if [ z"$QTY" = z"0" -a -z "$QUIET" ]
+    if [ z"$?" != z"0" -a -z "$QUIET" ]
     then
         printf "No ssh-agent found.\n" 1>&2
         return 1
