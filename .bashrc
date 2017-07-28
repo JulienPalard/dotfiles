@@ -2,9 +2,8 @@
 ssh-agent-restore()
 {
     local QUIET="$1"
-    local AGENTS="$(ls -1tr /tmp/ssh-*/* 2>/dev/null)"
     local AUTH_SOCKS_AND_NAME=( )
-
+    local AGENTS="$(ls -1tr /tmp/ssh-*/* 2>/dev/null)"
     if [ z"$?" != z"0" -a -z "$QUIET" ]
     then
         printf "No ssh-agent found.\n" 1>&2
