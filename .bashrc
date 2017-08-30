@@ -91,7 +91,7 @@ fi
 
 if [ -f ~/.git-prompt.sh ]
 then
-    source ~/.git-prompt.sh
+    . ~/.git-prompt.sh
 fi
 
 jsonpp()
@@ -127,7 +127,7 @@ clean()
         -print0 | xargs -0 rm -f
 }
 
-function workon
+workon()
 {
     local VENVS="$HOME/.venvs"
     if [ -z "$1" -o z"$1" = z"." ]
@@ -141,7 +141,7 @@ function workon
     . "$VENVS/$VENV_NAME/bin/activate"
 }
 
-function _workon
+_workon()
 {
     COMPREPLY=( $( compgen -W '$( command ls "$HOME/.venvs" )' -- "${COMP_WORDS[COMP_CWORD]}") )
 }
