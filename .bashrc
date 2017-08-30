@@ -40,27 +40,11 @@ set -C
 # I don't like the default blue (That is too dark for me)
 tput initc 12 400 400 1000
 
-str_sum()
-{
-    BC=$(which bc)
-    if [ -z "$1" ]
-    then
-        echo "Usage str_sum STRING"
-        return
-    fi
-    if [ -x "$BC" ] ; then
-        printf "%s" "$1" | hexdump -b | head -n 1 | tr ' ' '+' \
-            | sed 's/\+*$//g' | bc
-    else
-        echo 0
-    fi
-}
-
-HOSTNAME_SUM=$(str_sum "$(hostname)")
+HOSTNAME_SUM=$(cksum <(hostname) | cut -d' ' -f1)
 HOSTNAME_BOLD=$(( ($HOSTNAME_SUM + 1) % 2))
 HOSTNAME_HUE=$(( ($HOSTNAME_SUM + 3) % 6 + 31))
 
-USERNAME_SUM=$(str_sum "$(whoami)")
+USERNAME_SUM=$(($(cksum <(whoami) | cut -d' ' -f1) + 5))  # + 5 so root gots red.
 USERNAME_BOLD=$(( ($USERNAME_SUM + 1) % 2))
 USERNAME_HUE=$(( ($USERNAME_SUM + 2) % 6 + 31))
 
