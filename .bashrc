@@ -72,7 +72,7 @@ then
 else
     export PS1="$PS1"'\$ '
 fi
-alias grep="grep --exclude-dir=.git --color"
+
 alias ls='ls --color=auto'
 alias scr='screen -D -R -U -h 424242'
 alias fingerprint='find /etc/ssh -name "*.pub" -exec ssh-keygen -l -f {} \;'
