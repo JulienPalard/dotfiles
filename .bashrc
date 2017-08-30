@@ -76,6 +76,7 @@ fi
 alias ls='ls --color=auto'
 alias scr='screen -D -R -U -h 424242'
 alias fingerprint='find /etc/ssh -name "*.pub" -exec ssh-keygen -l -f {} \;'
+alias rekey='ssh-add -e /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so; ssh-add -s /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so'
 
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
