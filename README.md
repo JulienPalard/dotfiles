@@ -20,7 +20,7 @@ apt-get install laptop-mode-tools
 
  - Change grub sleep time in `/etc/default/grub` (and run `update-grub`)
  - update-alternatives --config x-terminal-emulator
- - https://wiki.debian.org/SynapticsTouchpad
+ - Set `Option "Tapping" "on"` for touchpad in `/usr/share/X11/xorg.conf.d/40-libinput.conf`
  - https://wiki.debian.org/TransparentEncryptionForHomeFolder
  - Storage=volatile dans /etc/systemd/journald.conf
 
