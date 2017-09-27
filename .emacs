@@ -74,10 +74,10 @@
 (global-set-key (read-kbd-macro "C-M-[") 'shrink-window-horizontally)
 (global-set-key (read-kbd-macro "C-M-]") 'enlarge-window-horizontally)
 (global-set-key [f12] 'iwb)
-(global-set-key [left] 'windmove-left)
-(global-set-key [right] 'windmove-right)
-(global-set-key [up] 'windmove-up)
-(global-set-key [down] 'windmove-down)
+(global-set-key "\C-cj" 'windmove-left)
+(global-set-key "\C-ck" 'windmove-down)
+(global-set-key "\C-cl" 'windmove-up)
+(global-set-key "\C-c;" 'windmove-right)
 (global-set-key "\C-x\M-%" 'query-replace-regexp) ;; As C-M-% is ~impossible to type in a terminal emulator:
 
 ;; (setq hippie-expand-try-functions-list
