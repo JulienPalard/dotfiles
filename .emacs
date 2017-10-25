@@ -15,15 +15,8 @@
 (setq user-full-name "Julien Palard")
 (setq user-mail-address "julien@palard.fr")
 
-
-;; Packages I typically use:
-;; - company
-;; - company-jedi
-;; - flycheck
-;; - jedi
-;; - jedi-core
-;; - php-mode
-;; - pretty-mode
+;; Packages I typically use can be reinstalled by using:
+;; M-x package-install-selected-packages
 (when (>= emacs-major-version 24)
   (require 'package)
   (package-initialize)
@@ -242,7 +235,8 @@
  '(frame-background-mode (quote dark))
  '(package-selected-packages
    (quote
-    (pretty-mode jedi geben flycheck company-jedi ac-php))))
+    (flycheck-pycheckers pretty-mode jedi flycheck company company-jedi))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
