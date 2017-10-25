@@ -15,21 +15,20 @@
 (setq user-full-name "Julien Palard")
 (setq user-mail-address "julien@palard.fr")
 
+
+;; Packages I typically use:
+;; - company
+;; - company-jedi
+;; - flycheck
+;; - jedi
+;; - jedi-core
+;; - php-mode
+;; - pretty-mode
 (when (>= emacs-major-version 24)
   (require 'package)
   (package-initialize)
-  ;(defvar package-list)
-  ;(setq package-list '(ac-php company company-jedi flycheck jedi jedi-core php-mode geben pretty-mode))
-  ;(add-to-list 'package-archives
-  ;  '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
-  ;;; (add-to-list 'package-archives
-  ;;;   '("marmalade" . "http://marmalade-repo.org/packages/") t)
-  ;(unless package-archive-contents
-  ;  (package-refresh-contents))
-  ;(dolist (package package-list)
-  ;  (unless (package-installed-p package)
-  ;    (package-refresh-contents)
-  ;    (package-install package)))
+  (add-to-list 'package-archives
+    '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
   )
 
 (require 'ido)
