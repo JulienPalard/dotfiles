@@ -158,17 +158,14 @@
 (add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
 (add-hook 'sass-mode-hook 'hexcolour-add-to-font-lock)
 
-;; pip install flake8
-;; pip install pylint
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
 (require 'flycheck)
-(define-key flycheck-mode-map (kbd "<f8>") 'flycheck-previous-error)
-(define-key flycheck-mode-map (kbd "<f9>") 'flycheck-next-error)
-(flycheck-add-next-checker 'python-flake8 'python-pylint)
-(setq flycheck-phpcs-standard "/home/julien/www/shape/config/static/phpcs_shape_ruleset.xml")
-(setq flycheck-phpmd-rulesets "/home/julien/www/shape/config/static/phpmd_shape_ruleset.xml")
-(setq flycheck-jscsrc "/home/julien/www/shape/.jscsrc")
+(require 'flycheck-pycheckers)
+(define-key flycheck-mode-map (kbd "C-c p") 'flycheck-previous-error)
+(define-key flycheck-mode-map (kbd "C-c n") 'flycheck-next-error)
+
+(global-flycheck-mode 1)
+(with-eval-after-load 'flycheck
+  (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
 
 (add-hook 'python-mode-hook 'jedi:setup)
 
@@ -227,12 +224,14 @@
     nil))
 (add-to-list 'find-file-hook 'konix/find-file-hook)
 
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(frame-background-mode (quote dark))
+ '(flycheck-pycheckers-checkers (quote (flake8 pylint mypy3)))
  '(package-selected-packages
    (quote
     (flycheck-pycheckers pretty-mode jedi flycheck company company-jedi))))
