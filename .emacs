@@ -24,6 +24,14 @@
     '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
   )
 
+(setq package-selected-packages
+      '(flycheck-pycheckers
+        pretty-mode
+        jedi
+        flycheck
+        company
+        company-jedi))
+
 (require 'ido)
 (ido-mode t)
 
@@ -158,14 +166,18 @@
 (add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
 (add-hook 'sass-mode-hook 'hexcolour-add-to-font-lock)
 
-(require 'flycheck)
-(require 'flycheck-pycheckers)
-(define-key flycheck-mode-map (kbd "C-c p") 'flycheck-previous-error)
-(define-key flycheck-mode-map (kbd "C-c n") 'flycheck-next-error)
+(if (require 'flycheck nil t)
+    (global-flycheck-mode 1)
+  )
 
-(global-flycheck-mode 1)
-(with-eval-after-load 'flycheck
-  (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
+(if (require 'flycheck-pycheckers nil t)
+    (
+     (define-key flycheck-mode-map (kbd "C-c p") 'flycheck-previous-error)
+     (define-key flycheck-mode-map (kbd "C-c n") 'flycheck-next-error)
+     (with-eval-after-load 'flycheck
+       (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
+     )
+  )
 
 (add-hook 'python-mode-hook 'jedi:setup)
 
@@ -182,13 +194,13 @@
   (font-lock-fontify-buffer)
   )
 
-(require 'company)
-(require 'company-etags)
-(setq company-etags-use-main-table-list "off")
-(add-to-list 'company-etags-modes 'php-mode)
-(add-to-list 'company-backends 'company-etags)
-(add-to-list 'company-backends 'company-jedi)
-(add-hook 'after-init-hook 'global-company-mode)
+(require 'company nil t)
+(if (require 'company-etags nil t)
+    ((setq company-etags-use-main-table-list "off")
+     (add-to-list 'company-etags-modes 'php-mode)
+     (add-to-list 'company-backends 'company-etags)
+     (add-to-list 'company-backends 'company-jedi)
+     (add-hook 'after-init-hook 'global-company-mode)))
 
 (add-hook 'php-mode-hook '(lambda ()
                            (auto-complete-mode t)
@@ -224,17 +236,13 @@
     nil))
 (add-to-list 'find-file-hook 'konix/find-file-hook)
 
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(frame-background-mode (quote dark))
- '(flycheck-pycheckers-checkers (quote (flake8 pylint mypy3)))
- '(package-selected-packages
-   (quote
-    (flycheck-pycheckers pretty-mode jedi flycheck company company-jedi))))
+ '(flycheck-pycheckers-checkers (quote (flake8 pylint mypy3))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -243,19 +251,18 @@
  ;; If there is more than one, they won't work right.
  )
 
-(require 'pretty-mode)
-(global-pretty-mode t)
+(if (require 'pretty-mode nil t)
+    ((global-pretty-mode t)
+     (pretty-deactivate-groups
+      '(:equality :ordering :ordering-double :ordering-triple
+                  :arrows :arrows-twoheaded :punctuation
+                  :logic :sets))
 
-(pretty-deactivate-groups
- '(:equality :ordering :ordering-double :ordering-triple
-             :arrows :arrows-twoheaded :punctuation
-             :logic :sets))
+     (pretty-activate-groups
+      '(:sub-and-superscripts :greek :arithmetic-nary))
 
-(pretty-activate-groups
- '(:sub-and-superscripts :greek :arithmetic-nary))
-
-
-(global-prettify-symbols-mode 1)
+     (global-prettify-symbols-mode 1)
+     ))
 
 (add-hook
  'python-mode-hook
