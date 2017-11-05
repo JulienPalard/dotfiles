@@ -2,7 +2,7 @@
 
 ;;; Commentary:
 
-;; .emacs for conf in /home/mandark
+;; .emacs for conf in /home/mdk
 ;;
 ;; Made by Palard Julien
 ;; Login   <julien@palard.fr>
