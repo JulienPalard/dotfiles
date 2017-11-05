@@ -16,6 +16,7 @@
 (setq user-mail-address "julien@palard.fr")
 
 ;; Packages I typically use can be reinstalled by using:
+;; M-x package-refresh-contents
 ;; M-x package-install-selected-packages
 (when (>= emacs-major-version 24)
   (require 'package)
