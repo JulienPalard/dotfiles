@@ -33,37 +33,47 @@
         company
         company-jedi))
 
+
+;; Ido - interactive do - switches between buffers and opens files and
+;; directories with a minimum of keystrokes.
 (require 'ido)
 (ido-mode t)
+
 
 ;; Disable all version control backends (Start faster):
 (setq vc-handled-backends ())
 
+
 ;; Disable transient mark mode, I don't like it:
 (transient-mark-mode nil)
+
 
 ;; PHP
 (autoload 'php-mode "php-mode" "Mode for editing PHP source files")
 (add-hook 'php-mode-hook 'php-enable-psr2-coding-style)
 
+
 ;; Coding style
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-(setq-default py-indent-offset 4)
-(setq-default show-trailing-whitespace t)
+(setq-default indent-tabs-mode nil
+              tab-width 4
+              py-indent-offset 4
+              show-trailing-whitespace t)
+
+
+;; Don't show trailing whitespaces in term-mode
 (add-hook 'term-mode-hook
       (lambda() (make-local-variable 'show-trailing-whitespace)
         (setq show-trailing-whitespace nil)))
 
-(setq auto-mode-alist (cons '("\\.html" . html-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.li" . c-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.tpl" . html-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.php" . php-mode) auto-mode-alist))
+
+(add-to-list 'auto-mode-alist '("\\.tpl\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 
 (setq inhibit-startup-message t)
 
 (global-font-lock-mode t)
 (column-number-mode t)
+(show-paren-mode t)
 
 (global-set-key "\C-cc" 'compile)
 (global-set-key "\C-c\C-g" 'goto-line)
@@ -81,52 +91,21 @@
 (global-set-key "\C-c;" 'windmove-right)
 (global-set-key "\C-x\M-%" 'query-replace-regexp) ;; As C-M-% is ~impossible to type in a terminal emulator:
 
-;; (setq hippie-expand-try-functions-list
-;;       '(try-complete-file-name-partially
-;;         try-complete-file-name
-;;         try-expand-all-abbrevs
-;;         try-expand-list
-;;         try-expand-line
-;;         try-expand-dabbrev
-;;         try-expand-dabbrev-all-buffers
-;;         try-expand-dabbrev-from-kill)
-;;       )
-;; (global-set-key "\M-/" 'hippie-expand)
-
-(autoload 'geben "geben" "PHP Debugger on Emacs" t)
-
-(show-paren-mode t)
 (add-hook 'write-file-hooks 'delete-trailing-whitespace)
-
-(put 'upcase-region 'disabled nil)
 
 ;; Enable backup files.
 (setq make-backup-files t)
 
-;; Enable versioning with default values (keep five last versions, I think!)
+;; Enable versioning of backup files.
 (setq version-control t)
 
 ;; Save all backup file in this directory.
 (setq backup-directory-alist (quote ((".*" . "~/.emacs_backups/"))))
+(setq-default delete-old-versions t)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (setq-default truncate-partial-width-windows nil)
-
-(setq-default delete-old-versions t)
-
-(defun eeple-indent-style ()
-  "Eeple Indent Style.
-
-  - Based on the BSD Allman Style, but with an indent of 4 instead of 8.
-  - Tab size is set to 4, so each 4 spaces are a tab
-  - Opening AND Closing Bracket have to be on the same column"
-  (interactive)
-  (c-set-style "bsd")
-  (c-set-offset 'case-label 4)
-  (setq c-basic-offset 4))
-
-(add-hook 'c-mode-hook 'eeple-indent-style)
 
 (menu-bar-mode -1)
 
@@ -137,10 +116,12 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
+
 ;; Highlight 80th column
 (require 'whitespace)
 (setq whitespace-style '(face empty tabs lines-tail trailing))
 (global-whitespace-mode t)
+
 
 ;; hex color
 (defvar hexcolour-keywords
@@ -160,6 +141,7 @@
                                          )))))
         append))))
 
+
 (defun hexcolour-add-to-font-lock ()
   (interactive)
   (font-lock-add-keywords nil hexcolour-keywords t))
@@ -167,41 +149,26 @@
 (add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
 (add-hook 'sass-mode-hook 'hexcolour-add-to-font-lock)
 
-(if (require 'flycheck nil t)
+(when (require 'flycheck nil t)
     (global-flycheck-mode 1)
   )
 
-(if (require 'flycheck-pycheckers nil t)
-    (
-     (define-key flycheck-mode-map (kbd "C-c p") 'flycheck-previous-error)
-     (define-key flycheck-mode-map (kbd "C-c n") 'flycheck-next-error)
-     (with-eval-after-load 'flycheck
-       (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
-     )
+(when (require 'flycheck-pycheckers nil t)
+  (define-key flycheck-mode-map (kbd "C-c p") 'flycheck-previous-error)
+  (define-key flycheck-mode-map (kbd "C-c n") 'flycheck-next-error)
+  (with-eval-after-load 'flycheck
+    (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
   )
 
 (add-hook 'python-mode-hook 'jedi:setup)
 
-(defun xah-syntax-color-hex ()
-  "Syntax color hex color spec such as 「#ff1100」 in current buffer."
-  (interactive)
-  (font-lock-add-keywords
-   nil
-   '(("#[abcdef[:digit:]]\\{6\\}"
-      (0 (put-text-property
-          (match-beginning 0)
-          (match-end 0)
-          'face (list :background (match-string-no-properties 0)))))))
-  (font-lock-fontify-buffer)
-  )
-
 (require 'company nil t)
-(if (require 'company-etags nil t)
-    ((setq company-etags-use-main-table-list "off")
-     (add-to-list 'company-etags-modes 'php-mode)
-     (add-to-list 'company-backends 'company-etags)
-     (add-to-list 'company-backends 'company-jedi)
-     (add-hook 'after-init-hook 'global-company-mode)))
+(when (require 'company-etags nil t)
+  (setq company-etags-use-main-table-list "off")
+  (add-to-list 'company-etags-modes 'php-mode)
+  (add-to-list 'company-backends 'company-etags)
+  (add-to-list 'company-backends 'company-jedi)
+  (add-hook 'after-init-hook 'global-company-mode))
 
 (add-hook 'php-mode-hook '(lambda ()
                            (auto-complete-mode t)
@@ -252,18 +219,18 @@
  ;; If there is more than one, they won't work right.
  )
 
-(if (require 'pretty-mode nil t)
-    ((global-pretty-mode t)
-     (pretty-deactivate-groups
-      '(:equality :ordering :ordering-double :ordering-triple
-                  :arrows :arrows-twoheaded :punctuation
-                  :logic :sets))
+(when (require 'pretty-mode nil t)
+  (global-pretty-mode t)
+  (pretty-deactivate-groups
+   '(:equality :ordering :ordering-double :ordering-triple
+               :arrows :arrows-twoheaded :punctuation
+               :logic :sets))
 
-     (pretty-activate-groups
-      '(:sub-and-superscripts :greek :arithmetic-nary))
+  (pretty-activate-groups
+   '(:sub-and-superscripts :greek :arithmetic-nary))
 
-     (global-prettify-symbols-mode 1)
-     ))
+  (global-prettify-symbols-mode 1)
+  )
 
 (add-hook
  'python-mode-hook
