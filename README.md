@@ -2,6 +2,7 @@
 
     sh <(curl -s https://raw.githubusercontent.com/JulienPalard/dotfiles/master/install.sh)
 
+
 # Packages I typically use
 
 ```
@@ -23,6 +24,7 @@ apt-get install laptop-mode-tools
  - Set `Option "Tapping" "on"` for touchpad in `/usr/share/X11/xorg.conf.d/40-libinput.conf`
  - https://wiki.debian.org/TransparentEncryptionForHomeFolder
  - Storage=volatile dans /etc/systemd/journald.conf
+
 
 # Chromium extensions
 
