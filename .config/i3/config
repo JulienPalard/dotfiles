@@ -177,3 +177,5 @@ focus_follows_mouse no
 bindsym $mod+x move workspace to output right
 exec x-terminal-emulator
 exec firefox
+for_window [window_role="browser"] border none
+for_window [class="URxvt"] border none
