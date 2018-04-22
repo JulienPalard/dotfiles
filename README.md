@@ -15,6 +15,7 @@ apt-get install xorg i3 rxvt-unicode wicd wicd-curses feh fonts-liberation xauto
 apt-get install firmware-iwlwifi
 apt-get install firmware-nonfree
 apt-get install laptop-mode-tools
+apt-get install opensc opensc-pkcs11  # For yubikey
 ```
 
 # What I typically do on a new laptop
