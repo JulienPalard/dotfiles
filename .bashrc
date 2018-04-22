@@ -150,6 +150,17 @@ _workon()
 
 complete -F _workon workon
 
+cd()
+{
+    builtin cd "$@"
+    if [ -d "$HOME/.venvs/$(basename "$PWD")" ]
+    then
+        workon
+    else
+        deactivate >/dev/null 2>/dev/null
+    fi
+}
+
 # Restore environment variable of existing ssh-agents
 ssh-agent-restore()
 {
