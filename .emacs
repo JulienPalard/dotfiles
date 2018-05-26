@@ -25,15 +25,6 @@
     '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
   )
 
-(setq package-selected-packages
-      '(flycheck-pycheckers
-        pretty-mode
-        jedi
-        flycheck
-        company
-        company-jedi))
-
-
 ;; Ido - interactive do - switches between buffers and opens files and
 ;; directories with a minimum of keystrokes.
 (require 'ido)
@@ -160,7 +151,7 @@
     (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
   )
 
-(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook 'anaconda-mode)
 
 (require 'company nil t)
 (when (require 'company-etags nil t)
@@ -209,8 +200,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(flycheck-pycheckers-checkers (quote (flake8 pylint mypy3)))
  '(frame-background-mode (quote dark))
- '(flycheck-pycheckers-checkers (quote (flake8 pylint mypy3))))
+ '(package-selected-packages
+   (quote
+    (company-anaconda anaconda-mode flycheck-pycheckers pretty-mode flycheck company))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
