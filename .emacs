@@ -110,6 +110,7 @@
 
 ;; Highlight 80th column
 (require 'whitespace)
+(setq whitespace-line-column 88)
 (setq whitespace-style '(face empty tabs lines-tail trailing))
 (global-whitespace-mode t)
 
@@ -201,6 +202,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(flycheck-pycheckers-checkers (quote (flake8 pylint mypy3)))
+ '(flycheck-pycheckers-max-line-length 88)
  '(frame-background-mode (quote dark))
  '(package-selected-packages
    (quote
