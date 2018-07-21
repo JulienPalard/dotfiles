@@ -74,8 +74,6 @@
 (global-set-key "\M-p" 'backward-paragraph)
 (global-set-key "\C-xrv" 'list-registers)
 (global-set-key (kbd "M-h") 'backward-kill-word)
-(global-set-key (read-kbd-macro "C-M-[") 'shrink-window-horizontally)
-(global-set-key (read-kbd-macro "C-M-]") 'enlarge-window-horizontally)
 (global-set-key [f12] 'iwb)
 (global-set-key "\C-cj" 'windmove-left)
 (global-set-key "\C-ck" 'windmove-down)
