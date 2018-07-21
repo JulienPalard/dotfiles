@@ -4,19 +4,12 @@ general {
         interval = 5
 }
 
-order += "path_exists VPN"
 order += "load"
 order += "wireless wlp3s0"
 order += "ethernet enp4s0f2"
 order += "battery 0"
 order += "disk /"
 order += "tztime local"
-
-
-path_exists VPN {
-        # path exists when a VPN tunnel launched by nmcli/nm-applet is active
-        path = "/proc/sys/net/ipv4/conf/tun0"
-}
 
 
 wireless wlp3s0 {
