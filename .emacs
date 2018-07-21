@@ -21,8 +21,9 @@
 (when (>= emacs-major-version 24)
   (require 'package)
   (package-initialize)
-  (add-to-list 'package-archives
-    '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
+  (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                           ("org" . "https://orgmode.org/elpa/")
+                           ("melpa" . "https://melpa.org/packages/")))
   )
 
 ;; Ido - interactive do - switches between buffers and opens files and
@@ -81,6 +82,11 @@
 (global-set-key "\C-cl" 'windmove-up)
 (global-set-key "\C-c;" 'windmove-right)
 (global-set-key "\C-x\M-%" 'query-replace-regexp) ;; As C-M-% is ~impossible to type in a terminal emulator:
+
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-switchb)
 
 (add-hook 'write-file-hooks 'delete-trailing-whitespace)
 
@@ -206,7 +212,7 @@
  '(frame-background-mode (quote dark))
  '(package-selected-packages
    (quote
-    (company-anaconda anaconda-mode flycheck-pycheckers pretty-mode flycheck company))))
+    (org python-mode python company-anaconda anaconda-mode flycheck-pycheckers flycheck company))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
