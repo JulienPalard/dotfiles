@@ -207,6 +207,7 @@
  ;; If there is more than one, they won't work right.
  '(flycheck-pycheckers-checkers (quote (flake8 pylint mypy3)))
  '(flycheck-pycheckers-max-line-length 88)
+ '(flycheck-pycheckers-ignore-codes nil)
  '(frame-background-mode (quote dark))
  '(package-selected-packages
    (quote
