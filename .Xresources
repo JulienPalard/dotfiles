@@ -5,6 +5,7 @@ x-terminal-emulator*scrollBar:false
 x-terminal-emulator*background:Black
 x-terminal-emulator*foreground:White
 x-terminal-emulator*saveLines:65536
+x-terminal-emulator*termName:xterm
 
 x-terminal-emulator*font:xft:LiberationMono
 x-terminal-emulator*boldFont:xft:LiberationMono
