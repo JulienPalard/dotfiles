@@ -157,6 +157,7 @@
   )
 
 (add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook 'blacken-mode)
 
 (require 'company nil t)
 (when (require 'company-etags nil t)
@@ -211,7 +212,7 @@
  '(frame-background-mode (quote dark))
  '(package-selected-packages
    (quote
-    (org python-mode python company-anaconda anaconda-mode flycheck-pycheckers flycheck company))))
+    (org python-mode blacken python company-anaconda anaconda-mode flycheck-pycheckers flycheck company))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
