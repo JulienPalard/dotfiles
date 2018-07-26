@@ -165,7 +165,6 @@
   (setq company-etags-use-main-table-list "off")
   (add-to-list 'company-etags-modes 'php-mode)
   (add-to-list 'company-backends 'company-etags)
-  (add-to-list 'company-backends 'company-jedi)
   (add-hook 'after-init-hook 'global-company-mode))
 
 (add-hook 'php-mode-hook '(lambda ()
