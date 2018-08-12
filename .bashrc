@@ -118,7 +118,7 @@ workon()
         local VENV_NAME="$1"
     fi
     deactivate >/dev/null 2>/dev/null
-    [ -d "$VENVS/$VENV_NAME" ] || mkdir -p "$VENVS/$VENV_NAME"
+    mkdir -p "$VENVS"
     [ -f "$VENVS/$VENV_NAME/bin/activate" ] || python3 -m venv "$VENVS/$VENV_NAME"
     . "$VENVS/$VENV_NAME/bin/activate"
 }
