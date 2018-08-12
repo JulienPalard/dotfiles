@@ -141,4 +141,6 @@ dotfiles()
         git clone -q https://github.com/JulienPalard/dotfiles.git "$CLONE"
     fi
     "$CLONE"/interactive_copy.py "$CLONE" ~/ --exclude README.md .git interactive_copy.py install.sh __pycache__
+    rm -f "$USER/.git-prompt.sh"
+    wget -q -O "$USER/.git-prompt.sh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 }
