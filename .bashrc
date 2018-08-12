@@ -67,22 +67,13 @@ alias ls='ls --color=auto'
 alias fingerprint='find /etc/ssh -name "*.pub" -exec ssh-keygen -l -f {} \;'
 alias rekey='ssh-add -e /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so; ssh-add -s /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so'
 
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-if [ -f ~/.my_bashrc ]; then
-    . ~/.my_bashrc
-fi
-
-if [ -f ~/.git-prompt.sh ]
-then
-    . ~/.git-prompt.sh
-fi
+for extra in /etc/bash_completion ~/.bash_aliases ~/.my_bashrc ~/.git-prompt.sh
+do
+    if [ -f "$extra" ]
+    then
+        . $extra
+    fi
+done
 
 jsonpp()
 {
