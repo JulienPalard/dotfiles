@@ -13,7 +13,8 @@ shopt -s autocd   2>/dev/null # Only in bash 4
 shopt -s globstar 2>/dev/null # Only in bash 4
 shopt -s nocaseglob
 
-if [ -n "$DISPLAY" ]; then
+if [ -n "$DISPLAY" ]
+then
     xset b off
 fi
 
