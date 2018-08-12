@@ -130,35 +130,6 @@ _workon()
 
 complete -F _workon workon
 
-# Restore environment variable of existing ssh-agents
-ssh-agent-restore()
-{
-    local QUIET="$1"
-    local AGENTS="$(ls -1tr /tmp/ssh-*/* 2>/dev/null)"
-    local AUTH_SOCKS_AND_NAME=( )
-
-    if [ z"$?" != z"0" -a -z "$QUIET" ]
-    then
-        printf "No ssh-agent found.\n" 1>&2
-        return 1
-    fi
-    if [ -z "$QUIET" ]
-    then
-        for auth_sock in $AGENTS
-        do
-            AUTH_SOCKS_AND_NAME=( "${AUTH_SOCKS_AND_NAME[@]}" "$(printf "%s " "$auth_sock"; SSH_AUTH_SOCK="$auth_sock" ssh-add -l | cut -d' ' -f3- | tr '\n', ' ')" )
-        done
-        select AUTH_SOCKS in "${AUTH_SOCKS_AND_NAME[@]}"
-        do
-            export SSH_AUTH_SOCK="$(printf "%s" "$AUTH_SOCKS" | awk '{print $1}')"
-            break
-        done
-    else
-        export SSH_AUTH_SOCK="$(printf "%s" "$AGENTS" | tail -n 1)"
-    fi
-    export SSH_AGENT_PID="${SSH_AUTH_SOCK##/*/*.}"
-}
-
 dotfiles()
 {
     local CLONE="$HOME/.config/dotfiles-repo/"
