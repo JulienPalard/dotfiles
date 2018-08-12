@@ -51,25 +51,17 @@ USERNAME_COLOR=$'\E'"[$USERNAME_BOLD;${USERNAME_HUE}m"
 
 WHITE=$'\E[00m'
 
-if [ $(id -u) -eq 0 ]
-then
-    alias rm='rm -i'
-    alias cp='cp -i'
-    alias mv='mv -i'
-fi
-
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
 [ "$TERM" != 'linux' -a z"$TERM" != z'eterm-color' ] && TITLE="\[\033]0;\u@\H:\w\a\]" || TITLE=''
 export PS1="$TITLE\[$USERNAME_COLOR\]\u\[$WHITE\]@\[$HOSTNAME_COLOR\]\H\[$WHITE\]"
-# .git-prompt.sh is here: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-if [ -f ~/.git-prompt.sh ]
+
+if ! [ -f ~/.git-prompt.sh ]
 then
-    export PS1="$PS1"'$(__git_ps1 " (%s)")\$ '
-else
-    export PS1="$PS1"'\$ '
+    wget -q -O "$USER/.git-prompt.sh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 fi
+export PS1="$PS1"'$(__git_ps1 " (%s)")\$ '
 
 alias ls='ls --color=auto'
 alias scr='screen -D -R -U -h 424242'
