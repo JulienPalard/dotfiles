@@ -178,3 +178,16 @@ ssh-agent-restore()
     fi
     export SSH_AGENT_PID="${SSH_AUTH_SOCK##/*/*.}"
 }
+
+dotfiles()
+{
+    local CLONE="$HOME/.config/dotfiles-repo/"
+    mkdir -p ~/.config/
+    if [ -d "$CLONE" ]
+    then
+        git -C "$CLONE" pull --ff-only
+    else
+        git clone -q https://github.com/JulienPalard/dotfiles.git "$CLONE"
+    fi
+    "$CLONE"/interactive_copy.py "$CLONE" ~/ --exclude README.md .git interactive_copy.py install.sh __pycache__
+}
