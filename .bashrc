@@ -38,9 +38,6 @@ umask 022
 eval "`dircolors`"
 set -C
 
-# I don't like the default blue (That is too dark for me)
-tput initc 12 400 400 1000
-
 HOSTNAME_SUM=$(cksum <(hostname) | cut -d' ' -f1)
 HOSTNAME_BOLD=$(( ($HOSTNAME_SUM + 1) % 2))
 HOSTNAME_HUE=$(( ($HOSTNAME_SUM + 3) % 6 + 31))
