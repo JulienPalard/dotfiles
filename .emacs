@@ -212,7 +212,7 @@
  '(frame-background-mode (quote dark))
  '(package-selected-packages
    (quote
-    (org python-mode blacken python company-anaconda anaconda-mode flycheck-pycheckers flycheck company))))
+    (org python-mode blacken python yaml-mode company-anaconda anaconda-mode flycheck-pycheckers flycheck company))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
