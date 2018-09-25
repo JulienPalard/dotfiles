@@ -57,9 +57,9 @@ WHITE=$'\E[00m'
 [ "$TERM" != 'linux' -a z"$TERM" != z'eterm-color' ] && TITLE="\[\033]0;\u@\H:\w\a\]" || TITLE=''
 export PS1="$TITLE\[$USERNAME_COLOR\]\u\[$WHITE\]@\[$HOSTNAME_COLOR\]\H\[$WHITE\]"
 
-if ! [ -f "/$USER/.git-prompt.sh" ]
+if ! [ -f "$HOME/.git-prompt.sh" ]
 then
-    wget -q -O "/$USER/.git-prompt.sh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+    wget -q -O "$HOME/.git-prompt.sh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 fi
 export PS1="$PS1"'$(__git_ps1 " (%s)")\$ '
 
