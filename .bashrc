@@ -68,6 +68,8 @@ alias ls='ls --color=auto'
 alias fingerprint='find /etc/ssh -name "*.pub" -exec ssh-keygen -l -f {} \;'
 alias rekey='ssh-add -e /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so; ssh-add -s /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so'
 
+export PYTHONSTARTUP=$HOME/.config/pythonstartup.py
+
 for extra in /etc/bash_completion ~/.bash_aliases ~/.my_bashrc ~/.git-prompt.sh
 do
     if [ -f "$extra" ]
