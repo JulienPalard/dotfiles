@@ -27,8 +27,6 @@ apt-get install opensc opensc-pkcs11  # For yubikey
  - Storage=volatile dans /etc/systemd/journald.conf
 
 
-# Chromium extensions
+# Firefox extensions
 
- - [Signal](https://chrome.google.com/webstore/detail/signal-private-messenger/bikioccmkafdpakkkcpdbppfkghcmihk?utm_source=chrome-app-launcher-info-dialog)
  - [Privacy Badger](https://chrome.google.com/webstore/detail/privacy-badger/pkehgijcmpdhfbdbbnkijodmdjhbjlgp?utm_source=chrome-app-launcher-info-dialog)
- - [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?utm_source=chrome-app-launcher-info-dialog)
