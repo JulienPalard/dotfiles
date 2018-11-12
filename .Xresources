@@ -2,7 +2,7 @@ URxvt.scrollBar:false
 URxvt.background:#073642
 URxvt.foreground:#fdf6e3
 URxvt.saveLines:65536
-URxvt.font:xft:LiberationMono:size=16
+URxvt.font:xft:LiberationMono:size=16,xft:Symbola
 URxvt.cursorBlink:true
 URxvt.perl-ext:
 URxvt.perl-ext-common:
