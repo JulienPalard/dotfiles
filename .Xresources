@@ -4,13 +4,18 @@ URxvt.foreground:#fdf6e3
 URxvt.saveLines:65536
 URxvt.font:xft:LiberationMono:size=16,xft:Symbola,xft:Code2000:antialias=false,xft:Unifont:antialias=false
 URxvt.cursorBlink:true
-URxvt.perl-ext:
-URxvt.perl-ext-common:
 URxvt.modifier:alt
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 URxvt.intensityStyles: false
 URxvt.termName:rxvt
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+
+URxvt.perl-ext:
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
 
 ! Palette
 ! #073642
