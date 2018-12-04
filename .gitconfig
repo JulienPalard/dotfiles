@@ -11,3 +11,4 @@
     br = branch
     ci = commit
     lg = log --date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    pr = !sh -c \"git fetch upstream pull/${1}/head:pr_${1} && git worktree add ../$(basename $(git rev-parse --show-toplevel))-pr-${1} pr_${1}\"
