@@ -14,7 +14,7 @@ URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
 
 URxvt.perl-ext:
-URxvt.perl-ext-common: default,matcher
+URxvt.perl-ext-common: default,matcher,selection-to-clipboard
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
