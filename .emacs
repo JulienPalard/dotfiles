@@ -68,8 +68,6 @@
 (show-paren-mode t)
 
 (global-set-key "\C-cc" 'compile)
-(global-set-key "\C-c\C-g" 'goto-line)
-(global-set-key "\C-cg" 'goto-line)
 (global-set-key "\M-n" 'forward-paragraph)
 (global-set-key "\M-p" 'backward-paragraph)
 (global-set-key "\C-xrv" 'list-registers)
