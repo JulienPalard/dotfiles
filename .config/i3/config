@@ -172,7 +172,7 @@ bar {
 # mdk additions:
 
 hide_edge_borders both
-bindsym $mod+o exec i3lock
+bindsym $mod+o exec i3lock-fancy
 focus_follows_mouse no
 bindsym $mod+x move workspace to output right
 exec x-terminal-emulator
