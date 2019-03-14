@@ -15,7 +15,6 @@
 (setq user-full-name "Julien Palard")
 (setq user-mail-address "julien@palard.fr")
 
-(require 'python-mode)
 
 ;; Packages I typically use can be reinstalled by using:
 ;; M-x package-refresh-contents
@@ -155,8 +154,6 @@
     (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
   )
 
-(add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 (add-hook 'python-mode-hook 'blacken-mode)
 
 (require 'company nil t)
