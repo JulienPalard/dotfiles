@@ -15,6 +15,8 @@
 (setq user-full-name "Julien Palard")
 (setq user-mail-address "julien@palard.fr")
 
+(require 'python-mode)
+
 ;; Packages I typically use can be reinstalled by using:
 ;; M-x package-refresh-contents
 ;; M-x package-install-selected-packages
@@ -30,7 +32,6 @@
 ;; directories with a minimum of keystrokes.
 (require 'ido)
 (ido-mode t)
-
 
 ;; Disable all version control backends (Start faster):
 (setq vc-handled-backends ())
