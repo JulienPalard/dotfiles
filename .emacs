@@ -19,13 +19,14 @@
 ;; Packages I typically use can be reinstalled by using:
 ;; M-x package-refresh-contents
 ;; M-x package-install-selected-packages
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
-  (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                           ("org" . "https://orgmode.org/elpa/")
-                           ("melpa" . "https://melpa.org/packages/")))
-  )
+(require 'package)
+(package-initialize)
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("melpa" . "https://melpa.org/packages/")))
+
+
+(elpy-enable)
 
 ;; Ido - interactive do - switches between buffers and opens files and
 ;; directories with a minimum of keystrokes.
@@ -143,25 +144,7 @@
 (add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
 (add-hook 'sass-mode-hook 'hexcolour-add-to-font-lock)
 
-(when (require 'flycheck nil t)
-    (global-flycheck-mode 1)
-  )
-
-(when (require 'flycheck-pycheckers nil t)
-  (define-key flycheck-mode-map (kbd "C-c p") 'flycheck-previous-error)
-  (define-key flycheck-mode-map (kbd "C-c n") 'flycheck-next-error)
-  (with-eval-after-load 'flycheck
-    (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
-  )
-
 (add-hook 'python-mode-hook 'blacken-mode)
-
-(require 'company nil t)
-(when (require 'company-etags nil t)
-  (setq company-etags-use-main-table-list "off")
-  (add-to-list 'company-etags-modes 'php-mode)
-  (add-to-list 'company-backends 'company-etags)
-  (add-hook 'after-init-hook 'global-company-mode))
 
 (add-hook 'php-mode-hook '(lambda ()
                            (auto-complete-mode t)
@@ -202,13 +185,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(flycheck-pycheckers-checkers (quote (flake8 pylint mypy3)))
- '(flycheck-pycheckers-max-line-length 88)
- '(flycheck-pycheckers-ignore-codes nil)
  '(frame-background-mode (quote dark))
- '(package-selected-packages
-   (quote
-    (org po-mode python-mode blacken python yaml-mode company-anaconda anaconda-mode flycheck-pycheckers flycheck company))))
+ '(package-selected-packages (quote (org po-mode elpy blacken yaml-mode)))
+)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
