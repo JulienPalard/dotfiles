@@ -54,7 +54,7 @@ URxvt.matcher.button: 1
 
 ! red dark/light
 *color1:                Red
-*color9:                #DEB542
+*color9:                Orange
 
 ! green dark/light
 *color2:                Green
@@ -70,7 +70,7 @@ URxvt.matcher.button: 1
 
 ! magenta dark/light
 *color5:                Magenta
-*color13:               #F771AC
+*color13:               Violet
 
 ! cyan dark/light
 *color6:                Cyan
