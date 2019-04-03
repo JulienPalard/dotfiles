@@ -1,6 +1,28 @@
+! Solarized palette:
+
+#define Base03 #002b36
+#define Base02 #073642
+#define Base01 #586e75
+#define Base00 #657b83
+#define Base0  #839496
+#define Base1  #93a1a1
+#define Base2  #eee8d5
+#define Base3  #fdf6e3
+
+
+#define Yellow  #b58900
+#define Orange  #cb4b16
+#define Red     #dc322f
+#define Magenta #d33682
+#define Violet  #6c71c4
+#define Blue    #268bd2
+#define Cyan    #2aa198
+#define Green   #859900
+
+
 URxvt.scrollBar:false
-URxvt.background:#073642
-URxvt.foreground:#fdf6e3
+URxvt.background:Base03
+URxvt.foreground:Base1
 URxvt.saveLines:65536
 ! Needs apt install fonts-symbola unifont
 URxvt.font:xft:LiberationMono:size=16,xft:Symbola,xft:Code2000:antialias=false,xft:Unifont:antialias=false
@@ -18,53 +40,45 @@ URxvt.perl-ext-common: default,matcher,selection-to-clipboard
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
-! Palette
-! #073642
-! #586e75
-! #657b83
-! #839496
-! #93a1a1
-! #eee8d5
-! #fdf6e3
 
-*background:            #fdf6e3
-*foreground:            #657b83
-*fadeColor:             #fdf6e3
-*cursorColor:           #586e75
-*pointerColorBackground:#93a1a1
-*pointerColorForeground:#586e75
+*background: Base03
+*foreground: Base1
+*fadeColor: Base03
+*cursorColor: Base01
+*pointerColorBackground: Base1
+*pointerColorForeground: Base01
 
 ! black dark/light
-*color0:                #073642
-*color8:                #002b36
+*color0:                Base00
+*color8:                Base01
 
 ! red dark/light
-*color1:                #dc322f
+*color1:                Red
 *color9:                #DEB542
 
 ! green dark/light
-*color2:                #859900
+*color2:                Green
 *color10:               #B4C342
 
 ! yellow dark/light
-*color3:                #b58900
+*color3:                Yellow
 *color11:               #DEB542
 
 ! blue dark/light
-*color4:                #268bd2
+*color4:                Blue
 *color12:               #69B7F0
 
 ! magenta dark/light
-*color5:                #d33682
+*color5:                Magenta
 *color13:               #F771AC
 
 ! cyan dark/light
-*color6:                #2aa198
+*color6:                Cyan
 *color14:               #69CABF
 
 ! white dark/light
-*color7:                #eee8d5
-*color15:               #fdf6e3
+*color7:                Base2
+*color15:               Base3
 
 ! Cat your .Xresources to check colors:
 !             bl re gr ye bl ma cy gr
