@@ -44,9 +44,7 @@ URxvt.matcher.button: 1
 *background: Base03
 *foreground: Base1
 *fadeColor: Base03
-*cursorColor: Base01
-*pointerColorBackground: Base1
-*pointerColorForeground: Base01
+*cursorColor: Base1
 
 ! black dark/light
 *color0:                Base00
