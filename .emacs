@@ -24,8 +24,6 @@
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
                          ("melpa" . "https://melpa.org/packages/")))
-
-
 (elpy-enable)
 
 ;; Ido - interactive do - switches between buffers and opens files and
@@ -188,6 +186,7 @@
  '(elpy-modules
    (quote
     (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults)))
+ '(c-basic-offset 4)
  '(frame-background-mode (quote dark))
  '(package-selected-packages (quote (org po-mode elpy blacken yaml-mode))))
 
@@ -200,3 +199,6 @@
 
 (provide `.emacs)
 ;;; .emacs ends here
+
+;;; Reminders
+; Build TAGS: etags **/*.c **/*.h
