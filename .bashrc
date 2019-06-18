@@ -67,6 +67,7 @@ export PS1="$PS1"'$(__git_ps1 " (%s)")\$ '
 alias ls='ls --color=auto'
 alias fingerprint='find /etc/ssh -name "*.pub" -exec ssh-keygen -l -f {} \;'
 alias rekey='ssh-add -e /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so; ssh-add -s /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so'
+alias json_pp='json_pp -json_opt utf8'
 
 export PYTHONSTARTUP=$HOME/.config/pythonstartup.py
 
