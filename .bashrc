@@ -152,3 +152,15 @@ fontsize()
 {
     printf '\33]50;%s\007' "xft:LiberationMono:size=$1"
 }
+
+
+pasee()
+{
+    local LOGIN
+    local PASSWORD
+    read -p 'Login: ' LOGIN
+    read -s -p "Password for $LOGIN: " PASSWORD
+    echo
+    JWT="$(curl -s -XPOST -d '{"login": "'"$LOGIN"'", "password": "'"$PASSWORD"'"}' https://id.meltygroup.com/tokens/?idp=meltygroup | jq -r ".access_token")"
+    AUTH="Authorization: Bearer $JWT"
+}
