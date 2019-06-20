@@ -25,7 +25,7 @@ URxvt.background:Base03
 URxvt.foreground:Base1
 URxvt.saveLines:65536
 ! Needs apt install fonts-symbola unifont
-URxvt.font:xft:LiberationMono:size=16,xft:Symbola,xft:Code2000:antialias=false,xft:Unifont:antialias=false
+URxvt.font:xft:LiberationMono:size=14,xft:Symbola,xft:Code2000:antialias=false,xft:Unifont:antialias=false
 URxvt.cursorBlink:true
 URxvt.modifier:alt
 URxvt.iso14755: false
