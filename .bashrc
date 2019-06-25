@@ -159,9 +159,15 @@ pasee()
 {
     local LOGIN
     local PASSWORD
+    local HOST="${1:-https://id.meltygroup.com/tokens/?idp=meltygroup}"
     read -p 'Login: ' LOGIN
     read -s -p "Password for $LOGIN: " PASSWORD
     echo
-    JWT="$(curl -s -XPOST -d '{"login": "'"$LOGIN"'", "password": "'"$PASSWORD"'"}' https://id.meltygroup.com/tokens/?idp=meltygroup | jq -r ".access_token")"
+    JWT="$(curl -s -XPOST -d '{"login": "'"$LOGIN"'", "password": "'"$PASSWORD"'"}' $HOST | jq -r ".access_token")"
     AUTH="Authorization: Bearer $JWT"
+}
+
+wyz()
+{
+    curl https://wyz.fr/ -F"${1##*.}=@$1"
 }
