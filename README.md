@@ -6,7 +6,7 @@
 # Packages I typically use
 
 ```
-apt-get install xorg i3 rxvt-unicode network-manager-gnome feh fonts-liberation xautolock emacs25-nox git arandr firefox-esr ecryptfs-utils fonts-symbola unifont i3lock-fancy git-completion
+apt-get install arandr ecryptfs-utils emacs25-nox feh firefox fonts-liberation fonts-symbola git git-completion i3 i3lock-fancy jq network-manager-gnome rxvt-unicode unifont xautolock xorg
 ```
 
 ## Packages I may need
