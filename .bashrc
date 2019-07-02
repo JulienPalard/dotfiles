@@ -168,7 +168,7 @@ pasee()
     local HTTP_RESPONSE="$(<$TEMP_DIR/stdout)"
     local STATUS_CODE="$(<$TEMP_DIR/stderr)"
     JWT="$(jq -r ".access_token" <<< "$HTTP_RESPONSE")"
-    if [[ -z "$JWT" || "$STATUS_CODE" != "200" || "$JWT" == "null" ]]; then
+    if [[ -z "$JWT" || "$STATUS_CODE" != "201" || "$JWT" == "null" ]]; then
         printf "HTTP Error %s: %s\n" "$STATUS_CODE" "$HTTP_RESPONSE"
     fi
     AUTH="Authorization: Bearer $JWT"
