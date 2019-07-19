@@ -46,8 +46,8 @@ URxvt.matcher.button: 1
 *fadeColor: Base03
 *cursorColor: Base1
 
-! black dark/light
-*color0:                Base00
+! black dark/light, color0 (black) be used as forground on colored backgrounds
+*color0:                Base02
 *color8:                Base01
 
 ! red dark/light
@@ -79,8 +79,29 @@ URxvt.matcher.button: 1
 *color15:               Base3
 
 ! Cat your .Xresources to check colors:
+
+! 4 bits colors:
+!
+!             bl re gr ye bl ma cy gr
+! norm 0-7    [30m███[31m███[32m███[33m███[34m███[35m███[36m███[37m███[0m
+! bold 0-7    [1;30m███[1;31m███[1;32m███[1;33m███[1;34m███[1;35m███[1;36m███[1;37m███[0m
+
+
+! Same 8 colors, but expressed using "8 bit" syntax:
+!
 !             bl re gr ye bl ma cy gr
 ! norm 0-7    [38;5;0m███[38;5;1m███[38;5;2m███[38;5;3m███[38;5;4m███[38;5;5m███[38;5;6m███[38;5;7m███[0m
 ! bold 0-7    [1;38;5;0m███[1;38;5;1m███[1;38;5;2m███[1;38;5;3m███[1;38;5;4m███[1;38;5;5m███[1;38;5;6m███[1;38;5;7m███[0m
+
+
+! 8 bits colors, high intensity:
+!             bl re gr ye bl ma cy gr
 ! norm 8-15   [38;5;8m███[38;5;9m███[38;5;10m███[38;5;11m███[38;5;12m███[38;5;13m███[38;5;14m███[38;5;15m███[0m
 ! bold 8-15   [1;38;5;8m███[1;38;5;9m███[1;38;5;10m███[1;38;5;11m███[1;38;5;12m███[1;38;5;13m███[1;38;5;14m███[1;38;5;15m███[0m
+
+
+! 4 bits colored text over normal background (should be readable):
+! norm 0-7    [30mFoo[31mFoo[32mFoo[33mFoo[34mFoo[35mFoo[36mFoo[37mFoo[0m
+
+! Black text over all backgrounds (should be readable):
+! norm 0-7    [30;40mFoo[30;41mFoo[30;42mFoo[30;43mFoo[30;44mFoo[30;45mFoo[30;46mFoo[30;47mFoo[0m
