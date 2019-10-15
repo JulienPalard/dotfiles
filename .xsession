@@ -8,6 +8,9 @@ xset -b
 # Enable zapping (C-A-<Bksp> kills X)
 setxkbmap -option terminate:ctrl_alt_bksp
 
+# Enable compose key on right alt
+xmodmap -e "keysym Alt_R = Multi_key"
+
 # Enforce correct locales from the beginning
 unset LC_COLLATE
 export LC_CTYPE=en_US.UTF-8
