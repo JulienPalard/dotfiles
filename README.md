@@ -34,6 +34,7 @@ apt-get install \
     i3 \
     i3lock-fancy \
     jq \
+    keepassxc \
     libbz2-dev \
     libffi-dev \
     liblzma-dev \
