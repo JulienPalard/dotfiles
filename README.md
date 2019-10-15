@@ -1,3 +1,10 @@
+# Install a new Debian
+
+On a laptop, I typically use
+https://cdimage.debian.org/images/unofficial/non-free/images-including-firmware/
+to get the Wi-Fi firmwares.
+
+
 # Pin default release
 
     echo 'APT::Default-Release "bullseye";' > /etc/apt/apt.conf.d/00default
@@ -17,13 +24,6 @@ apt-get install arandr ecryptfs-utils emacs25-nox feh firefox fonts-liberation f
 # Install my dotfiles
 
     sh <(curl -s https://raw.githubusercontent.com/JulienPalard/dotfiles/master/install.sh)
-
-
-# Install a new Debian
-
-On a laptop, I typically use
-https://cdimage.debian.org/images/unofficial/non-free/images-including-firmware/
-to get the Wi-Fi firmwares.
 
 
 ## Packages I may need
