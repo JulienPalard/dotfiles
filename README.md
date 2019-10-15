@@ -1,3 +1,19 @@
+# Pin default release
+
+    echo 'APT::Default-Release "bullseye";' > /etc/apt/apt.conf.d/00default
+
+Then add sid (for firefox, at least):
+
+    deb https://deb.debian.org/debian sid main
+    deb-src https://deb.debian.org/debian sid main
+
+
+# Packages I typically use
+
+```
+apt-get install arandr ecryptfs-utils emacs25-nox feh firefox fonts-liberation fonts-symbola git git-completion i3 i3lock-fancy jq network-manager-gnome rxvt-unicode unifont xautolock xorg
+```
+
 # Install my dotfiles
 
     sh <(curl -s https://raw.githubusercontent.com/JulienPalard/dotfiles/master/install.sh)
@@ -9,12 +25,6 @@ On a laptop, I typically use
 https://cdimage.debian.org/images/unofficial/non-free/images-including-firmware/
 to get the Wi-Fi firmwares.
 
-
-# Packages I typically use
-
-```
-apt-get install arandr ecryptfs-utils emacs25-nox feh firefox fonts-liberation fonts-symbola git git-completion i3 i3lock-fancy jq network-manager-gnome rxvt-unicode unifont xautolock xorg
-```
 
 ## Packages I may need
 
