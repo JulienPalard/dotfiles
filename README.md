@@ -18,7 +18,7 @@ Then add sid (for firefox, at least):
 # Packages I typically use
 
 ```
-apt-get install arandr ecryptfs-utils emacs25-nox feh firefox fonts-liberation fonts-symbola git git-completion i3 i3lock-fancy jq network-manager-gnome rxvt-unicode unifont xautolock xorg
+apt-get install arandr ecryptfs-utils emacs feh firefox fonts-liberation fonts-symbola git git-completion i3 i3lock-fancy jq network-manager-gnome rxvt-unicode unifont xautolock xorg
 ```
 
 # Install my dotfiles
