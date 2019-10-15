@@ -1,6 +1,13 @@
-# install
+# Install my dotfiles
 
     sh <(curl -s https://raw.githubusercontent.com/JulienPalard/dotfiles/master/install.sh)
+
+
+# Install a new Debian
+
+On a laptop, I typically use
+https://cdimage.debian.org/images/unofficial/non-free/images-including-firmware/
+to get the Wi-Fi firmwares.
 
 
 # Packages I typically use
