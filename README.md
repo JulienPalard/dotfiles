@@ -40,7 +40,6 @@ apt-get install opensc opensc-pkcs11  # For yubikey
 # What I typically do on a new laptop
 
  - Change grub sleep time in `/etc/default/grub` (and run `update-grub`)
- - update-alternatives --config x-terminal-emulator
  - Set `Option "Tapping" "on"` for touchpad in `/usr/share/X11/xorg.conf.d/40-libinput.conf`
  - (May have to change button map, like `xinput set-button-map 12 1 2 2 4 5 6 7`, use `xev` from `x11-utils` to see button ids).
  - https://wiki.debian.org/TransparentEncryptionForHomeFolder
