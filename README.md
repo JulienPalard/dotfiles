@@ -18,7 +18,7 @@ Then add sid (for firefox, at least):
 # Packages I typically use
 
 ```
-apt-get install arandr ecryptfs-utils emacs-nox feh firefox fonts-liberation fonts-symbola git git-completion i3 i3lock-fancy jq network-manager-gnome rxvt-unicode unifont wget xautolock xorg
+apt-get install arandr ecryptfs-utils emacs-nox feh firefox fonts-liberation fonts-symbola git git-completion i3 i3lock-fancy jq network-manager-gnome python3-venv rxvt-unicode unifont wget xautolock xorg
 ```
 
 and `update-alternatives --configure x-terminal-emulator` to choose urxvt.
