@@ -51,7 +51,7 @@ apt-get install \
     unifont \
     wget \
     xautolock \
-    xorg
+    xorg \
     xz-utils \
     zlib1g-dev
 ```
