@@ -38,6 +38,7 @@ apt-get install \
     liblzma-dev \
     libncurses5-dev \
     libncursesw5-dev \
+    libpq-dev \
     libreadline-dev \
     libsqlite3-dev \
     libssl-dev \
