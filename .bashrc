@@ -70,6 +70,7 @@ alias rekey='ssh-add -e /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so; ssh-add -s /
 alias json_pp='json_pp -json_opt utf8,pretty,canonical'
 
 export PYTHONSTARTUP=$HOME/.config/pythonstartup.py
+export PYTHONDEVMODE=y
 
 for extra in /etc/bash_completion ~/.bash_aliases ~/.my_bashrc ~/.git-prompt.sh
 do
