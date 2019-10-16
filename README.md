@@ -18,7 +18,42 @@ Then add sid (for firefox, at least):
 # Packages I typically use
 
 ```
-apt-get install arandr ecryptfs-utils emacs-nox feh firefox fonts-liberation fonts-symbola git git-completion i3 i3lock-fancy jq network-manager-gnome python3-venv rxvt-unicode unifont wget xautolock xorg
+apt-get install \
+    arandr \
+    build-essential \
+    curl \
+    ecryptfs-utils \
+    emacs-nox \
+    feh \
+    firefox \
+    fonts-liberation \
+    fonts-symbola \
+    git \
+    git-completion \
+    i3 \
+    i3lock-fancy \
+    jq \
+    libbz2-dev \
+    libffi-dev \
+    liblzma-dev \
+    libncurses5-dev \
+    libncursesw5-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    libssl-dev \
+    llvm \
+    make \
+    network-manager-gnome \
+    python-openssl \
+    python3-venv \
+    rxvt-unicode \
+    tk-dev \
+    unifont \
+    wget \
+    xautolock \
+    xorg
+    xz-utils \
+    zlib1g-dev
 ```
 
 and `update-alternatives --configure x-terminal-emulator` to choose urxvt.
