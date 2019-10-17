@@ -186,11 +186,31 @@ compile_python()
     # Inspired from the great https://gitlab.com/python-devs/ci-images/
     # Thanks Barry Warsaw.
     local PY_VERSION="$1"
-    cd /tmp
-    wget -qO- https://www.python.org/ftp/python/$PY_VERSION/Python-$PY_VERSION.tgz | tar -xzf - 2>/dev/null || (
-        echo "Version not found, try:"
-        wget -qO- https://www.python.org/ftp/python/ | grep --color $PY_VERSION
+    local URL="https://www.python.org/ftp/python"
+    (
+        cd /tmp
+        wget -qO- $URL/$PY_VERSION/Python-$PY_VERSION.tgz | tar -xzf - || (
+            echo "Version not found, check on $URL."
+        )
+        [ -d Python-$PY_VERSION ] && (cd Python-$PY_VERSION; ./configure --with-pydebug --prefix=$HOME/.local/ && make -j 16 && make altinstall) &&
+            rm -r Python-$PY_VERSION
     )
-    [ -d Python-$PY_VERSION ] && (cd Python-$PY_VERSION; ./configure --with-pydebug --prefix=$HOME/.local/ && make -j 16 && make altinstall) &&
-    rm -r Python-$PY_VERSION
 }
+
+compile_all_pythons()
+{
+    compile_python 2.7.16
+    compile_python 3.4.10
+    compile_python 3.5.7
+    compile_python 3.6.9
+    compile_python 3.7.5
+    compile_python 3.8.0
+}
+
+_compile_python()
+{
+    COMPREPLY=( $( compgen -W '$( command curl -s https://www.python.org/ftp/python/  | grep -o ">[0-9.]\+/<" | sed "s/^>//;s|/<$||" )' -- "${COMP_WORDS[COMP_CWORD]}") )
+}
+
+
+complete -F _compile_python compile_python
