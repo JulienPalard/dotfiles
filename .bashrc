@@ -180,3 +180,17 @@ wyz()
 {
     curl https://wyz.fr/ -F"${1##*.}=@$1"
 }
+
+compile_python()
+{
+    # Inspired from the great https://gitlab.com/python-devs/ci-images/
+    # Thanks Barry Warsaw.
+    local PY_VERSION="$1"
+    cd /tmp
+    wget -qO- https://www.python.org/ftp/python/$PY_VERSION/Python-$PY_VERSION.tgz | tar -xzf - 2>/dev/null || (
+        echo "Version not found, try:"
+        wget -qO- https://www.python.org/ftp/python/ | grep --color $PY_VERSION
+    )
+    [ -d Python-$PY_VERSION ] && (cd Python-$PY_VERSION; ./configure --with-pydebug --prefix=$HOME/.local/ && make -j 16 && make altinstall) &&
+    rm -r Python-$PY_VERSION
+}
