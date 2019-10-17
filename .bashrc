@@ -5,7 +5,7 @@ DEBEMAIL=julien
 DEBEMAIL=$DEBEMAIL@
 DEBEMAIL=${DEBEMAIL}palard.fr
 DEBFULLNAME="Julien Palard"
-PATH="$PATH:$HOME/.local/bin"
+PATH="$HOME/.local/bin:$PATH"
 
 shopt -s checkwinsize
 shopt -s cdspell
