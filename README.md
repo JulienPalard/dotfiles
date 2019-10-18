@@ -20,6 +20,7 @@ Then add sid (for firefox, at least):
 ```
 apt-get install \
     arandr \
+    bash-completion \
     build-essential \
     curl \
     ecryptfs-utils \
