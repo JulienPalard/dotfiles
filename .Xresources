@@ -30,7 +30,7 @@ URxvt.cursorBlink:true
 URxvt.modifier:alt
 URxvt.iso14755: false
 URxvt.iso14755_52: false
-URxvt.intensityStyles: false
+URxvt.intensityStyles: true
 URxvt.termName:rxvt
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
@@ -46,7 +46,7 @@ URxvt.matcher.button: 1
 *fadeColor: Base03
 *cursorColor: Base1
 
-! black dark/light, color0 (black) be used as forground on colored backgrounds
+! black dark/light, color0 is used as forground on colored backgrounds, and black background.
 *color0:                Base02
 *color8:                Base01
 
@@ -87,7 +87,7 @@ URxvt.matcher.button: 1
 ! bold 0-7    [1;30m███[1;31m███[1;32m███[1;33m███[1;34m███[1;35m███[1;36m███[1;37m███[0m
 
 
-! Same 8 colors, but expressed using "8 bit" syntax:
+! Same 8 colors, but expressed using "8 bit" syntax (should be identical to previous one):
 !
 !             bl re gr ye bl ma cy gr
 ! norm 0-7    [38;5;0m███[38;5;1m███[38;5;2m███[38;5;3m███[38;5;4m███[38;5;5m███[38;5;6m███[38;5;7m███[0m
@@ -100,8 +100,14 @@ URxvt.matcher.button: 1
 ! bold 8-15   [1;38;5;8m███[1;38;5;9m███[1;38;5;10m███[1;38;5;11m███[1;38;5;12m███[1;38;5;13m███[1;38;5;14m███[1;38;5;15m███[0m
 
 
-! 4 bits colored text over normal background (should be readable):
+! 4 bits colored text over normal background (should be readable, except the first one):
 ! norm 0-7    [30mFoo[31mFoo[32mFoo[33mFoo[34mFoo[35mFoo[36mFoo[37mFoo[0m
+! bold 0-7    [1;30mFoo[1;31mFoo[1;32mFoo[1;33mFoo[1;34mFoo[1;35mFoo[1;36mFoo[1;37mFoo[0m
 
-! Black text over all backgrounds (should be readable):
-! norm 0-7    [30;40mFoo[30;41mFoo[30;42mFoo[30;43mFoo[30;44mFoo[30;45mFoo[30;46mFoo[30;47mFoo[0m
+! 4 bits colored text over black background (should be readable):
+! norm 0-7    [30;40mFoo[31;40mFoo[32;40mFoo[33;40mFoo[34;40mFoo[35;40mFoo[36;40mFoo[37;40mFoo[0m
+! bold 0-7    [1;30;40mFoo[1;31;40mFoo[1;32;40mFoo[1;33;40mFoo[1;34;40mFoo[1;35;40mFoo[1;36;40mFoo[1;37;40mFoo[0m
+
+! Black text over all backgrounds but black (should be readable, except the first one):
+! norm 0-7    [30;40mFoo[0m[30;41mFoo[30;42mFoo[30;43mFoo[30;44mFoo[30;45mFoo[30;46mFoo[30;47mFoo[0m
+! bold 0-7    [1;30;40mFoo[0m[1;30;41mFoo[1;30;42mFoo[1;30;43mFoo[1;30;44mFoo[1;30;45mFoo[1;30;46mFoo[1;30;47mFoo[0m
