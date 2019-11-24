@@ -113,7 +113,7 @@ clean()
         -print0 | xargs -0 rm -f
 }
 
-alias venv='python3 -m venv --prompt "$(basename "$PWD")" venv; source venv/bin/activate'
+alias venv='[ -d venv ] || python3 -m venv --prompt "$(basename "$PWD")" venv; source venv/bin/activate'
 
 dotfiles()
 {
