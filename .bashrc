@@ -113,27 +113,7 @@ clean()
         -print0 | xargs -0 rm -f
 }
 
-workon()
-{
-    local VENVS="$HOME/.venvs"
-    if [ -z "$1" -o z"$1" = z"." ]
-    then
-        local VENV_NAME="$(basename "$PWD")"
-    else
-        local VENV_NAME="$1"
-    fi
-    deactivate >/dev/null 2>/dev/null
-    mkdir -p "$VENVS"
-    [ -f "$VENVS/$VENV_NAME/bin/activate" ] || python3 -m venv "$VENVS/$VENV_NAME"
-    . "$VENVS/$VENV_NAME/bin/activate"
-}
-
-_workon()
-{
-    COMPREPLY=( $( compgen -W '$( command ls "$HOME/.venvs" )' -- "${COMP_WORDS[COMP_CWORD]}") )
-}
-
-complete -F _workon workon
+alias venv='python3 -m venv --prompt "$(basename "$PWD")" venv; source venv/bin/activate'
 
 dotfiles()
 {
