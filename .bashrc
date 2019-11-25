@@ -166,13 +166,18 @@ compile_python()
     # Inspired from the great https://gitlab.com/python-devs/ci-images/
     # Thanks Barry Warsaw.
     local PY_VERSION="$1"
+    local FLAGS=""
+    if dpkg --compare-versions "$PY_VERSION" ge 3.8.0  # Since 3.8.0 debug builds are ABI compatible, let's use them.
+    then
+        FLAGS="--with-pydebug"
+    fi
     local URL="https://www.python.org/ftp/python"
     (
         cd /tmp
         wget -qO- $URL/$PY_VERSION/Python-$PY_VERSION.tgz | tar -xzf - || (
             echo "Version not found, check on $URL."
         )
-        [ -d Python-$PY_VERSION ] && (cd Python-$PY_VERSION; ./configure --with-pydebug --prefix=$HOME/.local/ && make -j 16 && make altinstall) &&
+        [ -d Python-$PY_VERSION ] && (cd Python-$PY_VERSION; ./configure $FLAGS --prefix=$HOME/.local/ && make -j 16 && make altinstall) &&
             rm -r Python-$PY_VERSION
     )
 }
