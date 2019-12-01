@@ -6,9 +6,13 @@
     default = current
 
 [alias]
-    st = status -s
-    co = checkout
-    br = branch
-    ci = commit
+    ap = add -p
+    b = branch
+    c = commit
     lg = log --graph --pretty=format:'%C(auto)%h%d %s %C(blue)%ci %C(green)%an%Creset'
-    pr = !sh -c \"git fetch upstream pull/${1}/head:pr_${1} && git worktree add ../$(basename $(git rev-parse --show-toplevel))-pr-${1} pr_${1}\"
+    p = push
+    pf = pull --ff-only
+    pr = pull --rebase
+    pull-request = !sh -c \"git fetch upstream pull/${1}/head:pr_${1} && git worktree add ../$(basename $(git rev-parse --show-toplevel))-pr-${1} pr_${1}\"
+    remote-gh = "!f() { git remote add $1 https://github.com/$1/$(basename $(pwd))/; git fetch $1; }; f"
+    st = status -s
