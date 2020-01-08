@@ -55,14 +55,11 @@ WHITE=$'\E[00m'
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
-[ "$TERM" != 'linux' -a z"$TERM" != z'eterm-color' ] && TITLE="\[\033]0;\H\a\]" || TITLE=''
-export PS1="$TITLE\[$USERNAME_COLOR\]\u\[$WHITE\]@\[$HOSTNAME_COLOR\]\H\[$WHITE\]"
 
 if ! [ -f "$HOME/.git-prompt.sh" ]
 then
     wget -q -O "$HOME/.git-prompt.sh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 fi
-export PS1="$PS1"'$(__git_ps1 " (%s)")\$ '
 
 alias ls='ls --color=auto'
 alias fingerprint='find /etc/ssh -name "*.pub" -exec ssh-keygen -l -f {} \;'
@@ -78,6 +75,10 @@ do
         . $extra
     fi
 done
+
+[ "$TERM" != 'linux' -a z"$TERM" != z'eterm-color' ] && TITLE="\[\033]0;\H\a\]" || TITLE=''
+PREV_FAIL="\`PREV_FAIL=\$?; if [ \$PREV_FAIL != 0 ]; then echo \[\e[31m\]\$PREV_FAIL \[\e[0m\]; fi\`"
+PS1="$TITLE$PREV_FAIL\[$USERNAME_COLOR\]\u\[$WHITE\]@\[$HOSTNAME_COLOR\]\H\[$WHITE\]:\[\033[32m\]\w\[$WHITE\]"'$(__git_ps1 " (%s)")\n\$ '
 
 jsonpp()
 {
