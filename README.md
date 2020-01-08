@@ -23,6 +23,7 @@ apt-get install \
     bash-completion \
     build-essential \
     curl \
+    dnsutils \
     ecryptfs-utils \
     emacs-nox \
     feh \
