@@ -7,11 +7,10 @@ DEBEMAIL=${DEBEMAIL}palard.fr
 DEBFULLNAME="Julien Palard"
 PATH="$HOME/.local/bin:$PATH"
 
-shopt -s checkwinsize
 shopt -s cdspell
-shopt -s dirspell 2>/dev/null # Only in bash 4
-shopt -s autocd   2>/dev/null # Only in bash 4
-shopt -s globstar 2>/dev/null # Only in bash 4
+shopt -s dirspell
+shopt -s autocd
+shopt -s globstar
 shopt -s nocaseglob
 
 if [ -n "$DISPLAY" ]
@@ -37,7 +36,6 @@ export HISTSIZE=5000
 
 umask 022
 eval "`dircolors`"
-set -C
 
 HOSTNAME_SUM=$(cksum <(hostname) | cut -d' ' -f1)
 HOSTNAME_BOLD=$(( ($HOSTNAME_SUM + 1) % 2))
@@ -113,7 +111,19 @@ clean()
         -print0 | xargs -0 rm -f
 }
 
-alias venv='deactivate 2>/dev/null; [ -d .venv ] || python3 -m venv --prompt "$(basename "$PWD")" .venv && source .venv/bin/activate && pip install -q -U pip'
+unalias venv 2>/dev/null
+venv()
+{
+    deactivate 2>/dev/null
+    if ! [[ -d .venv ]]
+    then
+        python3 -m venv --prompt "$(basename "$PWD")" .venv
+    fi
+    source .venv/bin/activate
+    pip install -q black jedi
+}
+
+export PIP_REQUIRE_VIRTUALENV=1
 
 dotfiles()
 {
