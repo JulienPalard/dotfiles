@@ -183,12 +183,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(c-basic-offset 4)
  '(elpy-modules
    (quote
     (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults)))
- '(c-basic-offset 4)
  '(frame-background-mode (quote dark))
- '(package-selected-packages (quote (org po-mode elpy blacken yaml-mode))))
+ '(package-selected-packages (quote (markdown-mode org po-mode elpy blacken yaml-mode))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
