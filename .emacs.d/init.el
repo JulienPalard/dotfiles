@@ -1,24 +1,14 @@
-;;; package -- julien
-
-;;; Commentary:
-
-;; .emacs for conf in /home/mdk
-;;
-;; Made by Palard Julien
-;; Login   <julien@palard.fr>
+;; Made by Julien Palard <julien@palard.fr>
 ;;
 ;; Started on  Sun Nov 16 12:00:18 2008 Julien Palard
 ;;
-
-;;; Code:
+;; Packages I typically use can be reinstalled by using:
+;; M-x package-refresh-contents
+;; M-x package-install-selected-packages
 
 (setq user-full-name "Julien Palard")
 (setq user-mail-address "julien@palard.fr")
 
-
-;; Packages I typically use can be reinstalled by using:
-;; M-x package-refresh-contents
-;; M-x package-install-selected-packages
 (require 'package)
 (package-initialize)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -34,15 +24,12 @@
 ;; Disable all version control backends (Start faster):
 (setq vc-handled-backends ())
 
-
 ;; Disable transient mark mode, I don't like it:
 (transient-mark-mode nil)
-
 
 ;; PHP
 (autoload 'php-mode "php-mode" "Mode for editing PHP source files")
 (add-hook 'php-mode-hook 'php-enable-psr2-coding-style)
-
 
 ;; Coding style
 (setq-default indent-tabs-mode nil
@@ -50,12 +37,10 @@
               py-indent-offset 4
               show-trailing-whitespace t)
 
-
 ;; Don't show trailing whitespaces in term-mode
 (add-hook 'term-mode-hook
       (lambda() (make-local-variable 'show-trailing-whitespace)
         (setq show-trailing-whitespace nil)))
-
 
 (add-to-list 'auto-mode-alist '("\\.tpl\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
@@ -77,7 +62,6 @@
 (global-set-key "\C-cl" 'windmove-up)
 (global-set-key "\C-c;" 'windmove-right)
 (global-set-key "\C-x\M-%" 'query-replace-regexp) ;; As C-M-% is ~impossible to type in a terminal emulator:
-
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
@@ -92,7 +76,7 @@
 (setq version-control t)
 
 ;; Save all backup file in this directory.
-(setq backup-directory-alist (quote ((".*" . "~/.emacs_backups/"))))
+(setq backup-directory-alist (quote ((".*" . "~/.emacs/backup/"))))
 (setq-default delete-old-versions t)
 
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -196,9 +180,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-(provide `.emacs)
-;;; .emacs ends here
-
-;;; Reminders
-; Build TAGS: etags **/*.c **/*.h
