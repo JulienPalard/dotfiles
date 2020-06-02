@@ -30,7 +30,7 @@ font pango:monospace 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvtc
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -185,7 +185,7 @@ hide_edge_borders both
 bindsym $mod+o exec i3lock-fancy
 focus_follows_mouse no
 bindsym $mod+x move workspace to output right
-exec x-terminal-emulator
+exec urxvtc
 exec firefox
 for_window [window_role="browser"] border none
 for_window [class="URxvt"] border none
