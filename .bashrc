@@ -140,12 +140,6 @@ dotfiles()
     wget -q -O "$HOME/.git-prompt.sh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 }
 
-fontsize()
-{
-    printf '\33]50;%s\007' "xft:LiberationMono:size=$1"
-}
-
-
 pasee()
 {
     local LOGIN
