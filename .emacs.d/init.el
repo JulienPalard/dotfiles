@@ -8,7 +8,7 @@
 
 (setq user-full-name "Julien Palard")
 (setq user-mail-address "julien@palard.fr")
-
+(setq default-frame-alist '((tty-color-mode . 8)))
 (require 'package)
 (package-initialize)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -76,7 +76,7 @@
 (setq version-control t)
 
 ;; Save all backup file in this directory.
-(setq backup-directory-alist (quote ((".*" . "~/.emacs/backup/"))))
+(setq backup-directory-alist (quote ((".*" . "~/.emacs.d/backup/"))))
 (setq-default delete-old-versions t)
 
 (fset 'yes-or-no-p 'y-or-n-p)
