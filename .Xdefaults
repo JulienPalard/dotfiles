@@ -1,28 +1,9 @@
-! Solarized palette:
-
-#define Base03 #002b36
-#define Base02 #073642
-#define Base01 #586e75
-#define Base00 #657b83
-#define Base0  #839496
-#define Base1  #93a1a1
-#define Base2  #eee8d5
-#define Base3  #fdf6e3
-
-
-#define Yellow  #b58900
-#define Orange  #cb4b16
-#define Red     #dc322f
-#define Magenta #d33682
-#define Violet  #6c71c4
-#define Blue    #268bd2
-#define Cyan    #2aa198
-#define Green   #859900
-
+URxvt.background:#002b36
+URxvt.fadeColor: #002b36
+URxvt.cursorColor: #93a1a1
+URxvt.foreground:#93a1a1
 
 URxvt.scrollBar:false
-URxvt.background:Base03
-URxvt.foreground:Base1
 URxvt.saveLines:65536
 ! Needs apt install fonts-symbola unifont
 URxvt.font:xft:LiberationMono:size=14,xft:Symbola,xft:Code2000:antialias=false,xft:Unifont:antialias=false
@@ -31,52 +12,46 @@ URxvt.modifier:alt
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 URxvt.intensityStyles: true
-URxvt.termName:rxvt
+URxvt.termName:rxvt-unicode
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
 
 URxvt.perl-ext:
-URxvt.perl-ext-common: default,matcher,selection-to-clipboard
+URxvt.perl-ext-common: default,matcher,selection-to-clipboard,font-size
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
-
-*background: Base03
-*foreground: Base1
-*fadeColor: Base03
-*cursorColor: Base1
-
 ! black dark/light, color0 is used as forground on colored backgrounds, and black background.
-*color0:                Base02
-*color8:                Base01
+*color0:                #073642
+*color8:                #586e75
 
 ! red dark/light
-*color1:                Red
-*color9:                Orange
+*color1:                #dc322f
+*color9:                #cb4b16
 
 ! green dark/light
-*color2:                Green
+*color2:                #859900
 *color10:               #B4C342
 
 ! yellow dark/light
-*color3:                Yellow
+*color3:                #b58900
 *color11:               #DEB542
 
 ! blue dark/light
-*color4:                Blue
+*color4:                #268bd2
 *color12:               #69B7F0
 
 ! magenta dark/light
-*color5:                Magenta
-*color13:               Violet
+*color5:                #d33682
+*color13:               #6c71c4
 
 ! cyan dark/light
-*color6:                Cyan
+*color6:                #2aa198
 *color14:               #69CABF
 
 ! white dark/light
-*color7:                Base2
-*color15:               Base3
+*color7:                #eee8d5
+*color15:               #fdf6e3
 
 ! Cat your .Xresources to check colors:
 
