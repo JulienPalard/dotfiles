@@ -12,7 +12,6 @@ URxvt.modifier:alt
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 URxvt.intensityStyles: true
-URxvt.termName:rxvt-unicode
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
 

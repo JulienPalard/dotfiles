@@ -8,7 +8,7 @@
 
 (setq user-full-name "Julien Palard")
 (setq user-mail-address "julien@palard.fr")
-(setq default-frame-alist '((tty-color-mode . 8)))
+
 (require 'package)
 (package-initialize)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -172,11 +172,8 @@
    (quote
     (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults)))
  '(frame-background-mode (quote dark))
- '(package-selected-packages (quote (markdown-mode org po-mode elpy blacken yaml-mode))))
+ '(package-selected-packages
+   (quote
+    (zenburn-theme markdown-mode org po-mode elpy blacken yaml-mode))))
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(load-theme 'zenburn t)
