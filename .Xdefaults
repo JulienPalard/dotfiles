@@ -15,8 +15,7 @@ URxvt.intensityStyles: true
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
 
-URxvt.perl-ext:
-URxvt.perl-ext-common: default,matcher,selection-to-clipboard,font-size
+URxvt.perl-ext-common: readline,searchable-scrollback,selection,matcher,selection-to-clipboard,font-size
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
