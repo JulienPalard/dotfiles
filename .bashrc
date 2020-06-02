@@ -120,7 +120,7 @@ venv()
         python3 -m venv --prompt "$(basename "$PWD")" .venv
     fi
     source .venv/bin/activate
-    pip install -q black jedi
+    pip install --upgrade --pre black jedi wheel pip
 }
 
 export PIP_REQUIRE_VIRTUALENV=1
