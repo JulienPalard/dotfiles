@@ -1,0 +1,86 @@
+URxvt.background:#3F3F3F
+URxvt.fadeColor: #3F3F3F
+URxvt.cursorColor: #DCDCCC
+URxvt.foreground:#DCDCCC
+
+URxvt.scrollBar:false
+URxvt.saveLines:65536
+! Needs apt install fonts-symbola unifont
+URxvt.font:xft:LiberationMono:size=14,xft:Symbola,xft:Code2000:antialias=false,xft:Unifont:antialias=false
+URxvt.cursorBlink:true
+URxvt.modifier:alt
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.intensityStyles: true
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+
+URxvt.perl-ext-common: readline,searchable-scrollback,selection,matcher,selection-to-clipboard,font-size
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
+! black dark/light, color0 is used as forground on colored backgrounds, and black background.
+*color0:                #2B2B2B
+*color8:                #494949
+
+! red dark/light
+*color1:                #CC9393
+*color9:                #DCA3A3
+
+! green dark/light
+*color2:                #7F9F7F
+*color10:               #9FC59F
+
+! yellow dark/light
+*color3:                #DFAF8F
+*color11:               #F0DFAF
+
+! blue dark/light
+*color4:                #6CA0A3
+*color12:               #8CD0D3
+
+! magenta dark/light
+*color5:                #6E4661
+*color13:               #DC8CC3
+
+! cyan dark/light
+*color6:                #366060
+*color14:               #93E0E3
+
+! white dark/light
+*color7:                #656555
+*color15:               #FFFFEF
+
+! Cat this file to check colors:
+
+! 4 bits colors:
+!
+!             bl re gr ye bl ma cy gr
+! norm 0-7    [30m███[31m███[32m███[33m███[34m███[35m███[36m███[37m███[0m
+! bold 0-7    [1;30m███[1;31m███[1;32m███[1;33m███[1;34m███[1;35m███[1;36m███[1;37m███[0m
+
+
+! Same 8 colors, but expressed using "8 bit" syntax (should be identical to previous one):
+!
+!             bl re gr ye bl ma cy gr
+! norm 0-7    [38;5;0m███[38;5;1m███[38;5;2m███[38;5;3m███[38;5;4m███[38;5;5m███[38;5;6m███[38;5;7m███[0m
+! bold 0-7    [1;38;5;0m███[1;38;5;1m███[1;38;5;2m███[1;38;5;3m███[1;38;5;4m███[1;38;5;5m███[1;38;5;6m███[1;38;5;7m███[0m
+
+
+! 8 bits colors, high intensity:
+!             bl re gr ye bl ma cy gr
+! norm 8-15   [38;5;8m███[38;5;9m███[38;5;10m███[38;5;11m███[38;5;12m███[38;5;13m███[38;5;14m███[38;5;15m███[0m
+! bold 8-15   [1;38;5;8m███[1;38;5;9m███[1;38;5;10m███[1;38;5;11m███[1;38;5;12m███[1;38;5;13m███[1;38;5;14m███[1;38;5;15m███[0m
+
+
+! 4 bits colored text over normal background (should be readable, except the first column):
+! norm 0-7    [30mFoo[31mFoo[32mFoo[33mFoo[34mFoo[35mFoo[36mFoo[37mFoo[0m
+! bold 0-7    [1;30mFoo[1;31mFoo[1;32mFoo[1;33mFoo[1;34mFoo[1;35mFoo[1;36mFoo[1;37mFoo[0m
+
+! 4 bits colored text over black background (should be readable, except the first column):
+! norm 0-7    [30;40mFoo[31;40mFoo[32;40mFoo[33;40mFoo[34;40mFoo[35;40mFoo[36;40mFoo[37;40mFoo[0m
+! bold 0-7    [1;30;40mFoo[1;31;40mFoo[1;32;40mFoo[1;33;40mFoo[1;34;40mFoo[1;35;40mFoo[1;36;40mFoo[1;37;40mFoo[0m
+
+! Black text over all backgrounds (should be readable, except the first column):
+! norm 0-7    [30;40mFoo[0m[30;41mFoo[30;42mFoo[30;43mFoo[30;44mFoo[30;45mFoo[30;46mFoo[30;47mFoo[0m
+! bold 0-7    [1;30;40mFoo[0m[1;30;41mFoo[1;30;42mFoo[1;30;43mFoo[1;30;44mFoo[1;30;45mFoo[1;30;46mFoo[1;30;47mFoo[0m

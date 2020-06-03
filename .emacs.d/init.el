@@ -102,7 +102,7 @@
 
 ;; hex color
 (defvar hexcolour-keywords
-  '(("#[abcdef[:digit:]]\\{3,6\\}"
+  '(("#[a-fA-F[:digit:]]\\{3,6\\}"
      (0 (let ((colour (match-string-no-properties 0)))
           (if (or (= (length colour) 4)
                   (= (length colour) 7))
@@ -125,6 +125,7 @@
 
 (add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
 (add-hook 'sass-mode-hook 'hexcolour-add-to-font-lock)
+(add-hook 'emacs-lisp-mode-hook 'hexcolour-add-to-font-lock)
 
 (add-hook 'python-mode-hook 'blacken-mode)
 
