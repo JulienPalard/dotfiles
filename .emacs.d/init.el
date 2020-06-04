@@ -3,7 +3,6 @@
 ;; Started on  Sun Nov 16 12:00:18 2008 Julien Palard
 ;;
 ;; Packages I typically use can be reinstalled by using:
-;; M-x package-refresh-contents
 ;; M-x package-install-selected-packages
 
 (setq user-full-name "Julien Palard")
@@ -11,6 +10,11 @@
 
 (require 'package)
 (package-initialize)
+
+;; If there are no archived package contents, refresh them
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
                          ("melpa" . "https://melpa.org/packages/")))
@@ -126,6 +130,7 @@
 (add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
 (add-hook 'sass-mode-hook 'hexcolour-add-to-font-lock)
 (add-hook 'emacs-lisp-mode-hook 'hexcolour-add-to-font-lock)
+(add-hook 'conf-xdefaults-mode-hook 'hexcolour-add-to-font-lock)
 
 (add-hook 'python-mode-hook 'blacken-mode)
 
