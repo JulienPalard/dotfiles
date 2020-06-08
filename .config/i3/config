@@ -167,6 +167,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
     status_command i3status
+    mode hide
     colors {
         background #3F3F3F
         statusline #DCDCCC
