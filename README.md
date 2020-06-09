@@ -50,6 +50,7 @@ apt-get install \
     network-manager-gnome \
     python-openssl \
     python3-venv \
+    redshift \
     rxvt-unicode \
     tk-dev \
     unifont \
