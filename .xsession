@@ -34,5 +34,5 @@ ulimit -c unlimited
 # Start i3
 feh --bg-fill /home/mandark/meltyLab2.jpg &
 xautolock -time 3 -locker i3lock-fancy -detectsleep &
-urxvtd -q -o -f
+# urxvtd -q -o -f
 exec /usr/bin/i3
