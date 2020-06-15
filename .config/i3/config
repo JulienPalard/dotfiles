@@ -169,11 +169,11 @@ bar {
     status_command i3status
     mode hide
     colors {
-        background #3F3F3F
+        background #3A3A3A
         statusline #DCDCCC
         separator #FFFFFF
 
-        focused_workspace  #3F3F3F #3F3F3F #ffffff
+        focused_workspace  #3A3A3A #3A3A3A #ffffff
         active_workspace   #333333 #5f676a #ffffff
         inactive_workspace #333333 #222222 #888888
         urgent_workspace   #2f343a #900000 #ffffff
