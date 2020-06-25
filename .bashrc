@@ -171,6 +171,7 @@ compile_python()
     # Inspired from the great https://gitlab.com/python-devs/ci-images/
     # Thanks Barry Warsaw.
     local PY_VERSION="$1"
+    local BETA="$2"
     local FLAGS=""
     if dpkg --compare-versions "$PY_VERSION" ge 3.8.0  # Since 3.8.0 debug builds are ABI compatible, let's use them.
     then
@@ -179,11 +180,11 @@ compile_python()
     local URL="https://www.python.org/ftp/python"
     (
         cd /tmp
-        wget -qO- $URL/$PY_VERSION/Python-$PY_VERSION.tgz | tar -xzf - || (
+        wget -qO- $URL/$PY_VERSION/Python-$PY_VERSION$BETA.tgz | tar -xzf - || (
             echo "Version not found, check on $URL."
         )
-        [ -d Python-$PY_VERSION ] && (cd Python-$PY_VERSION; ./configure $FLAGS --prefix=$HOME/.local/ && make -j 16 && make altinstall) &&
-            rm -r Python-$PY_VERSION
+        [ -d Python-$PY_VERSION$BETA ] && (cd Python-$PY_VERSION$BETA; ./configure $FLAGS --prefix=$HOME/.local/ && make -j 16 && make altinstall) &&
+            rm -r Python-$PY_VERSION$BETA
     )
 }
 
@@ -193,8 +194,9 @@ compile_all_pythons()
     compile_python 3.4.10 &
     compile_python 3.5.9 &
     compile_python 3.6.10 &
-    compile_python 3.7.7 &
+    compile_python 3.7.8 rc1 &
     compile_python 3.8.3 &
+    compile_python 3.9.0 b3 &
     wait
 }
 
