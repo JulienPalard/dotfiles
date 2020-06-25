@@ -183,11 +183,11 @@ bar {
 # mdk additions:
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #3F3F3F #3F3F3F #ffffff #2e9ef4   #285577
-client.focused_inactive #333333 #333333 #ffffff #2e9ef4   #285577
+client.focused          #3A3A3A #3A3A3A #ffffff #2e9ef4   #285577
+client.focused_inactive #111111 #111111 #ffffff #292d2e   #222222
 client.unfocused        #0d0c0c #0d0c0c #ffffff #292d2e   #222222
 client.urgent           #900000 #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #3F3F3F #ffffff #000000   #0c0c0c
+client.placeholder      #000000 #3A3A3A #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
 hide_edge_borders both

@@ -26,7 +26,7 @@ export LC_MEASUREMENT=en_US.UTF-8
 export LC_IDENTIFICATION=en_US.UTF-8
 
 # Set background color
-xsetroot -solid "#3F3F3F"
+xsetroot -solid "#3A3A3A"
 
 # Enable core dumps in case something goes wrong
 ulimit -c unlimited
