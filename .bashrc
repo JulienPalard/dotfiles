@@ -194,8 +194,8 @@ compile_all_pythons()
     compile_python 3.4.10 &
     compile_python 3.5.9 &
     compile_python 3.6.10 &
-    compile_python 3.7.8 rc1 &
-    compile_python 3.8.3 &
+    compile_python 3.7.8 &
+    compile_python 3.8.4 rc1 &
     compile_python 3.9.0 b3 &
     wait
 }
