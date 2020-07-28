@@ -75,9 +75,15 @@ do
     fi
 done
 
-[ "$TERM" != 'linux' -a z"$TERM" != z'eterm-color' ] && TITLE="\[\033]0;\H\a\]" || TITLE=''
-PREV_FAIL="\`PREV_FAIL=\$?; if [ \$PREV_FAIL != 0 ]; then echo \[\e[31m\]\$PREV_FAIL \[\e[0m\]; fi\`"
-PS1="$TITLE$PREV_FAIL\[$USERNAME_COLOR\]\u\[$WHITE\]@\[$HOSTNAME_COLOR\]\H\[$WHITE\]:\[\033[32m\]\w\[$WHITE\]"'$(__git_ps1 " (%s)")\n\$ '
+title()
+{
+    local TITLE="\[\033]0;$1\a\]"
+    local PREV_FAIL="\`PREV_FAIL=\$?; if [ \$PREV_FAIL != 0 ]; then echo \[\e[31m\]\$PREV_FAIL \[\e[0m\]; fi\`"
+    PS1="$TITLE$PREV_FAIL\[$USERNAME_COLOR\]\u\[$WHITE\]@\[$HOSTNAME_COLOR\]\H\[$WHITE\]:\[\033[32m\]\w\[$WHITE\]"'$(__git_ps1 " (%s)")\n\$ '
+}
+
+[ "$TERM" != 'linux' -a z"$TERM" != z'eterm-color' ] && DEFAULT_TITLE="\H" || DEFAULT_TITLE=''
+title "$DEFAULT_TITLE"
 
 jsonpp()
 {
