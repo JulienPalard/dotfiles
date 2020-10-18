@@ -3,6 +3,10 @@ URxvt.fadeColor: #3A3A3A
 URxvt.cursorColor: #DCDCCC
 URxvt.foreground:#DCDCCC
 
+URxvt.keysym.XF86AudioPlay: string:\030@m
+URxvt.keysym.Menu: string:\030@s
+URxvt.keysym.Muhenkan: string:\030@h
+
 URxvt.scrollBar:false
 URxvt.saveLines:65536
 ! Needs apt install fonts-symbola unifont
