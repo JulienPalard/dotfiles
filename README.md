@@ -48,6 +48,7 @@ apt-get install \
     llvm \
     make \
     network-manager-gnome \
+    py3status \
     python-openssl \
     python3-venv \
     redshift \

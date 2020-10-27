@@ -1,42 +1,12 @@
-general {
-        output_format = "i3bar"
-        colors = true
-        interval = 5
-}
-
-order += "load"
-order += "wireless wlp3s0"
-order += "ethernet enp4s0f2"
-order += "battery 0"
-order += "disk /"
+order += "apt_updates"
+order += "loadavg"
+order += "networkmanager"
+order += "battery_level"
+order += "diskdata"
+order += "volume_status"
+order += "xrandr"
 order += "tztime local"
 
-
-wireless wlp3s0 {
-        format_up = "W: (%quality at %essid, %bitrate) %ip"
-        format_down = ""
-}
-
-ethernet enp4s0f2 {
-        # if you use %speed, i3status requires the cap_net_admin capability
-        format_up = "E: %ip (%speed)"
-        format_down = ""
-}
-
-battery 0 {
-        format = "%status %percentage %remaining %emptytime"
-        path = "/sys/class/power_supply/BAT%d/uevent"
-        low_threshold = 10
-}
-
 tztime local {
-        format = "%Y-%m-%d %H:%M"
-}
-
-load {
-        format = "%1min %5min %15min"
-}
-
-disk "/" {
-        format = "%free free"
+    format = "%Y-%m-%d %H:%M"
 }

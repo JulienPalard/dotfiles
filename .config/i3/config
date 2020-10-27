@@ -166,7 +166,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    status_command i3status
+    status_command py3status -c ~/.config/i3status/config
     mode hide
     colors {
         background #3A3A3A
@@ -194,7 +194,7 @@ hide_edge_borders both
 bindsym $mod+o exec i3lock-fancy
 focus_follows_mouse no
 bindsym $mod+x move workspace to output right
-exec urxvtc
+exec urxvt
 exec firefox
 for_window [window_role="browser"] border none
 for_window [class="URxvt"] border none
