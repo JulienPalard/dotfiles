@@ -26,6 +26,7 @@ apt-get install \
     dnsutils \
     ecryptfs-utils \
     emacs-nox \
+    exuberant-ctags \
     feh \
     firefox \
     fonts-liberation \
