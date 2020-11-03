@@ -13,17 +13,17 @@ xmodmap -e "keysym Alt_R = Multi_key"
 
 # Enforce correct locales from the beginning
 unset LC_COLLATE
-export LC_CTYPE=en_US.UTF-8
-export LC_TIME=en_US.UTF-8
-export LC_NUMERIC=en_US.UTF-8
-export LC_MONETARY=en_US.UTF-8
+export LC_CTYPE=fr_FR.UTF-8
+export LC_TIME=fr_FR.UTF-8
+export LC_NUMERIC=fr_FR.UTF-8
+export LC_MONETARY=fr_FR.UTF-8
 export LC_MESSAGES=C
-export LC_PAPER=en_US.UTF-8
-export LC_NAME=en_US.UTF-8
-export LC_ADDRESS=en_US.UTF-8
-export LC_TELEPHONE=en_US.UTF-8
-export LC_MEASUREMENT=en_US.UTF-8
-export LC_IDENTIFICATION=en_US.UTF-8
+export LC_PAPER=fr_FR.UTF-8
+export LC_NAME=fr_FR.UTF-8
+export LC_ADDRESS=fr_FR.UTF-8
+export LC_TELEPHONE=fr_FR.UTF-8
+export LC_MEASUREMENT=fr_FR.UTF-8
+export LC_IDENTIFICATION=fr_FR.UTF-8
 
 # Set background color
 xsetroot -solid "#3A3A3A"

@@ -30,7 +30,6 @@ export LESS_TERMCAP_us=$'\E[01;32m'    # début de souligné
 export LESS_TERMCAP_ue=$'\E[0m'        # fin
 export DEBEMAIL DEBFULLNAME
 export EDITOR=emacs
-export LC_ALL='en_US.utf8'
 
 export HISTCONTROL=ignoredups
 export HISTFILESIZE=5000
