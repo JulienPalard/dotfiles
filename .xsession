@@ -34,5 +34,6 @@ ulimit -c unlimited
 
 # Start i3
 xautolock -time 3 -locker i3lock-fancy -detectsleep &
+
 # urxvtd -q -o -f
 exec /usr/bin/i3
