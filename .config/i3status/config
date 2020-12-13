@@ -7,6 +7,11 @@ order += "volume_status"
 order += "xrandr"
 order += "tztime local"
 
+py3status {
+    separator = True
+    separator_block_width = 21
+}
+
 tztime local {
     format = "%Y-%m-%d %H:%M"
 }
