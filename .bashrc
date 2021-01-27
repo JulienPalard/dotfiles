@@ -116,15 +116,17 @@ clean()
 }
 
 unalias venv 2>/dev/null
+# Usage: `venv` to create a venv with the current `python` version.
+#        `venv 3.8` to create a venv with given version.
 venv()
 {
     deactivate 2>/dev/null
     if ! [[ -d .venv ]]
     then
-        python3 -m venv --prompt "$(basename "$PWD")" .venv
+        python$1 -m venv --prompt "$(basename "$PWD"))(py$(python$1 --version | cut -d' ' -f2)" .venv
     fi
     source .venv/bin/activate
-    pip install --upgrade --pre black jedi wheel pip
+    # python -m pip install --upgrade --pre black jedi wheel pip
 }
 
 export PIP_REQUIRE_VIRTUALENV=1
@@ -186,7 +188,7 @@ compile_python()
         wget -qO- $URL/$PY_VERSION/Python-$PY_VERSION$BETA.tgz | tar -xzf - || (
             echo "Version not found, check on $URL."
         )
-        [ -d Python-$PY_VERSION$BETA ] && (cd Python-$PY_VERSION$BETA; ./configure $FLAGS --prefix=$HOME/.local/ && make -j 16 && make altinstall) &&
+        [ -d Python-$PY_VERSION$BETA ] && (cd Python-$PY_VERSION$BETA; ./configure $FLAGS --prefix=$HOME/.local/ && make -j $(nproc) && make altinstall) &&
             rm -r Python-$PY_VERSION$BETA
     )
 }
@@ -196,8 +198,9 @@ compile_all_pythons()
     compile_python 3.5.10 &
     compile_python 3.6.12 &
     compile_python 3.7.9 &
-    compile_python 3.8.6 &
+    compile_python 3.8.7 &
     compile_python 3.9.1 &
+    compile_python 3.10.0a4 &
     wait
 }
 
