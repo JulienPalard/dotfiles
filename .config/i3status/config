@@ -5,6 +5,7 @@ order += "battery_level"
 order += "diskdata"
 order += "volume_status"
 order += "xrandr"
+order += "dropboxd_status"
 order += "tztime local"
 
 py3status {
@@ -12,6 +13,18 @@ py3status {
     separator_block_width = 21
 }
 
+loadavg {
+    format = "load [\?color=1avg {1min}] [\?color=5avg {5min}] [\?color=15avg {15min}]"
+}
+
 tztime local {
     format = "%Y-%m-%d %H:%M"
+}
+
+diskdata {
+    format = "disk:{used_percent}%"
+}
+
+networkmanager {
+    format_device = "[\?if=general_connection {general_type}[\?soft  ][\?color=ap_signal {ap_ssid} {ap_bars}][\?soft  ][\?color=good {ip4_address1}]]"
 }
