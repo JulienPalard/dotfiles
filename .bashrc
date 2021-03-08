@@ -197,10 +197,10 @@ compile_all_pythons()
 {
     compile_python 3.5.10 &
     compile_python 3.6.12 &
-    compile_python 3.7.9 &
-    compile_python 3.8.7 &
-    compile_python 3.9.1 &
-    compile_python 3.10.0a4 &
+    compile_python 3.7.10 &
+    compile_python 3.8.8 &
+    compile_python 3.9.2 &
+    compile_python 3.10.0a6 &
     wait
 }
 
