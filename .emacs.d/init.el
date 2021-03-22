@@ -8,6 +8,7 @@
 (setq user-full-name "Julien Palard")
 (setq user-mail-address "julien@palard.fr")
 
+(require 'use-package)
 (require 'package)
 (package-initialize)
 
@@ -18,12 +19,13 @@
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
                          ("melpa" . "https://melpa.org/packages/")))
-(elpy-enable)
 
 ;; Ido - interactive do - switches between buffers and opens files and
 ;; directories with a minimum of keystrokes.
 (require 'ido)
 (ido-mode t)
+
+(require 'lsp-mode)
 
 ;; Disable all version control backends (Start faster):
 (setq vc-handled-backends ())
@@ -34,6 +36,7 @@
 ;; PHP
 (autoload 'php-mode "php-mode" "Mode for editing PHP source files")
 (add-hook 'php-mode-hook 'php-enable-psr2-coding-style)
+
 
 ;; Coding style
 (setq-default indent-tabs-mode nil
@@ -133,6 +136,14 @@
 (add-hook 'conf-xdefaults-mode-hook 'hexcolour-add-to-font-lock)
 
 (add-hook 'python-mode-hook 'blacken-mode)
+(add-hook 'python-mode-hook #'lsp)
+(use-package lsp-ui)
+(use-package lsp-jedi
+             :ensure t
+             :config
+             (with-eval-after-load "lsp-mode"
+               (add-to-list 'lsp-disabled-clients 'pyls)
+               (add-to-list 'lsp-enabled-clients 'jedi)))
 
 (add-hook 'php-mode-hook '(lambda ()
                            (auto-complete-mode t)
@@ -174,12 +185,18 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 4)
- '(elpy-modules
-   (quote
-    (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults)))
- '(frame-background-mode (quote dark))
+ '(frame-background-mode 'dark)
+ '(lsp-ui-sideline-show-code-actions nil)
  '(package-selected-packages
-   (quote
-    (zenburn-theme markdown-mode org po-mode elpy blacken yaml-mode))))
+   '(lsp-ui use-package lsp-jedi lsp-mode zenburn-theme markdown-mode org po-mode elpy blacken yaml-mode)))
 
 (load-theme 'zenburn t)
+(set-face-attribute 'lsp-face-highlight-textual nil
+                    :background "#666" :foreground "#ffffff"
+                    )
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
