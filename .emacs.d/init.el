@@ -136,7 +136,7 @@
 (add-hook 'conf-xdefaults-mode-hook 'hexcolour-add-to-font-lock)
 
 (add-hook 'python-mode-hook 'blacken-mode)
-(add-hook 'python-mode-hook #'lsp)
+(add-hook 'python-mode-hook #'lsp-deferred)
 (use-package lsp-ui)
 (use-package lsp-jedi
              :ensure t
@@ -149,10 +149,11 @@
                            (auto-complete-mode t)
                            (require 'ac-php)
                            (setq ac-sources  '(ac-source-php ) )
-                           (yas-global-mode 1)
 
                            (define-key php-mode-map  (kbd "C-]") 'ac-php-find-symbol-at-point)   ;goto define
                            ))
+
+(yas-global-mode 1)
 
 
 (defun konix/find-file-hook ()
@@ -188,7 +189,7 @@
  '(frame-background-mode 'dark)
  '(lsp-ui-sideline-show-code-actions nil)
  '(package-selected-packages
-   '(lsp-ui use-package lsp-jedi lsp-mode zenburn-theme markdown-mode org po-mode elpy blacken yaml-mode)))
+   '(yasnippet-snippets lsp-ui use-package lsp-jedi lsp-mode zenburn-theme markdown-mode org po-mode blacken yaml-mode)))
 
 (load-theme 'zenburn t)
 (set-face-attribute 'lsp-face-highlight-textual nil
