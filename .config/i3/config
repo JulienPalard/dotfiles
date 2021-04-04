@@ -196,7 +196,6 @@ focus_follows_mouse no
 bindsym $mod+x move workspace to output right
 exec urxvt
 exec firefox
-exec redshift
 for_window [window_role="browser"] border none
 for_window [class="URxvt"] border none
 
