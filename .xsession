@@ -33,7 +33,7 @@ xsetroot -solid "#3A3A3A"
 ulimit -c unlimited
 
 # Start i3
-xautolock -time 3 -locker i3lock-fancy -detectsleep &
+xautolock -time 3 -locker 'i3lock --show-failed-attempts --image=$HOME/apod.png' -detectsleep &
 
 # urxvtd -q -o -f
 exec /usr/bin/i3

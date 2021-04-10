@@ -91,3 +91,15 @@ apt-get install opensc opensc-pkcs11  # For yubikey
 # Firefox extensions
 
  - [Privacy Badger](https://chrome.google.com/webstore/detail/privacy-badger/pkehgijcmpdhfbdbbnkijodmdjhbjlgp?utm_source=chrome-app-launcher-info-dialog)
+
+
+# Crontab
+
+```text
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DISPLAY=:0
+
+# m h  dom mon dow   command
+0 */4 * * * curl https://apod.nasa.gov/apod/astropix.html | grep -o 'image/[^ ]*.jpg' | sed 's#^#https://apod.nasa.gov/apod/#' | head -n 1 | xargs feh --bg-fill
+* * * * * curl https://apod.nasa.gov/apod/astropix.html | grep -o 'image/[^ ]*.jpg' | sed 's#^#https://apod.nasa.gov/apod/#' | head -n 1 | xargs wget -O $HOME/apod.jpg && convert $HOME/apod.jpg $HOME/apod.png
+```
