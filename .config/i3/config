@@ -194,6 +194,7 @@ hide_edge_borders both
 bindsym $mod+o exec "i3lock  --show-failed-attempts --image=$HOME/apod.png"
 focus_follows_mouse no
 bindsym $mod+x move workspace to output right
+bindsym $mod+c move workspace to output up
 exec urxvt
 exec firefox
 for_window [window_role="browser"] border none
