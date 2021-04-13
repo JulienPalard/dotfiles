@@ -100,6 +100,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DISPLAY=:0
 
 # m h  dom mon dow   command
-0 */4 * * * curl https://apod.nasa.gov/apod/astropix.html | grep -o 'image/[^ ]*.jpg' | sed 's#^#https://apod.nasa.gov/apod/#' | head -n 1 | xargs feh --bg-fill
-* * * * * curl https://apod.nasa.gov/apod/astropix.html | grep -o 'image/[^ ]*.jpg' | sed 's#^#https://apod.nasa.gov/apod/#' | head -n 1 | xargs wget -O $HOME/apod.jpg && convert $HOME/apod.jpg $HOME/apod.png
-```
+0 */4 * * * curl https://apod.nasa.gov/apod/astropix.html | grep -o 'image/[^ ]*.jpg' | sed 's#^#https://apod.nasa.gov/apod/#' | head -n 1 | xargs wget -O $HOME/apod.jpg && feh --bg-fill $HOME/apod.jpg && convert -resize 1920x1080^ $HOME/apod.jpg $HOME/apod.png
