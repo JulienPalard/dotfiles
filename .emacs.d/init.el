@@ -27,6 +27,31 @@
 
 (require 'lsp-mode)
 
+(add-to-list 'lsp-language-id-configuration '(po-mode . "gettext"))
+
+(lsp-register-client
+ (make-lsp-client
+  :new-connection (lsp-stdio-connection "po-langage-server")
+  :activation-fn (lsp-activate-on "gettext" "plaintext")
+  :priority -1
+  :server-id 'po
+))
+(add-hook 'po-mode-hook #'lsp)
+
+;; lsp-mode can only work on named buffers
+(defun po-mode-name-buffer ()
+  (setq-local buffer-file-name "msgstr.po")
+  (lsp))
+
+(defun po-mode-unname-buffer ()
+  (setq-local buffer-file-name nil))
+
+(add-hook 'po-mode-hook
+ (lambda ()
+   (advice-add 'po-edit-msgstr :after 'po-mode-name-buffer)
+   (advice-add 'po-subedit-exit :before 'po-mode-unname-buffer)))
+
+
 ;; Disable all version control backends (Start faster):
 (setq vc-handled-backends ())
 
@@ -136,14 +161,15 @@
 (add-hook 'conf-xdefaults-mode-hook 'hexcolour-add-to-font-lock)
 
 (add-hook 'python-mode-hook 'blacken-mode)
-(add-hook 'python-mode-hook #'lsp-deferred)
+(add-hook 'python-mode-hook #'lsp)
+
 (use-package lsp-ui)
 (use-package lsp-jedi
              :ensure t
              :config
              (with-eval-after-load "lsp-mode"
                (add-to-list 'lsp-disabled-clients 'pyls)
-               (add-to-list 'lsp-enabled-clients 'jedi)))
+))
 
 (add-hook 'php-mode-hook '(lambda ()
                            (auto-complete-mode t)
