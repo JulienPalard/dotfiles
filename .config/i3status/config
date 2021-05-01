@@ -26,5 +26,16 @@ diskdata {
 }
 
 networkmanager {
-    format_device = "[\?if=general_connection {general_type}[\?soft  ][\?color=ap_signal {ap_ssid} {ap_bars}][\?soft  ][\?color=good {ip4_address1}]]"
+    format_device = "[\?if=general_connection {general_type}[\?soft  ][\?color=ap_signal {ap_ssid} {ap_bars}]]"
+}
+
+battery_level {
+    notify_low_level = True
+    format = "bat {icon}"
+}
+
+xrandr {
+    force_on_change = ["eDP-1+DP-1-3", "eDP-1"]
+    hide_if_single_combination = True
+    DP-1-3_pos = "above eDP-1"
 }
