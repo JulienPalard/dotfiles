@@ -100,6 +100,7 @@
 (global-set-key "\C-cb" 'org-switchb)
 
 (add-hook 'write-file-hooks 'delete-trailing-whitespace)
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; Enable backup files.
 (setq make-backup-files t)
@@ -215,7 +216,7 @@
  '(frame-background-mode 'dark)
  '(lsp-ui-sideline-show-code-actions nil)
  '(package-selected-packages
-   '(yasnippet-snippets lsp-ui use-package lsp-jedi lsp-mode zenburn-theme markdown-mode org po-mode blacken yaml-mode)))
+   '(company yasnippet-snippets lsp-ui use-package lsp-jedi lsp-mode zenburn-theme markdown-mode org po-mode blacken yaml-mode)))
 
 (load-theme 'zenburn t)
 (set-face-attribute 'lsp-face-highlight-textual nil
