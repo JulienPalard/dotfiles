@@ -129,8 +129,6 @@ venv()
     # python -m pip install --upgrade --pre black jedi wheel pip
 }
 
-export PIP_REQUIRE_VIRTUALENV=1
-
 dotfiles()
 {
     local CLONE="$HOME/.config/dotfiles-repo/"
