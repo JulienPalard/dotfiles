@@ -27,10 +27,6 @@
 
 (require 'lsp-mode)
 
-(global-flycheck-mode 1)
-(with-eval-after-load 'flycheck
-  (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)
-  )
 
 (add-to-list 'lsp-language-id-configuration '(po-mode . "gettext"))
 
@@ -168,6 +164,7 @@
 
 (add-hook 'python-mode-hook 'blacken-mode)
 (add-hook 'python-mode-hook #'lsp)
+(add-hook 'python-mode-hook (setq flycheck-checker 'python-flake8))
 
 (defvar-local lsp-jedi-pylsp-extra-paths [])
 
@@ -179,6 +176,12 @@
                (with-eval-after-load "lsp-mode"
                  (add-to-list 'lsp-disabled-clients 'pyls)
 ))
+
+(use-package flycheck
+  :config
+  (global-flycheck-mode)
+  (setq-default flycheck-disabled-checkers '(lsp))
+  )
 
 
 (add-hook 'php-mode-hook '(lambda ()
@@ -223,11 +226,13 @@
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 4)
  '(frame-background-mode 'dark)
+ '(lsp-diagnostics-provider :flycheck)
+ '(lsp-jedi-hover-disable-keyword-all t)
  '(lsp-ui-sideline-show-code-actions nil)
- '(lsp-ui-sideline-show-diagnostics nil) ;; See https://github.com/emacs-lsp/lsp-ui/issues/304
+ '(lsp-ui-sideline-show-diagnostics nil)
  '(lsp-ui-sideline-show-hover nil)
  '(package-selected-packages
-   '(flycheck-pycheckers company yasnippet-snippets use-package lsp-jedi lsp-mode zenburn-theme markdown-mode org po-mode blacken yaml-mode)))
+   '(company yasnippet-snippets use-package lsp-mode lsp-jedi zenburn-theme markdown-mode org po-mode blacken yaml-mode)))
 
 (load-theme 'zenburn t)
 (set-face-attribute 'lsp-face-highlight-textual nil
@@ -239,17 +244,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-
-(defvar-local my/flycheck-local-cache nil)
-
-(defun my/flycheck-checker-get (fn checker property)
-  (or (alist-get property (alist-get checker my/flycheck-local-cache))
-      (funcall fn checker property)))
-
-(advice-add 'flycheck-checker-get :around 'my/flycheck-checker-get)
-
-(add-hook 'lsp-managed-mode-hook
-          (lambda ()
-            (when (derived-mode-p 'python-mode)
-                            (setq my/flycheck-local-cache '((lsp . ((next-checkers . (python-flake8)))))))))
