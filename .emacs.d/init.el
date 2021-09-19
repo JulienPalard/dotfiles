@@ -7,7 +7,6 @@
 
 (setq user-full-name "Julien Palard")
 (setq user-mail-address "julien@palard.fr")
-
 (require 'use-package)
 (require 'package)
 (package-initialize)
@@ -20,24 +19,59 @@
                          ("org" . "https://orgmode.org/elpa/")
                          ("melpa" . "https://melpa.org/packages/")))
 
-;; Ido - interactive do - switches between buffers and opens files and
-;; directories with a minimum of keystrokes.
-(require 'ido)
-(ido-mode t)
+(use-package ido
+  :ensure t
+  :init
+  (ido-mode t))
 
-(require 'lsp-mode)
+(use-package lsp-mode
+  :ensure t
+  :custom
+  (lsp-diagnostics-provider :flycheck)
+  (lsp-jedi-hover-disable-keyword-all t)
+  (lsp-ui-sideline-show-code-actions nil)
+  (lsp-ui-sideline-show-diagnostics nil)
+  (lsp-ui-sideline-show-hover nil)
+  (lsp-jedi-pylsp-extra-paths [])
+  :config
+  (set-face-attribute 'lsp-face-highlight-textual nil
+                      :background "#666" :foreground "#ffffff"
+                      )
+  (lsp-register-client
+   (make-lsp-client
+    :new-connection (lsp-stdio-connection "po-language-server")
+    :activation-fn (lsp-activate-on "gettext" "plaintext")
+    :priority -1
+    :server-id 'po
+  ))
+  (add-to-list 'lsp-language-id-configuration '(po-mode . "gettext"))
+  :hook ((po-mode python-mode) . lsp)
+  :commands lsp-mode
 
+)
 
-(add-to-list 'lsp-language-id-configuration '(po-mode . "gettext"))
+(use-package lsp-ui)
 
-(lsp-register-client
- (make-lsp-client
-  :new-connection (lsp-stdio-connection "po-language-server")
-  :activation-fn (lsp-activate-on "gettext" "plaintext")
-  :priority -1
-  :server-id 'po
+(use-package lsp-jedi
+  :ensure t
+  :after lsp-mode
+  :config
+  (with-eval-after-load "lsp-mode"
+    (add-to-list 'lsp-disabled-clients 'pyls)
 ))
-(add-hook 'po-mode-hook #'lsp)
+
+(use-package flycheck
+  :after python-mode
+  :config
+  (global-flycheck-mode)
+  (setq-default flycheck-disabled-checkers '(lsp))
+  (add-hook 'python-mode-hook (setq flycheck-checker 'python-flake8))
+  )
+
+(use-package blacken
+  :ensure t
+  :commands (blacken-mode)
+  :hook (python-mode . blacken-mode))
 
 ;; lsp-mode can only work on named buffers
 (defun po-mode-name-buffer ()
@@ -59,11 +93,6 @@
 ;; Disable transient mark mode, I don't like it:
 (transient-mark-mode nil)
 
-;; PHP
-(autoload 'php-mode "php-mode" "Mode for editing PHP source files")
-(add-hook 'php-mode-hook 'php-enable-psr2-coding-style)
-
-
 ;; Coding style
 (setq-default indent-tabs-mode nil
               tab-width 4
@@ -74,9 +103,6 @@
 (add-hook 'term-mode-hook
       (lambda() (make-local-variable 'show-trailing-whitespace)
         (setq show-trailing-whitespace nil)))
-
-(add-to-list 'auto-mode-alist '("\\.tpl\\'" . html-mode))
-(add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 
 (setq inhibit-startup-message t)
 
@@ -162,38 +188,7 @@
 (add-hook 'emacs-lisp-mode-hook 'hexcolour-add-to-font-lock)
 (add-hook 'conf-xdefaults-mode-hook 'hexcolour-add-to-font-lock)
 
-(add-hook 'python-mode-hook 'blacken-mode)
-(add-hook 'python-mode-hook #'lsp)
-(add-hook 'python-mode-hook (setq flycheck-checker 'python-flake8))
-
-(defvar-local lsp-jedi-pylsp-extra-paths [])
-
-(use-package lsp-ui)
-(defvar-local jedi-config "/home/mdk/.emacs.d/jedi.json")
-(use-package lsp-jedi
-             :ensure t
-             :config
-               (with-eval-after-load "lsp-mode"
-                 (add-to-list 'lsp-disabled-clients 'pyls)
-))
-
-(use-package flycheck
-  :config
-  (global-flycheck-mode)
-  (setq-default flycheck-disabled-checkers '(lsp))
-  )
-
-
-(add-hook 'php-mode-hook '(lambda ()
-                           (auto-complete-mode t)
-                           (require 'ac-php)
-                           (setq ac-sources  '(ac-source-php ) )
-
-                           (define-key php-mode-map  (kbd "C-]") 'ac-php-find-symbol-at-point)   ;goto define
-                           ))
-
 (yas-global-mode 1)
-
 
 (defun konix/find-file-hook ()
   "Permits file opening with line suffix like foo.py:21."
@@ -217,6 +212,7 @@
                 nil)
             nil)))
     nil))
+
 (add-to-list 'find-file-hook 'konix/find-file-hook)
 
 (custom-set-variables
@@ -226,18 +222,10 @@
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 4)
  '(frame-background-mode 'dark)
- '(lsp-diagnostics-provider :flycheck)
- '(lsp-jedi-hover-disable-keyword-all t)
- '(lsp-ui-sideline-show-code-actions nil)
- '(lsp-ui-sideline-show-diagnostics nil)
- '(lsp-ui-sideline-show-hover nil)
  '(package-selected-packages
-   '(company yasnippet-snippets use-package lsp-mode lsp-jedi zenburn-theme markdown-mode org po-mode blacken yaml-mode)))
+   '(company yasnippet-snippets use-package zenburn-theme markdown-mode org po-mode yaml-mode)))
 
 (load-theme 'zenburn t)
-(set-face-attribute 'lsp-face-highlight-textual nil
-                    :background "#666" :foreground "#ffffff"
-                    )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
