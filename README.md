@@ -75,9 +75,13 @@ and `update-alternatives --configure x-terminal-emulator` to choose urxvt.
 ```
 apt-get install firmware-iwlwifi
 apt-get install firmware-nonfree
-apt-get install laptop-mode-tools
+apt-get install tlp  # Optimize Laptop Battery Life
 apt-get install opensc opensc-pkcs11  # For yubikey
 ```
+
+With:
+
+    echo'CPU_ENERGY_PERF_POLICY_ON_BAT=power > /etc/tlp.d/50-cpu.conf
 
 # What I typically do on a new laptop
 
