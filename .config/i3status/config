@@ -22,7 +22,7 @@ tztime local {
 }
 
 diskdata {
-    format = "disk:{used_percent}%"
+    format = "🖴{used_percent}%"
 }
 
 networkmanager {
@@ -31,7 +31,7 @@ networkmanager {
 
 battery_level {
     notify_low_level = True
-    format = "bat {icon}"
+    format = "🔋{percent}%"
 }
 
 xrandr {
