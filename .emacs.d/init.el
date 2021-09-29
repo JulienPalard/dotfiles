@@ -24,6 +24,9 @@
   :init
   (ido-mode t))
 
+(use-package magit
+  :ensure t)
+
 (use-package lsp-mode
   :ensure t
   :custom
