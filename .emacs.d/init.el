@@ -63,13 +63,13 @@
     (add-to-list 'lsp-disabled-clients 'pyls)
 ))
 
+;; Test using flycheck-verify-setup
 (use-package flycheck
-  :after python-mode
+  :ensure t
   :config
-  (global-flycheck-mode)
+  (global-flycheck-mode t)
   (setq-default flycheck-disabled-checkers '(lsp))
-  (add-hook 'python-mode-hook (setq flycheck-checker 'python-flake8))
-  )
+  (add-hook 'python-mode-hook (setq flycheck-checker 'python-flake8)))
 
 (use-package blacken
   :ensure t
