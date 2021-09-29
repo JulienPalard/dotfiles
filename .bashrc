@@ -208,4 +208,9 @@ _compile_python()
 }
 
 
+myip()
+{
+    dig +short myip.opendns.com @resolver1.opendns.com
+}
+
 complete -F _compile_python compile_python
