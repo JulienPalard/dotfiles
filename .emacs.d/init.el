@@ -76,6 +76,13 @@
   :commands (blacken-mode)
   :hook (python-mode . blacken-mode))
 
+(use-package org-fancy-priorities
+  :ensure t
+  :hook
+  (org-mode . org-fancy-priorities-mode)
+  :config
+  (setq org-fancy-priorities-list '("⚡" "⬆" "⬇" "☕")))
+
 ;; lsp-mode can only work on named buffers
 (defun po-mode-name-buffer ()
   (setq-local buffer-file-name "msgstr.po")
