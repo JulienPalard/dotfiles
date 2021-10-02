@@ -30,11 +30,10 @@
 (use-package lsp-mode
   :ensure t
   :custom
-  (lsp-diagnostics-provider :flycheck)
   (lsp-jedi-hover-disable-keyword-all t)
   (lsp-ui-sideline-show-code-actions nil)
-  (lsp-ui-sideline-show-diagnostics nil)
   (lsp-ui-sideline-show-hover nil)
+  (lsp-diagnostics-provider :none)
   (lsp-jedi-pylsp-extra-paths [])
   :config
   (set-face-attribute 'lsp-face-highlight-textual nil
@@ -66,10 +65,9 @@
 ;; Test using flycheck-verify-setup
 (use-package flycheck
   :ensure t
+  :after lsp-mode
   :config
-  (global-flycheck-mode t)
-  (setq-default flycheck-disabled-checkers '(lsp))
-  (add-hook 'python-mode-hook (setq flycheck-checker 'python-flake8)))
+  (global-flycheck-mode t))
 
 (use-package blacken
   :ensure t
