@@ -33,6 +33,7 @@
   (lsp-jedi-hover-disable-keyword-all t)
   (lsp-ui-sideline-show-code-actions nil)
   (lsp-ui-sideline-show-hover nil)
+  (lsp-signature-doc-lines 1)
   (lsp-diagnostics-provider :none)
   (lsp-jedi-pylsp-extra-paths [])
   :config
