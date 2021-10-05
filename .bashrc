@@ -198,7 +198,7 @@ compile_all_pythons()
     compile_python 3.7.12 &
     compile_python 3.8.12 &
     compile_python 3.9.7 &
-    compile_python 3.10.0 b2 &
+    compile_python 3.10.0 &
     wait
 }
 
