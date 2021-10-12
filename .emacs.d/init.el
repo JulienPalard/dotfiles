@@ -27,15 +27,18 @@
 (use-package magit
   :ensure t)
 
+(tool-bar-mode -1)
+
 (use-package lsp-mode
   :ensure t
   :custom
   (lsp-jedi-hover-disable-keyword-all t)
-  (lsp-ui-sideline-show-code-actions nil)
-  (lsp-ui-sideline-show-hover nil)
+;;  (lsp-ui-sideline-show-code-actions nil)
+;;  (lsp-ui-sideline-show-hover nil)
   (lsp-signature-doc-lines 1)
   (lsp-diagnostics-provider :none)
   (lsp-jedi-pylsp-extra-paths [])
+  (lsp-keymap-prefix "C-c x")
   :config
   (set-face-attribute 'lsp-face-highlight-textual nil
                       :background "#666" :foreground "#ffffff"
@@ -53,7 +56,13 @@
 
 )
 
-(use-package lsp-ui)
+(use-package python
+  :custom
+  (python-indent-guess-indent-offset nil)
+)
+
+(use-package lsp-ui
+  :ensure t)
 
 (use-package lsp-jedi
   :ensure t
@@ -124,7 +133,6 @@
 (global-set-key "\M-p" 'backward-paragraph)
 (global-set-key "\C-xrv" 'list-registers)
 (global-set-key (kbd "M-h") 'backward-kill-word)
-(global-set-key [f12] 'iwb)
 (global-set-key "\C-cj" 'windmove-left)
 (global-set-key "\C-ck" 'windmove-down)
 (global-set-key "\C-cl" 'windmove-up)
@@ -134,6 +142,8 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-cb" 'org-switchb)
+(global-set-key "\C-\M-v" 'clipboard-yank)
+
 
 (add-hook 'write-file-hooks 'delete-trailing-whitespace)
 (add-hook 'after-init-hook 'global-company-mode)
@@ -153,13 +163,6 @@
 (setq-default truncate-partial-width-windows nil)
 
 (menu-bar-mode -1)
-
-(defun iwb ()
-  "Indent whole buffer."
-  (interactive)
-  (delete-trailing-whitespace)
-  (indent-region (point-min) (point-max) nil)
-  (untabify (point-min) (point-max)))
 
 
 ;; Highlight 80th column
@@ -232,12 +235,22 @@
  '(c-basic-offset 4)
  '(frame-background-mode 'dark)
  '(package-selected-packages
-   '(company yasnippet-snippets use-package zenburn-theme markdown-mode org po-mode yaml-mode)))
+   '(blacken spacemacs-theme company yasnippet-snippets use-package zenburn-theme markdown-mode org po-mode yaml-mode)))
 
-(load-theme 'zenburn t)
+; (load-theme 'zenburn t)
+(load-theme 'spacemacs-light t)
+;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+;(load-theme 'github-modern t)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;(custom-set-faces
+; '(default ((t (:family "Terminus" :foundry "UNKN" :slant normal :weight normal :height 90 :width normal)))))
+;
+(add-to-list 'default-frame-alist '(font . "LiberationMono:size=18"))
+(set-face-attribute 'default t :font "LiberationMono:size=18")
+(setq solarized-high-contrast-mode-line t)
