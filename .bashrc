@@ -64,7 +64,7 @@ alias rekey='ssh-add -e /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so >/dev/null 2>
 
 export PYTHONDEVMODE=y
 
-for extra in /etc/bash_completion ~/.bash_aliases ~/.my_bashrc ~/.git-prompt.sh
+for extra in /etc/bash_completion ~/.bash_aliases ~/.my_bashrc ~/.git-prompt.sh ~/.bash-python.sh
 do
     if [ -f "$extra" ]
     then
@@ -115,20 +115,6 @@ clean()
         -print0 | xargs -0 rm -f
 }
 
-unalias venv 2>/dev/null
-# Usage: `venv` to create a venv with the current `python` version.
-#        `venv 3.8` to create a venv with given version.
-venv()
-{
-    deactivate 2>/dev/null
-    if ! [[ -d .venv ]]
-    then
-        python$1 -m venv --prompt "$(basename "$PWD"))(py$(python$1 --version | cut -d' ' -f2)" .venv
-    fi
-    source .venv/bin/activate
-    # python -m pip install --upgrade --pre black jedi wheel pip
-}
-
 dotfiles()
 {
     local CLONE="$HOME/.config/dotfiles-repo/"
@@ -168,46 +154,6 @@ wyz()
 {
     curl https://wyz.fr/ -F"${1##*.}=@$1"
 }
-
-compile_python()
-{
-    # Inspired from the great https://gitlab.com/python-devs/ci-images/
-    # Thanks Barry Warsaw.
-    local PY_VERSION="$1"
-    local BETA="$2"
-    local FLAGS=""
-    if dpkg --compare-versions "$PY_VERSION" ge 3.8.0  # Since 3.8.0 debug builds are ABI compatible, let's use them.
-    then
-        FLAGS="--with-pydebug"
-    fi
-    local URL="https://www.python.org/ftp/python"
-    (
-        cd /tmp
-        wget -qO- $URL/$PY_VERSION/Python-$PY_VERSION$BETA.tgz | tar -xzf - || (
-            echo "Version not found, check on $URL."
-        )
-        [ -d Python-$PY_VERSION$BETA ] && (cd Python-$PY_VERSION$BETA; ./configure $FLAGS --prefix=$HOME/.local/ && make -j $(nproc) && make altinstall) &&
-            rm -r Python-$PY_VERSION$BETA
-    )
-}
-
-compile_all_pythons()
-{
-    compile_python 3.5.10 &
-    compile_python 3.6.15 &
-    compile_python 3.7.12 &
-    compile_python 3.8.12 &
-    compile_python 3.9.7 &
-    compile_python 3.10.0 &
-    compile_python 3.11.0 a1
-    wait
-}
-
-_compile_python()
-{
-    COMPREPLY=( $( compgen -W '$( command curl -s https://www.python.org/ftp/python/  | grep -o ">[0-9.]\+/<" | sed "s/^>//;s|/<$||" )' -- "${COMP_WORDS[COMP_CWORD]}") )
-}
-
 
 myip()
 {
