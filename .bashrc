@@ -161,3 +161,8 @@ myip()
 }
 
 complete -F _compile_python compile_python
+
+e()
+{
+    emacsclient --no-wait "$@"
+}
