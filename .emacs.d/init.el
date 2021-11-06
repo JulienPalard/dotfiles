@@ -10,6 +10,8 @@
 (require 'use-package)
 (require 'package)
 (package-initialize)
+(server-mode)
+(setq exec-path (append exec-path '("/home/mdk/.local/bin")))
 
 ;; If there are no archived package contents, refresh them
 (when (not package-archive-contents)
@@ -23,6 +25,13 @@
   :ensure t
   :init
   (ido-mode t))
+
+(use-package flycheck-grammalecte
+  :ensure t
+  :config (flycheck-grammalecte-setup))
+
+(use-package diminish
+  :ensure t)
 
 (use-package magit
   :ensure t)
@@ -115,7 +124,7 @@
 (setq-default indent-tabs-mode nil
               tab-width 4
               py-indent-offset 4
-              show-trailing-whitespace t)
+              )
 
 ;; Don't show trailing whitespaces in term-mode
 (add-hook 'term-mode-hook
@@ -129,8 +138,8 @@
 (show-paren-mode t)
 
 (global-set-key "\C-cc" 'compile)
-(global-set-key "\M-n" 'forward-paragraph)
-(global-set-key "\M-p" 'backward-paragraph)
+;(global-set-key "\M-n" 'forward-paragraph)
+;(global-set-key "\M-p" 'backward-paragraph)
 (global-set-key "\C-xrv" 'list-registers)
 (global-set-key (kbd "M-h") 'backward-kill-word)
 (global-set-key "\C-cj" 'windmove-left)
@@ -164,12 +173,14 @@
 
 (menu-bar-mode -1)
 
-
-;; Highlight 80th column
-(require 'whitespace)
-(setq whitespace-line-column 88)
-(setq whitespace-style '(face empty tabs lines-tail trailing))
-(global-whitespace-mode t)
+(use-package whitespace
+  :diminish (whitespace-mode global-whitespace-mode whitespace-newline-mode)
+  :hook ((python-mode) . whitespace-mode)
+  :config
+  (setq show-trailing-whitespace t)
+  (setq whitespace-line-column 88)
+  (setq whitespace-style '(face empty tabs lines-tail trailing))
+)
 
 
 ;; hex color
@@ -235,7 +246,7 @@
  '(c-basic-offset 4)
  '(frame-background-mode 'dark)
  '(package-selected-packages
-   '(blacken spacemacs-theme company yasnippet-snippets use-package zenburn-theme markdown-mode org po-mode yaml-mode)))
+   '(flycheck-grammalecte blacken spacemacs-theme company yasnippet-snippets use-package zenburn-theme markdown-mode org po-mode yaml-mode)))
 
 ; (load-theme 'zenburn t)
 (load-theme 'spacemacs-light t)
