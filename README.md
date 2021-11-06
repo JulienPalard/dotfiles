@@ -7,7 +7,7 @@ to get the Wi-Fi firmwares.
 
 # Pin default release
 
-    echo 'APT::Default-Release "bullseye";' > /etc/apt/apt.conf.d/00default
+    echo 'APT::Default-Release "bookworm";' > /etc/apt/apt.conf.d/00default
 
 Then add sid (for firefox, at least):
 
@@ -17,15 +17,12 @@ Then add sid (for firefox, at least):
 
 # Packages I typically use
 
-```
-apt-get install \
-    arandr \
+```bash
+apt install \
     bash-completion \
-    build-essential \
-    curl \
     dnsutils \
     ecryptfs-utils \
-    emacs-nox \
+    emacs-gtk \
     exuberant-ctags \
     feh \
     firefox \
@@ -33,37 +30,40 @@ apt-get install \
     fonts-symbola \
     git \
     git-completion \
-    i3 \
-    i3lock-fancy \
+    gnome \
     jq \
     keepassxc \
-    libbz2-dev \
-    libffi-dev \
-    liblzma-dev \
-    libncurses5-dev \
-    libncursesw5-dev \
     libpq-dev \
-    libreadline-dev \
-    libsqlite3-dev \
-    libssl-dev \
-    llvm \
-    make \
-    network-manager-gnome \
     py3status \
     python-openssl \
     python3-venv \
-    redshift \
-    rxvt-unicode \
     tk-dev \
-    unifont \
-    wget \
-    xautolock \
-    xorg \
-    xz-utils \
-    zlib1g-dev
+    unifont
 ```
 
-and `update-alternatives --configure x-terminal-emulator` to choose urxvt.
+and to build Python:
+
+```bash
+apt install \
+    make \
+    build-essential \
+    libssl-dev \
+    zlib1g-dev \
+    libbz2-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    wget \
+    curl \
+    llvm \
+    libncursesw5-dev \
+    xz-utils \
+    tk-dev \
+    libxml2-dev \
+    libxmlsec1-dev \
+    libffi-dev \
+    liblzma-dev
+```
+
 
 # Install my dotfiles
 
