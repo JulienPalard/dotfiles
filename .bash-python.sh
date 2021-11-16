@@ -45,7 +45,7 @@ compile_all_pythons()
     compile_python 3.6.15 &
     compile_python 3.7.12 &
     compile_python 3.8.12 &
-    compile_python 3.9.8 &
+    compile_python 3.9.9 &
     compile_python 3.10.0 &
     compile_python 3.11.0 a2 &
     wait
