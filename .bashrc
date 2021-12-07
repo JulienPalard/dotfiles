@@ -5,7 +5,6 @@ DEBEMAIL=julien
 DEBEMAIL=$DEBEMAIL@
 DEBEMAIL=${DEBEMAIL}palard.fr
 DEBFULLNAME="Julien Palard"
-PATH="$HOME/.local/bin:$PATH"
 
 shopt -s cdspell
 shopt -s dirspell
@@ -64,7 +63,7 @@ alias rekey='ssh-add -e /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so >/dev/null 2>
 
 export PYTHONDEVMODE=y
 
-for extra in /etc/bash_completion ~/.bash_aliases ~/.my_bashrc ~/.git-prompt.sh ~/.bash-python.sh
+for extra in /etc/bash_completion ~/.bash_aliases ~/.my_bashrc ~/.git-prompt.sh ~/clones/JulienPalard/compile-python/compile-python.sh
 do
     if [ -f "$extra" ]
     then
@@ -159,8 +158,6 @@ myip()
 {
     dig +short myip.opendns.com @resolver1.opendns.com
 }
-
-complete -F _compile_python compile_python
 
 e()
 {
