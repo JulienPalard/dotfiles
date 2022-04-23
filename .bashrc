@@ -98,8 +98,9 @@ then
     mkdir -p ~/.fonts/dejavu/
     wget -qO ~/.fonts/dejavu/DejaVuSansMonoNerdFontCompleteMono.ttf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Regular/complete/DejaVu%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.ttf
 fi
-
-PS1="$_TITLE$_PREV_FAIL\[$USERNAME_COLOR\]\u\[\e[0m\]@\[$HOSTNAME_COLOR\]\H\[\e[0m\]:\[\e[32m\]\w\[\e[0m\]"'$(python_ps1 " \[\e[30;44m\e[38;5;11m\]  %s \[\e[0m\]")$(__git_ps1 " \[\e[30;41m\e[97m\]  %s \[\e[0m\]")\n\$ '
+PY_PS1='$(python_ps1 "\[\e[1;34m\]🭋\[\e[30;44m\e[38;5;11m\]  %s \[\e[0m\e[1;34m\]🭛\[\e[0m\]")'
+GIT_PS1='$(__git_ps1 "\[\e[1;31m\]🭋\[\e[30;41m\e[97m\]  %s \[\e[0m\e[1;31m\]🭛\[\e[0m\]")'
+PS1="$_TITLE$_PREV_FAIL\[$USERNAME_COLOR\]\u\[\e[0m\]@\[$HOSTNAME_COLOR\]\H\[\e[0m\]:\[\e[32m\]\w\[\e[0m\]$PY_PS1$GIT_PS1\n\$ "
 
 eval "$(direnv hook bash)"
 
