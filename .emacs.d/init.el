@@ -4,6 +4,11 @@
 ;;
 ;; Packages I typically use can be reinstalled by using:
 ;; M-x package-install-selected-packages
+;;
+;; To gather tags, according to emacs doc:
+;;
+;;    find . -name "*.[chCH]" -print | etags -
+
 
 (setq user-full-name "Julien Palard"
       user-mail-address "julien@palard.fr")
@@ -26,6 +31,11 @@
   :init
   (ido-mode t))
 
+(use-package direnv
+  :ensure t
+  :config
+  (direnv-mode))
+
 (use-package flycheck-grammalecte
   :ensure t
   :config (flycheck-grammalecte-setup))
@@ -40,6 +50,8 @@
 
 (use-package lsp-mode
   :ensure t
+  :init
+  (setq lsp-keymap-prefix "C-c p")
   :custom
   (lsp-jedi-hover-disable-keyword-all t)
   (lsp-signature-doc-lines 1)
@@ -88,6 +100,11 @@
   (org-mode . org-fancy-priorities-mode)
   :config
   (setq org-fancy-priorities-list '("⚡" "⬆" "⬇" "☕")))
+
+(add-hook 'org-mode-hook
+          (lambda() (setq header-line-format
+                                 '(:eval (org-display-outline-path nil t " > " t)))))
+
 
 ;; Disable transient mark mode, I don't like it:
 (transient-mark-mode nil)
