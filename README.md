@@ -73,15 +73,26 @@ apt install \
 ## Packages I may need
 
 ```
-apt-get install firmware-iwlwifi
-apt-get install firmware-nonfree
-apt-get install tlp  # Optimize Laptop Battery Life
-apt-get install opensc opensc-pkcs11  # For yubikey
+apt install firmware-iwlwifi
+apt install firmware-nonfree
+apt install tlp  # Optimize Laptop Battery Life
+apt install opensc opensc-pkcs11  # For yubikey
 ```
 
 With:
 
     echo'CPU_ENERGY_PERF_POLICY_ON_BAT=power > /etc/tlp.d/50-cpu.conf
+
+
+## Packages I don't want
+
+```
+aptitude purge ttf-bitstream-vera
+```
+
+see https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=981577 or simply `echo $'e\xcc\x81a'`
+
+
 
 # What I typically do on a new laptop
 

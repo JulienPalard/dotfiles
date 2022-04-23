@@ -46,8 +46,6 @@ USERNAME_HUE=$(( ($USERNAME_SUM + 2) % 6 + 31))
 HOSTNAME_COLOR=$'\E'"[$HOSTNAME_BOLD;${HOSTNAME_HUE}m"
 USERNAME_COLOR=$'\E'"[$USERNAME_BOLD;${USERNAME_HUE}m"
 
-WHITE=$'\E[00m'
-
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
@@ -72,6 +70,21 @@ do
 done
 
 
+python_ps1()
+{
+    local pypath="$(which python 2>/dev/null)"
+    if [[ -z "$pypath" ]] || [[ "$pypath" == "/usr/bin/python" ]]
+    then
+        return
+    fi
+    local relative="$(realpath --relative-to=$(pwd) -s "$pypath")"
+    if [[ ${#relative} -lt ${#pypath} ]]
+    then
+        pypath="$relative"
+    fi
+    printf "$1" "${pypath%/bin/python}"
+}
+
 if [[ "$TERM" != 'dumb' ]]
 then
     _TITLE="\[\e]0;\H \W\a\]"
@@ -79,7 +92,16 @@ else
     _TITLE=''
 fi
 _PREV_FAIL="\`PREV_FAIL=\$?; if [ \$PREV_FAIL != 0 ]; then echo \[\e[31m\]\$PREV_FAIL \[\e[0m\]; fi\`"
-PS1="$_TITLE$_PREV_FAIL\[$USERNAME_COLOR\]\u\[$WHITE\]@\[$HOSTNAME_COLOR\]\H\[$WHITE\]:\[\e[32m\]\w\[$WHITE\]"'$(__git_ps1 " (%s)")\n\$ '
+
+if ! [[ -f ~/.fonts/dejavu/DejaVuSansMonoNerdFontCompleteMono.ttf ]]
+then
+    mkdir -p ~/.fonts/dejavu/
+    wget -qO ~/.fonts/dejavu/DejaVuSansMonoNerdFontCompleteMono.ttf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Regular/complete/DejaVu%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.ttf
+fi
+
+PS1="$_TITLE$_PREV_FAIL\[$USERNAME_COLOR\]\u\[\e[0m\]@\[$HOSTNAME_COLOR\]\H\[\e[0m\]:\[\e[32m\]\w\[\e[0m\]"'$(python_ps1 " \[\e[30;44m\e[38;5;11m\]  %s \[\e[0m\]")$(__git_ps1 " \[\e[30;41m\e[97m\]  %s \[\e[0m\]")\n\$ '
+
+eval "$(direnv hook bash)"
 
 jsonpp()
 {
