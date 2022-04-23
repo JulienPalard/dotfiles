@@ -98,9 +98,16 @@ then
     mkdir -p ~/.fonts/dejavu/
     wget -qO ~/.fonts/dejavu/DejaVuSansMonoNerdFontCompleteMono.ttf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Regular/complete/DejaVu%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.ttf
 fi
-PY_PS1='$(python_ps1 "\[\e[34m\]🭋\[\e[30;44m\e[38;5;11m\]  %s \[\e[0m\e[34m\]🭛\[\e[0m\]")'
-GIT_PS1='$(__git_ps1 "\[\e[31m\]🭋\[\e[30;41m\e[97m\]  %s \[\e[0m\e[31m\]🭛\[\e[0m\]")'
-PS1="$_TITLE$_PREV_FAIL\[$USERNAME_COLOR\]\u\[\e[0m\]@\[$HOSTNAME_COLOR\]\H\[\e[0m\]:\[\e[32m\]\w\[\e[0m\]$PY_PS1$GIT_PS1\n\$ "
+
+GIT_RED_FG='\e[38;2;244;77;39m'
+GIT_RED_BG='\e[48;2;244;77;39m'
+PY_BLUE_FG='\e[38;2;53;112;160m'
+PY_BLUE_BG='\e[48;2;53;112;160m'
+PY_YELLOW_FG='\e[38;2;255;222;87m'
+PY_YELLOW_BG='\e[48;2;255;222;87m'
+PY_PS1='$(python_ps1 "${PY_BLUE_FG}🭋${PY_BLUE_BG}${PY_YELLOW_FG}  %s \e[0m${PY_BLUE_FG}🭛\e[0m")'
+GIT_PS1='$(__git_ps1 "${GIT_RED_FG}🭋${GIT_RED_BG}\e[97m  %s \e[0m${GIT_RED_FG}🭛\e[0m")'
+PS1="${_TITLE}${_PREV_FAIL}${USERNAME_COLOR}\u\e[0m@${HOSTNAME_COLOR}\H\e[0m:\e[32m\w\e[0m${PY_PS1}${GIT_PS1}\n\$ "
 
 eval "$(direnv hook bash)"
 
