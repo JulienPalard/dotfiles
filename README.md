@@ -64,6 +64,14 @@ apt install \
     liblzma-dev
 ```
 
+and for pidgin:
+
+```bash
+
+apt install pidgin \
+    pidgin-plugin-pack  # Pour IRC
+    purple-discord
+```
 
 # Install my dotfiles
 
