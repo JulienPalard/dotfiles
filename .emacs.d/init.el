@@ -16,7 +16,14 @@
 (require 'package)
 (package-initialize)
 (server-mode)
+
 (setq exec-path (append exec-path '("/home/mdk/.local/bin")))
+
+(setenv "PATH"  ; This is so blacken-mode can find black in ~/.local/bin/
+        (concat
+         (getenv "PATH") path-separator
+         (getenv "HOME") "/.local/bin/"
+         ))
 
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
@@ -38,7 +45,10 @@
 
 (use-package flycheck-grammalecte
   :ensure t
-  :config (flycheck-grammalecte-setup))
+  :config
+  (flycheck-grammalecte-setup)
+  (setq flycheck-global-modes '(not org-mode))
+  )
 
 (use-package diminish
   :ensure t)
@@ -92,7 +102,9 @@
 (use-package blacken
   :ensure t
   :commands (blacken-mode)
-  :hook (python-mode . blacken-mode))
+  :hook (python-mode . blacken-mode)
+  :config
+  (setq blacken-only-if-project-is-blackened t))
 
 (use-package org-fancy-priorities
   :ensure t
@@ -155,6 +167,9 @@
 ;; Save all backup file in this directory.
 (setq-default delete-old-versions t)
 
+(auto-save-visited-mode t)
+(setq auto-save-visited-interval 1)
+
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (setq-default truncate-partial-width-windows nil)
@@ -209,7 +224,7 @@
  '(c-basic-offset 4)
  '(frame-background-mode 'dark)
  '(package-selected-packages
-   '(flycheck-grammalecte blacken spacemacs-theme company yasnippet-snippets use-package zenburn-theme markdown-mode org po-mode yaml-mode)))
+   '(rust-mode flycheck-grammalecte blacken spacemacs-theme company yasnippet-snippets use-package zenburn-theme markdown-mode org po-mode yaml-mode)))
 
 (load-theme 'spacemacs-light t)
 (custom-set-faces
@@ -219,5 +234,5 @@
  ;; If there is more than one, they won't work right.
  )
 
-(add-to-list 'default-frame-alist '(font . "LiberationMono:size=18"))
-(set-face-attribute 'default t :font "LiberationMono:size=18")
+(add-to-list 'default-frame-alist '(font . "DejaVuSansMono:size=18"))
+(set-face-attribute 'default t :font "DejaVuSansMono:size=18")

@@ -12,6 +12,8 @@ shopt -s autocd
 shopt -s globstar
 shopt -s nocaseglob
 
+PATH="$PATH:$HOME/.local/bin"
+CDPATH="~/clones/"
 if [ -n "$DISPLAY" ]
 then
     xset b off
@@ -208,5 +210,20 @@ venv()
 
 pip-common()
 {
-    pip install --upgrade mypy black flake8 jedi-language-server pylint build twine grip tox
+    python3 -m pip install --upgrade --upgrade-strategy eager mypy black flake8 jedi-language-server pylint build twine grip tox pip
+}
+
+github-gpg()
+{
+    curl https://github.com/$1.gpg | gpg --import-options show-only --import -
+}
+
+download-random-pypi-proj()
+{
+    PKG_URL="$(curl -s https://pypi.org/rss/packages.xml | grep -o 'https://pypi.org/project/[^ <]*' | shuf | head -n 1 | sed 's/project/simple/g')"
+    ARCHIVE_URL="$(curl -s "$PKG_URL" | grep -o 'https://[^ "#]*' | tail -n 1)"
+    TMP=pypi_$RANDOM$RANDOM
+    mkdir /tmp/$TMP/
+    cd /tmp/$TMP
+    wget "$ARCHIVE_URL"
 }

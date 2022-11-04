@@ -35,7 +35,7 @@ apt install \
     keepassxc \
     libpq-dev \
     python-openssl \
-    python3-venv \
+    python3-full \
     tk-dev \
     unifont
 ```
