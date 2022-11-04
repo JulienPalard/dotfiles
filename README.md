@@ -34,7 +34,6 @@ apt install \
     jq \
     keepassxc \
     libpq-dev \
-    py3status \
     python-openssl \
     python3-venv \
     tk-dev \
