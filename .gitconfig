@@ -1,9 +1,16 @@
+[core]
+    editor = emacsclient
+
 [user]
     name = Julien Palard
     email = julien@palard.fr
+    signingkey = 0x46EBCD72F08E6717
 
 [push]
     default = current
+
+[commit]
+    gpgsign = true
 
 [alias]
     ap = add -p
@@ -16,3 +23,13 @@
     pull-request = !sh -c \"git fetch upstream pull/${1}/head:pr_${1} && git worktree add ../$(basename $(git rev-parse --show-toplevel))-pr-${1} pr_${1}\"
     remote-gh = "!f() { git remote add $1 https://github.com/$1/$(basename $(pwd))/; git fetch $1; }; f"
     st = status -s
+
+[init]
+	defaultBranch = main
+
+[merge]
+	conflictstyle = diff3
+
+[merge "po3way"]
+    name = po file merge driver
+    driver = po3way --debug --git-merge-driver -- %A %O %B
