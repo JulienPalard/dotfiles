@@ -175,18 +175,20 @@ e()
 
 venv()
 {
-    # direnv-enabled venv creation.
-    if ! [[ -d .venv ]]
+    # direnv-first venv creation.
+    if [[ -f .envrc ]]
     then
-        if [[ -f .envrc ]]
-        then
-           echo '`.venv` does not exists but `.envrc` file already exists!'
-           echo "Human? Untangle it, please."
-           return
-        fi
-        "python$1" -m venv .venv
-        echo 'PATH=$(pwd)/.venv/bin/:$PATH' > .envrc
+        echo '`.envrc` file already exists!'
+        return
     fi
+    cat >.envrc <<EOF
+if ! [[ -d .venv ]]; then
+    echo "Creating venv..."
+    python$1 -m venv .venv
+fi
+PATH=$(pwd)/.venv/bin/:$PATH
+EOF
+    direnv allow .
 }
 
 pip-common()
