@@ -163,34 +163,9 @@ dotfiles()
     wget -q -O "$HOME/.git-prompt.sh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 }
 
-pasee()
-{
-    local LOGIN
-    local PASSWORD
-    local HOST="${1:-https://id.meltygroup.com/tokens/?idp=meltygroup}"
-    local TEMP_DIR="$(mktemp --directory --suffix=pasee)"
-    read -p 'Login: ' LOGIN
-    read -s -p "Password for $LOGIN: " PASSWORD
-    echo
-    curl -w '%{stderr}%{http_code}' -s -XPOST -d '{"login": "'"$LOGIN"'", "password": "'"$PASSWORD"'"}' "$HOST" > "$TEMP_DIR/stdout" 2> "$TEMP_DIR/stderr"
-    local HTTP_RESPONSE="$(<$TEMP_DIR/stdout)"
-    local STATUS_CODE="$(<$TEMP_DIR/stderr)"
-    JWT="$(jq -r ".access_token" <<< "$HTTP_RESPONSE")"
-    if [[ -z "$JWT" || "$STATUS_CODE" != "201" || "$JWT" == "null" ]]; then
-        printf "HTTP Error %s: %s\n" "$STATUS_CODE" "$HTTP_RESPONSE"
-    fi
-    AUTH="Authorization: Bearer $JWT"
-    rm -fr "$TEMP_DIR"
-}
-
 wyz()
 {
     curl https://wyz.fr/ -F"${1##*.}=@$1"
-}
-
-myip()
-{
-    dig +short myip.opendns.com @resolver1.opendns.com
 }
 
 e()
