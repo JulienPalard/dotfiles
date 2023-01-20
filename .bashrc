@@ -178,8 +178,14 @@ venv()
     # direnv-enabled venv creation.
     if ! [[ -d .venv ]]
     then
+        if [[ -f .envrc ]]
+        then
+           echo '`.venv` does not exists but `.envrc` file already exists!'
+           echo "Human? Untangle it, please."
+           return
+        fi
         "python$1" -m venv .venv
-        echo 'PATH=$(pwd)/.venv/bin/:$PATH' >> .envrc
+        echo 'PATH=$(pwd)/.venv/bin/:$PATH' > .envrc
     fi
 }
 
