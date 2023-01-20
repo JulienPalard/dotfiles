@@ -86,7 +86,13 @@ python_ps1()
     then
         pypath="$relative"
     fi
-    printf "$1" "${pypath%/bin/python}"
+    local venvpath="${pypath%/bin/python}"
+    if [[ "$venvpath" == ".venv" ]]
+    then
+        printf "$1"
+    else
+        printf "$1" "$venvpath "
+    fi
 }
 
 if [[ "$TERM" != 'dumb' ]]
@@ -111,7 +117,7 @@ PY_YELLOW_FG='\e[38;2;255;222;87m'
 PY_YELLOW_BG='\e[48;2;255;222;87m'
 # 🬫🬛
 # 🭮🭬
-PY_PS1='$(python_ps1 "${PY_BLUE_FG}🭮${PY_BLUE_BG}${PY_YELLOW_FG}  %s \e[0m${PY_BLUE_FG}🭬\e[0m")'
+PY_PS1='$(python_ps1 "${PY_BLUE_FG}🭮${PY_BLUE_BG}${PY_YELLOW_FG}  %s\e[0m${PY_BLUE_FG}🭬\e[0m")'
 GIT_PS1='$(__git_ps1 "${GIT_RED_FG}🭮${GIT_RED_BG}\e[97m  %s \e[0m${GIT_RED_FG}🭬\e[0m")'
 PS1="${_TITLE}${_PREV_FAIL}${USERNAME_COLOR}\u\e[0m@${HOSTNAME_COLOR}\H\e[0m:\e[32m\w\e[0m${PY_PS1}${GIT_PS1}\n\$ "
 
