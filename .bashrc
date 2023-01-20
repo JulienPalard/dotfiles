@@ -143,11 +143,9 @@ urlencode()
 # Removes *~ and #*# files in curent folder, for a depth limited to 3 folders.
 clean()
 {
-    find -maxdepth 3 -name .emacs_backups -prune \
-        -o \( -type f -a \
-        \( -name '*~' -o -name '#*#' \) \
-        \) \
-        -print0 | xargs -0 rm -f
+    find -maxdepth 3 \
+        \( -name '*~' -o -name '#*#' -o -name .tox -o -name .mypy_cache \) \
+        -print0 | xargs -0 rm -vfr
 }
 
 dotfiles()
