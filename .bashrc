@@ -34,6 +34,8 @@ export HISTCONTROL=ignoredups
 export HISTFILESIZE=5000
 export HISTSIZE=5000
 
+export PIP_REQUIRE_VIRTUALENV=1
+
 umask 022
 eval "`dircolors`"
 
