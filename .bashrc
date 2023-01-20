@@ -65,7 +65,7 @@ alias rekey='ssh-add -e /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so >/dev/null 2>
 
 export PYTHONDEVMODE=y
 
-for extra in /etc/bash_completion ~/.bash_aliases ~/.my_bashrc ~/.git-prompt.sh ~/clones/JulienPalard/compile-python/compile-python.sh
+for extra in /etc/bash_completion ~/.bash_aliases ~/.my_bashrc ~/.git-prompt.sh ~/clones/mdk/compile-python/compile-python.sh
 do
     if [ -f "$extra" ]
     then
