@@ -122,22 +122,22 @@ jsonpp()
     input="$([ $# -gt 0 ] && printf "%s\n" "$*" || cat -)"
     if ! [ z"$(which pygmentize)" = z"" ]
     then
-        printf "%s" "$input" | python3 -mjson.tool | pygmentize -l js || printf "%s\n" "$input"
+        printf "%s" "$input" | python -mjson.tool | pygmentize -l js || printf "%s\n" "$input"
     else
-        printf "%s" "$input" | python3 -mjson.tool || printf "%s\n" "$input"
+        printf "%s" "$input" | python -mjson.tool || printf "%s\n" "$input"
     fi
 }
 
 urldecode()
 {
     input="$([ $# -gt 0 ] && printf "%s\n" "$*" || cat -)"
-    python3 -c "import urllib.parse, sys; print(urllib.parse.unquote(sys.argv[1]))" "$input"
+    python -c "import urllib.parse, sys; print(urllib.parse.unquote(sys.argv[1]))" "$input"
 }
 
 urlencode()
 {
     input="$([ $# -gt 0 ] && printf "%s\n" "$*" || cat -)"
-    python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$input"
+    python -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$input"
 }
 
 # Removes *~ and #*# files in curent folder, for a depth limited to 3 folders.
@@ -212,7 +212,7 @@ venv()
 
 pip-common()
 {
-    python3 -m pip install --upgrade --upgrade-strategy eager mypy black flake8 jedi-language-server pylint build twine grip tox pip
+    python -m pip install --upgrade --upgrade-strategy eager mypy black flake8 jedi-language-server pylint build twine grip tox pip
 }
 
 github-gpg()
