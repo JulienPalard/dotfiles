@@ -192,7 +192,7 @@ if ! [[ -d .venv ]]; then
     echo "Creating venv..."
     python$1 -m venv .venv
 fi
-PATH=$(pwd)/.venv/bin/:$PATH
+PATH=$(pwd)/.venv/bin/:\$PATH
 EOF
     direnv allow .
 }
